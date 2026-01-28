@@ -21,13 +21,12 @@ export class Collection<T> {
     this.items = [];
   }
 
-  deleteElement(index: number): T[] {
-    return this.items.splice(index, 1);
+  deleteElement(index: number): void {
+    this.items.splice(index, 1);
   }
 
-  replaceElement(index: number, newItem: T): T[] {
+  replaceElement(index: number, newItem: T): void {
     this.items.splice(index, 1, newItem);
-    return this.items;
   }
 }
 
