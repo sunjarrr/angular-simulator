@@ -13,8 +13,8 @@ export class AppComponent {
   companyName: string = 'румтибет';
 
   isMainColor(color: Color): boolean {
-    const main: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
-    return main.includes(color);
+    const mainColor: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
+    return mainColor.includes(color);
   }
 
   saveLastVisit(): void {
@@ -24,12 +24,7 @@ export class AppComponent {
 
   saveVisitCount(): void {
     const storedCount: string | null = localStorage.getItem('visitCount');
-    let count: number;
-    if (!storedCount) {
-      count = 1;
-    } else {
-      count = Number(storedCount) + 1;
-    }
+    let count: number = !storedCount ? 1 :  Number(storedCount) + 1;
     localStorage.setItem('visitCount', JSON.stringify(count));
   }
 
