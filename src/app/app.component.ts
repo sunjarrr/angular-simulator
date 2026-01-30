@@ -13,8 +13,8 @@ export class AppComponent {
   companyName: string = 'румтибет';
 
   isMainColor(color: Color): boolean {
-    const mainColor: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
-    return mainColor.includes(color);
+    const mainColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
+    return mainColors.includes(color);
   }
 
   saveLastVisit(): void {

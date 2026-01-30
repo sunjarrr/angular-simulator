@@ -17,7 +17,7 @@ export class Collection<T> {
     return this.items[index];
   }
 
-  cleanCollection(): void {
+  clearCollection(): void {
     this.items = [];
   }
 
