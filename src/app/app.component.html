@@ -1,1 +1,61 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <div class="super-header">
+    <div class="container">
+      <div class="header-logo">
+        <img src="/images/mountain-logo.svg" alt="Mountain">
+        <span class="company-name">{{ companyName }}</span>
+      </div>
+      <nav class="navigation fs-14 bold">
+        <a>Главная</a>
+        <a>Про гида</a>
+        <a>Программа тура</a>
+        <a>Стоимость</a>
+        <a>Блог</a>
+        <a>Контакты</a>
+      </nav>
+      <div class="consultation">
+        <button class="consultation-btn">Консультация</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="main-info">
+  <div class="banner">
+    <div class="main-title">
+      <p class="title">Насладись прогулкой в горах <br> с командой единомышленников</p>
+      <div class="search-tour">
+        <div class="clarifying-details">
+          <div>
+            <div class="select-location-on-tour">
+              <input class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required >
+              <button class="selection-icon">
+                <img src="/images/select-icon.svg" alt="select-icon">
+              </button>
+            </div>
+            <span class="instruction-for-location">выберите из списка</span>
+          </div>
+          <div>
+            <div class="select-date">
+              <input class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
+              <button class="selection-icon">
+                <img src="/images/calendar-icon.svg" alt="select-icon">
+              </button>
+            </div>
+            <span class="instruction-for-date">укажите диапазон</span>
+          </div>
+          <div>
+            <div class="select-participants">
+              <input class="fill-details-btns" name="participants" placeholder="Участники" type="text" required>
+              <button class="selection-icon">
+                <img src="/images/select-icon.svg" alt="select-icon">
+              </button>
+            </div>
+            <span class="instruction-for-participants">выберите из списка</span>
+          </div>
+          <button class="find-program-btn">Найти программу</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
