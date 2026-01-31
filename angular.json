@@ -36,7 +36,14 @@
               }
             ],
             "styles": [
+<<<<<<< HEAD
               "src/assets/styles.scss"
+=======
+              "src/styles.scss"
+            ],
+            "polyfills": [
+              "zone.js"
+>>>>>>> upstream/master
             ]
           },
           "configurations": {
