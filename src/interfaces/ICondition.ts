@@ -1,7 +1,6 @@
-export interface IConditions {
+export interface ICondition {
   id: number;
   title: string;
   description: string;
-  icon: string;
   bg: string
 }

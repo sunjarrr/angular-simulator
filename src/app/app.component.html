@@ -1,4 +1,4 @@
-@if (pageLoading === true) {
+@if (loadingPage) {
   <img class="loading-icon" src="/images/loading-icon.svg" alt="loading-icon">
 } @else {
   <header class="header">
@@ -9,29 +9,29 @@
           <span class="company-name">{{ companyName }}</span>
         </div>
         <nav class="navigation fs-14 semi-bold">
-          <a>Главная</a>
-          <a>Про гида</a>
-          <a>Программа тура</a>
-          <a>Стоимость</a>
-          <a>Блог</a>
-          <a>Контакты</a>
+          <a id="go-main-page">Главная</a>
+          <a id="learn-more-guide">Про гида</a>
+          <a id="get-tour-program">Программа тура</a>
+          <a id="get-cost">Стоимость</a>
+          <a id="explore-blog">Блог</a>
+          <a id="get-contacts">Контакты</a>
         </nav>
         <div class="consultation">
           <button class="consultation-btn">Консультация</button>
         </div>
       </div>
     </div>
-    <button (click)="changeTask()" class="show-task-btn">{{showTask ? 'Показать кликер' : 'Показать дату'}}</button>
-    @if (showTask === true) {
+    <button (click)="switchTask()" class="show-task-btn">{{ showTask ? 'Показать кликер' : 'Показать дату' }}</button>
+    @if (showTask) {
       <div class="time-and-date">
       <span>{{ date }}</span>
       <span class="time">{{ time }}</span>
     </div>
   } @else {
       <div class="click-counter">
-      <button (click)='plusValue()'>+</button>
-      <input [(ngModel)]='value' class="counter-value">
-      <button [disabled]="value === 0" (click) = 'minusValue()'>-</button>
+      <button (click)='increaseCounterValue()'>+</button>
+      <input [(ngModel)]='counter' class="counter-value">
+      <button [disabled]="counter === 0" (click) = 'reduceCounterValue()'>-</button>
     </div>
   }
 </header>
@@ -44,14 +44,14 @@
           <div class="clarifying-details">
             <div>
               <div class="select-location-on-tour">
-                <input [(ngModel)]= "location" class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required >
+                <input [(ngModel)]= "location" class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required>
                 <div class="selection-icon">
                   <button class="selection-icon-wrapper">
                     <img src="/images/select-icon.svg" alt="select-icon">
                   </button>
                   <select class="selection-wrapper" [(ngModel)]= "location">
-                    @for(tourLocation of tourLocations; track tourLocation) {
-                      <option value="{{ tourLocation }}">{{ tourLocation }}</option>
+                    @for (tourLocation of tourLocations; track tourLocation) {
+                      <option [value]="tourLocation">{{ tourLocation }}</option>
                     }
                   </select>
                 </div>
@@ -60,9 +60,9 @@
             </div>
             <div>
               <div class="select-date">
-                <input [(ngModel)]= "dateOfHike" class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
+                <input [(ngModel)]= "hikingDate" class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
                 <div class="selection-icon">
-                    <input class="select-date-icon" type="date" [(ngModel)]= "dateOfHike">
+                    <input class="select-date-icon" type="date" [(ngModel)]= "hikingDate">
                     <button class="selection-icon-wrapper">
                       <img src="/images/calendar-icon.svg" alt="calendar-icon">
                     </button>
@@ -78,15 +78,15 @@
                     <img src="/images/select-icon.svg" alt="select-icon">
                   </button>
                   <select class="selection-wrapper" [(ngModel)]= "participants">
-                    @for(tourParticipant of tourParticipants; track tourParticipant) {
-                      <option value="{{ tourParticipant }}">{{ tourParticipant }}</option>
+                    @for (tourParticipant of tourParticipants; track tourParticipant) {
+                      <option [value]="tourParticipant">{{ tourParticipant }}</option>
                     }
                   </select>
                 </div>
               </div>
               <span class="instruction-for-participants">выберите из списка</span>
             </div>
-            <button [disabled]="location.length === 0 || dateOfHike.length === 0 || participants.length === 0" class="find-program-btn">Найти программу</button>
+            <button [disabled]="location.length === 0 || hikingDate.length === 0 || participants.length === 0" class="find-program-btn">Найти программу</button>
           </div>
         </div>
       </div>
@@ -95,7 +95,7 @@
       <input [(ngModel)]="inputLiveText" class="live-input" type="text" placeholder="Живой инпут">
       <img class="sel-icon" src="/images/select-icon.svg" alt="select-icon">
     </div>
-    <span class="live-input-show">{{inputLiveText}}</span>
+    <span class="live-input-show">{{ inputLiveText }}</span>
   </section>
 
   <section class="hike-section">
@@ -120,10 +120,16 @@
           <span class="program-description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</span>
         </div>
         <div class="condition-list">
-          @for(condition of conditions; track condition.id) {
-            <div class="condition-icon-bg" [style.background-color]="condition.bg">
-              <img class="condition-icons" [src]="condition.icon" [alt]="condition.title">
-            </div>
+          @for (condition of conditions; track condition.id) {
+              <div class="condition-icon-bg" [style.background-color]="condition.bg">
+                @if (condition.id === 1) {
+                  <img class="condition-icons" [src]="humansIcon" [alt]="condition.title">
+                } @else if(condition.id === 2) {
+                  <img class="condition-icons" [src]="safetyIcon" [alt]="condition.title">
+                } @else {
+                  <img class="condition-icons" [src]="priceIcon" [alt]="condition.title">
+                }
+              </div>
             <div class="conditions">
               <h3 class="condition-title fs-18 bold">{{ condition.title }}</h3>
               <span class="condition-description regular fs-14">{{ condition.description }}</span>

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import './training';
 import './collection';
-import { IConditions } from '../interfaces/IConditions';
+import { ICondition } from '../interfaces/ICondition';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,40 +11,41 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-    conditions: IConditions[] = [
+
+  readonly humansIcon: string = '/images/humans-icon.svg';
+  readonly priceIcon: string = '/images/price-icon.svg';
+  readonly safetyIcon: string = '/images/safety-icon.svg';
+  location: string = '';
+  hikingDate: string = '';
+  participants: string = '';
+  time: string = '';
+  date: string = '';
+  counter: number = 0;
+  showTask: boolean = true;
+  inputLiveText: string = '';
+  loadingPage: boolean = true;
+  companyName: string = 'румтибет';
+
+  conditions: ICondition[] = [
     {
       id: 1,
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'images/guide-icon.svg',
       bg: '#E5EEEB'
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'images/safety-icon.svg',
       bg: '#E3E6EE'
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: '/images/price-icon.svg',
       bg: '#F3F1E1'
-    }
-  ]
-
-  location: string = '';
-  dateOfHike: string = '';
-  participants: string = '';
-  time: string = '';
-  date: string = '';
-  value: number = 0;
-  showTask: boolean = true;
-  inputLiveText: string = '';
-  pageLoading: boolean = true;
-  companyName: string = 'румтибет';
+    },
+  ];
 
   tourLocations: string[] = [
     'Мадрид',
@@ -53,7 +54,7 @@ export class AppComponent {
     'Берлин',
     'Монако',
     'Барселона'
-  ]
+  ];
 
   tourParticipants: string[] = [
     'Санжар',
@@ -62,17 +63,16 @@ export class AppComponent {
     'Нурбек',
     'Даурен',
     'Магфират'
-  ]
+  ];
 
   constructor() {
-    setInterval((): void => {
+    setTimeout(() => {
+      this.loadingPage = !this.loadingPage;
+    }, 2000);
+    setInterval(() => {
       const date: Date = new Date();
-      this.date = date.toLocaleDateString();
-    })
-    setInterval((): void => {
-      const time: Date = new Date();
-      this.time = time.toLocaleTimeString();
-    })
+      this.date = date.toLocaleString();
+    }, 1000);
     this.saveLastVisit();
     this.saveVisitCount();
   }
@@ -93,24 +93,16 @@ export class AppComponent {
     localStorage.setItem('visitCount', JSON.stringify(count));
   }
 
-  plusValue(): void {
-    const plus: number = Number(this.value) + 1;
-    this.value = plus;
+  increaseCounterValue(): void {
+    this.counter++;
   }
 
-  minusValue(): void {
-    const minus: number = Number(this.value) - 1;
-    this.value = minus;
+  reduceCounterValue(): void {
+    this.counter--;
   }
 
-  changeTask(): void {
+  switchTask(): void {
     this.showTask = !this.showTask;
-  }
-
-  private ngOnInit(): void {
-    setTimeout((): void => {
-      this.pageLoading = !this.pageLoading;
-    }, 2000)
   }
 }
 
