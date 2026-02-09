@@ -1,4 +1,4 @@
-@if (loadingPage) {
+@if (shouldOpenPage) {
   <img class="loading-icon" src="/images/loading-icon.svg" alt="loading-icon">
 } @else {
   <header class="header">
@@ -9,32 +9,31 @@
           <span class="company-name">{{ companyName }}</span>
         </div>
         <nav class="navigation fs-14 semi-bold">
-          <a id="go-main-page">Главная</a>
-          <a id="learn-more-guide">Про гида</a>
-          <a id="get-tour-program">Программа тура</a>
-          <a id="get-cost">Стоимость</a>
-          <a id="explore-blog">Блог</a>
-          <a id="get-contacts">Контакты</a>
+          <a id="main-page">Главная</a>
+          <a id="about-guide">Про гида</a>
+          <a id="tour-program">Программа тура</a>
+          <a id="cost">Стоимость</a>
+          <a id="blog">Блог</a>
+          <a id="contacts">Контакты</a>
         </nav>
         <div class="consultation">
           <button class="consultation-btn">Консультация</button>
         </div>
       </div>
     </div>
-    <button (click)="switchTask()" class="show-task-btn">{{ showTask ? 'Показать кликер' : 'Показать дату' }}</button>
-    @if (showTask) {
+    <button (click)="switchWidget(currentWidget === 'date' ? 'counter' : 'date')" class="show-task-btn">{{ currentWidget === 'date' ? 'Показать кликер' : 'Показать дату' }}</button>
+    @if (currentWidget === 'date') {
       <div class="time-and-date">
-      <span>{{ date }}</span>
-      <span class="time">{{ time }}</span>
-    </div>
-  } @else {
+        <span>{{ timer }}</span>
+      </div>
+    } @else {
       <div class="click-counter">
-      <button (click)='increaseCounterValue()'>+</button>
-      <input [(ngModel)]='counter' class="counter-value">
-      <button [disabled]="counter === 0" (click) = 'reduceCounterValue()'>-</button>
-    </div>
-  }
-</header>
+        <button (click)='increaseCounter()'>+</button>
+        <input [(ngModel)]='counter' class="counter-value">
+        <button [disabled]="counter === 0" (click) = 'reduceCounter()'>-</button>
+      </div>
+    }
+  </header>
 
   <section class="main-info">
     <div class="banner">
@@ -44,12 +43,12 @@
           <div class="clarifying-details">
             <div>
               <div class="select-location-on-tour">
-                <input [(ngModel)]= "location" class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required>
+                <input [(ngModel)]= "selectedLocation" class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required>
                 <div class="selection-icon">
                   <button class="selection-icon-wrapper">
                     <img src="/images/select-icon.svg" alt="select-icon">
                   </button>
-                  <select class="selection-wrapper" [(ngModel)]= "location">
+                  <select class="selection-wrapper" [(ngModel)]= "selectedLocation">
                     @for (tourLocation of tourLocations; track tourLocation) {
                       <option [value]="tourLocation">{{ tourLocation }}</option>
                     }
@@ -60,9 +59,9 @@
             </div>
             <div>
               <div class="select-date">
-                <input [(ngModel)]= "hikingDate" class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
+                <input [(ngModel)]= "selectedHikingDate" class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
                 <div class="selection-icon">
-                    <input class="select-date-icon" type="date" [(ngModel)]= "hikingDate">
+                    <input class="select-date-icon" type="date" [(ngModel)]= "selectedHikingDate">
                     <button class="selection-icon-wrapper">
                       <img src="/images/calendar-icon.svg" alt="calendar-icon">
                     </button>
@@ -72,12 +71,12 @@
             </div>
             <div>
               <div class="select-participants">
-                <input [(ngModel)]= "participants" class="fill-details-btns" name="participants" placeholder="Участники" type="text" required>
+                <input [(ngModel)]= "selectedParticipants" class="fill-details-btns" name="participants" placeholder="Участники" type="text" required>
                 <div class="selection-icon">
                   <button class="selection-icon-wrapper">
                     <img src="/images/select-icon.svg" alt="select-icon">
                   </button>
-                  <select class="selection-wrapper" [(ngModel)]= "participants">
+                  <select class="selection-wrapper" [(ngModel)]= "selectedParticipants">
                     @for (tourParticipant of tourParticipants; track tourParticipant) {
                       <option [value]="tourParticipant">{{ tourParticipant }}</option>
                     }
@@ -86,16 +85,16 @@
               </div>
               <span class="instruction-for-participants">выберите из списка</span>
             </div>
-            <button [disabled]="location.length === 0 || hikingDate.length === 0 || participants.length === 0" class="find-program-btn">Найти программу</button>
+            <button [disabled]="selectedLocation.length === 0 || selectedLocation.length === 0 || selectedLocation.length === 0" class="find-program-btn">Найти программу</button>
           </div>
         </div>
       </div>
     </div>
     <div class="live-input-container">
-      <input [(ngModel)]="inputLiveText" class="live-input" type="text" placeholder="Живой инпут">
+      <input [(ngModel)]="liveInputValue" class="live-input" type="text" placeholder="Живой инпут">
       <img class="sel-icon" src="/images/select-icon.svg" alt="select-icon">
     </div>
-    <span class="live-input-show">{{ inputLiveText }}</span>
+    <span class="live-input-show">{{ liveInputValue }}</span>
   </section>
 
   <section class="hike-section">
@@ -121,15 +120,9 @@
         </div>
         <div class="condition-list">
           @for (condition of conditions; track condition.id) {
-              <div class="condition-icon-bg" [style.background-color]="condition.bg">
-                @if (condition.id === 1) {
-                  <img class="condition-icons" [src]="humansIcon" [alt]="condition.title">
-                } @else if(condition.id === 2) {
-                  <img class="condition-icons" [src]="safetyIcon" [alt]="condition.title">
-                } @else {
-                  <img class="condition-icons" [src]="priceIcon" [alt]="condition.title">
-                }
-              </div>
+            <div class="condition-icon-bg" [style.background-color]="condition.bg">
+              <img class="condition-icons" [src]="`/images/${condition.icon}`">
+            </div>
             <div class="conditions">
               <h3 class="condition-title fs-18 bold">{{ condition.title }}</h3>
               <span class="condition-description regular fs-14">{{ condition.description }}</span>

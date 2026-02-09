@@ -4,6 +4,8 @@ import './collection';
 import { ICondition } from '../interfaces/ICondition';
 import { FormsModule } from '@angular/forms';
 
+type widgetType = 'counter' | 'date';
+
 @Component({
   selector: 'app-root',
   imports: [FormsModule],
@@ -11,19 +13,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-
-  readonly humansIcon: string = '/images/humans-icon.svg';
-  readonly priceIcon: string = '/images/price-icon.svg';
-  readonly safetyIcon: string = '/images/safety-icon.svg';
-  location: string = '';
-  hikingDate: string = '';
-  participants: string = '';
-  time: string = '';
-  date: string = '';
+  selectedLocation: string = '';
+  selectedHikingDate: string = '';
+  selectedParticipants: string = '';
+  timer: string = '';
   counter: number = 0;
-  showTask: boolean = true;
-  inputLiveText: string = '';
-  loadingPage: boolean = true;
+  currentWidget: widgetType = 'date';
+  liveInputValue: string = '';
+  shouldOpenPage: boolean = true;
   companyName: string = 'румтибет';
 
   conditions: ICondition[] = [
@@ -31,19 +28,22 @@ export class AppComponent {
       id: 1,
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      bg: '#E5EEEB'
+      bg: '#E5EEEB',
+      icon: 'humans-icon.svg'
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      bg: '#E3E6EE'
+      bg: '#E3E6EE',
+      icon: 'safety-icon.svg'
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      bg: '#F3F1E1'
+      bg: '#F3F1E1',
+      icon: 'price-icon.svg'
     },
   ];
 
@@ -67,14 +67,29 @@ export class AppComponent {
 
   constructor() {
     setTimeout(() => {
-      this.loadingPage = !this.loadingPage;
+      this.shouldOpenPage = !this.shouldOpenPage;
     }, 2000);
+
     setInterval(() => {
       const date: Date = new Date();
-      this.date = date.toLocaleString();
+      this.timer = date.toLocaleString();
     }, 1000);
+
     this.saveLastVisit();
+
     this.saveVisitCount();
+  }
+
+  increaseCounter(): void {
+    this.counter++;
+  }
+
+  reduceCounter(): void {
+    this.counter--;
+  }
+
+  switchWidget(widget: widgetType): void {
+    this.currentWidget = widget;
   }
 
   private isMainColor(color: Color): boolean {
@@ -92,17 +107,4 @@ export class AppComponent {
     let count: number = !storedCount ? 1 :  Number(storedCount) + 1;
     localStorage.setItem('visitCount', JSON.stringify(count));
   }
-
-  increaseCounterValue(): void {
-    this.counter++;
-  }
-
-  reduceCounterValue(): void {
-    this.counter--;
-  }
-
-  switchTask(): void {
-    this.showTask = !this.showTask;
-  }
 }
-
