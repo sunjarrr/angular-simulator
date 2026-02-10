@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import './training';
 import './collection';
-import { IAdvantage } from '../interfaces/IAdvantage';
+import { IAdvantageInfo } from '../interfaces/IAdvantageInfo';
 import { FormsModule } from '@angular/forms';
-import './widget.types'
+import { WidgetType } from './Widget';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +23,7 @@ export class AppComponent {
   isLoading: boolean = true;
   companyName: string = 'румтибет';
 
-  conditions: IAdvantage[] = [
+  conditions: IAdvantageInfo[] = [
     {
       id: 1,
       title: 'Опытный гид',
