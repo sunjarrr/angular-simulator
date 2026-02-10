@@ -1,4 +1,4 @@
-@if (shouldOpenPage) {
+@if (isLoading) {
   <img class="loading-icon" src="/images/loading-icon.svg" alt="loading-icon">
 } @else {
   <header class="header">
@@ -121,7 +121,7 @@
         <div class="condition-list">
           @for (condition of conditions; track condition.id) {
             <div class="condition-icon-bg" [style.background-color]="condition.bg">
-              <img class="condition-icons" [src]="`/images/${condition.icon}`">
+              <img class="condition-icons" [src]="`/images/${condition.icon}.svg`">
             </div>
             <div class="conditions">
               <h3 class="condition-title fs-18 bold">{{ condition.title }}</h3>

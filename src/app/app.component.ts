@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import './training';
 import './collection';
-import { ICondition } from '../interfaces/ICondition';
+import { IAdvantage } from '../interfaces/IAdvantage';
 import { FormsModule } from '@angular/forms';
-
-type widgetType = 'counter' | 'date';
+import './widget.types'
 
 @Component({
   selector: 'app-root',
@@ -13,37 +12,38 @@ type widgetType = 'counter' | 'date';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+
   selectedLocation: string = '';
   selectedHikingDate: string = '';
   selectedParticipants: string = '';
-  timer: string = '';
+  timer: string = new Date().toLocaleString();
   counter: number = 0;
-  currentWidget: widgetType = 'date';
+  currentWidget: WidgetType = 'date';
   liveInputValue: string = '';
-  shouldOpenPage: boolean = true;
+  isLoading: boolean = true;
   companyName: string = 'румтибет';
 
-  conditions: ICondition[] = [
+  conditions: IAdvantage[] = [
     {
       id: 1,
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E5EEEB',
-      icon: 'humans-icon.svg'
+      icon: 'humans-icon'
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E3E6EE',
-      icon: 'safety-icon.svg'
+      icon: 'safety-icon'
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#F3F1E1',
-      icon: 'price-icon.svg'
+      icon: 'price-icon'
     },
   ];
 
@@ -67,12 +67,11 @@ export class AppComponent {
 
   constructor() {
     setTimeout(() => {
-      this.shouldOpenPage = !this.shouldOpenPage;
+      this.isLoading = !this.isLoading;
     }, 2000);
 
     setInterval(() => {
-      const date: Date = new Date();
-      this.timer = date.toLocaleString();
+      this.timer = new Date().toLocaleString();
     }, 1000);
 
     this.saveLastVisit();
@@ -88,7 +87,7 @@ export class AppComponent {
     this.counter--;
   }
 
-  switchWidget(widget: widgetType): void {
+  switchWidget(widget: WidgetType): void {
     this.currentWidget = widget;
   }
 

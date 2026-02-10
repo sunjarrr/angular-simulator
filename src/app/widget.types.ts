@@ -1,0 +1,1 @@
+type WidgetType = 'counter' | 'date';
