@@ -1,4 +1,9 @@
 .header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
   .super-header {
     color: var(--main-color);
     display: flex;
@@ -30,6 +35,7 @@
     gap: 24px;
     align-items: center;
     margin-left: 212px;
+    cursor: pointer;
   }
 
   .consultation {
@@ -43,20 +49,62 @@
     width: 157px;
     height: 44px;
     border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .show-date-btn {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+  }
+
+  .time-and-date {
+    margin-left: 1380px;
+  }
+
+  .time {
+    margin-left: 10px;
+  }
+
+  .counter-value {
+    width: 22px;
+    background: transparent;
+    border: none;
+  }
+
+  .click-counter {
+    margin-left: 1470px;
+    margin-top: 10px;
+  }
+
+  .show-task-btn {
+    background-color: #1A3E3E;
+    color: var(--main-color);
+    width: 157px;
+    height: 44px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 
 .main-info {
+  position: relative; 
+  height: 985px;
+  width: 100%;
   .banner {
     background-image: url('/background-images/mountains.png');
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    height: 985px;
-    position: absolute;
+    max-height: 100%;
     top: 0;
     left: 0;
-    z-index: -2;
+    position: absolute;
   }
 
   .main-title {
@@ -69,7 +117,47 @@
     align-items: center;
     display: flex;
     margin: 0 auto;
-    margin-top: 130px;
+    padding-top: 130px;
+  }
+  .title {
+    margin-top: 180px;
+  }
+
+  .live-input-container {
+    position: relative;
+    width: 470px;
+    height: 52px;
+    padding-top: 925px;
+    padding-left: 360px;
+  }
+
+  .live-input {
+    display: flex;
+    border: 1px solid #E1E3E4;
+    border-radius: 8px;
+    width: 270px;
+    height: 50px;
+    background: transparent;
+    padding-left: 16px;
+    cursor: pointer;
+    position: absolute;
+    padding-right: 50px;
+  }
+
+  .live-input::placeholder {
+    color: var(--main-color);
+  }
+
+  .live-input-show {
+    position: absolute;
+    margin-left: 660px;
+    margin-top: 14px;
+  }
+
+  .sel-icon {
+    position: absolute;
+    margin: 15px 235px;
+    transform: rotate(270deg);
   }
 }
 
@@ -104,6 +192,7 @@
     padding-left: 16px;
     border: none;
     background: transparent;
+    cursor: pointer;
   }
 
   .find-program-btn {
@@ -120,6 +209,13 @@
     align-items: center;
     justify-content: center;
     text-align: center;
+    cursor: pointer;
+  }
+
+  .find-program-btn:disabled {
+    background-color: transparent;
+    border: none;
+    color: transparent;
   }
 
   .instruction-for-location {
@@ -163,6 +259,37 @@
     width: 268px;
   }
 
+  .selection-wrapper {
+    position: absolute;
+    display: flex;
+    top: 1;
+    left: 1;
+    opacity: 0;
+    background: transparent;
+    border: none;
+    width: 20px;
+    cursor: pointer;
+  }
+
+  .select-date-icon {
+    position: absolute;
+    display: flex;
+    top: 1;
+    left: 1;
+    width: 140px;
+    opacity: 0;
+    background: transparent;
+    border: none;
+    margin-right: 100px;
+    cursor: pointer;
+  }
+
+  .selection-icon-wrapper {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
   .selection-icon {
     display: flex;
     background: transparent;
@@ -172,6 +299,7 @@
     margin-top: 15px;
     width: 100%;
     padding-left: 16px;
+    cursor: pointer;
   }
 
   .select-participants {
@@ -191,3 +319,167 @@
   }
 }
 
+.hike-section {
+  height: 726px;
+  .hike-info {
+    height: 526px;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+  }
+
+  .first-promo-location {
+    display: flex;
+  }
+
+  .second-promo-location {
+    display: flex;
+    position: absolute;
+    margin-right: 570px;
+    margin-top: 255px;
+  }
+
+  .hike-info-description {
+    display: flex;
+    flex-direction: column;
+    padding-left: 250px;
+    padding-top: 104px;
+  }
+
+  .hike-preface {
+    color: var(--additional-color);
+    margin-bottom: -25px;
+  }
+
+  .hike-title {
+    line-height: 120%;
+  }
+
+  .hike-description {
+    line-height: 150%;
+    margin-bottom: 40px;
+  }
+
+  .tour-program-btn {
+    display: flex;
+    width: 200px;
+    height: 52px;
+    background-color: var(--btn-colors);
+    color: var(--main-color);
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    line-height: 20px;
+    letter-spacing: 1.2%;
+    cursor: pointer;
+  }
+}
+
+.hike-programs {
+  height: 771px;
+  background-color: var(--third-color);
+  .conditions-wrapper {
+    max-width: 580px;
+    height: 591px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 80px;
+  }
+
+  .title-and-description {
+    width: 580px;
+  }
+
+  .proposal {
+    color: var(--additional-color);
+  }
+
+  .programs {
+    line-height: 120%;
+    margin-top: 8px;
+  }
+
+  .program-description {
+    line-height: 150%;
+  }
+
+  .condition-list {
+    display: block;
+    margin-top: 40px;
+  }
+
+  .conditions {
+    width: 580px;
+    line-height: 20px;
+    margin-left: 70px;
+    margin-top: -75px;
+    padding-bottom: 40px;
+    transition: filter 0.3s ease;
+  }
+
+  .conditions:hover {
+    filter: invert(1);
+  }
+
+  .program-cost-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 20px;
+    width: 236px;
+    height: 52px;
+    border-radius: 4px;
+    background-color: var(--btn-colors);
+    color: var(--main-color);
+    cursor: pointer;
+  }
+
+  .condition-title {
+    margin-bottom: 4px;
+  }
+
+  .condition-description {
+    display: flex;
+    width: 514px;
+  }
+
+  .condition-icons {
+    display: flex;
+    margin: 0 auto;
+    padding-top: 7px;
+  }
+
+  .condition-icon-bg {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+  }
+
+  .photo-of-places {
+    display: flex;
+    flex-wrap: wrap;
+    width: 510px;
+    height: 510px;
+    margin-left:700px;
+    margin-top: -500px;
+    gap: 10px;
+  }
+}
+
+.loading-icon {
+  display: flex;
+  transition: transform 0.5s ease;
+  animation: scrolling 1s linear infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes scrolling {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

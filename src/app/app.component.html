@@ -1,61 +1,142 @@
-<header class="header">
-  <div class="super-header">
-    <div class="container">
-      <div class="header-logo">
-        <img src="/images/mountain-logo.svg" alt="Mountain">
-        <span class="company-name">{{ companyName }}</span>
-      </div>
-      <nav class="navigation fs-14 bold">
-        <a>Главная</a>
-        <a>Про гида</a>
-        <a>Программа тура</a>
-        <a>Стоимость</a>
-        <a>Блог</a>
-        <a>Контакты</a>
-      </nav>
-      <div class="consultation">
-        <button class="consultation-btn">Консультация</button>
-      </div>
-    </div>
-  </div>
-</header>
-
-<section class="main-info">
-  <div class="banner">
-    <div class="main-title">
-      <p class="title">Насладись прогулкой в горах <br> с командой единомышленников</p>
-      <div class="search-tour">
-        <div class="clarifying-details">
-          <div>
-            <div class="select-location-on-tour">
-              <input class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required >
-              <button class="selection-icon">
-                <img src="/images/select-icon.svg" alt="select-icon">
-              </button>
-            </div>
-            <span class="instruction-for-location">выберите из списка</span>
-          </div>
-          <div>
-            <div class="select-date">
-              <input class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
-              <button class="selection-icon">
-                <img src="/images/calendar-icon.svg" alt="select-icon">
-              </button>
-            </div>
-            <span class="instruction-for-date">укажите диапазон</span>
-          </div>
-          <div>
-            <div class="select-participants">
-              <input class="fill-details-btns" name="participants" placeholder="Участники" type="text" required>
-              <button class="selection-icon">
-                <img src="/images/select-icon.svg" alt="select-icon">
-              </button>
-            </div>
-            <span class="instruction-for-participants">выберите из списка</span>
-          </div>
-          <button class="find-program-btn">Найти программу</button>
+@if (isLoading) {
+  <img class="loading-icon" src="/images/loading-icon.svg" alt="loading-icon">
+} @else {
+  <header class="header">
+    <div class="super-header">
+      <div class="container">
+        <div class="header-logo">
+          <img src="/images/mountain-logo.svg" alt="Mountain">
+          <span class="company-name">{{ companyName }}</span>
+        </div>
+        <nav class="navigation fs-14 semi-bold">
+          <a id="main-page">Главная</a>
+          <a id="about-guide">Про гида</a>
+          <a id="tour-program">Программа тура</a>
+          <a id="cost">Стоимость</a>
+          <a id="blog">Блог</a>
+          <a id="contacts">Контакты</a>
+        </nav>
+        <div class="consultation">
+          <button class="consultation-btn">Консультация</button>
         </div>
       </div>
     </div>
-  </div>
-</section>
+    <button (click)="switchWidget(currentWidget === 'date' ? 'counter' : 'date')" class="show-task-btn">{{ currentWidget === 'date' ? 'Показать кликер' : 'Показать дату' }}</button>
+    @if (currentWidget === 'date') {
+      <div class="time-and-date">
+        <span>{{ timer }}</span>
+      </div>
+    } @else {
+      <div class="click-counter">
+        <button (click)='increaseCounter()'>+</button>
+        <input [(ngModel)]='counter' class="counter-value">
+        <button [disabled]="counter === 0" (click) = 'reduceCounter()'>-</button>
+      </div>
+    }
+  </header>
+
+  <section class="main-info">
+    <div class="banner">
+      <div class="main-title">
+        <p class="title">Насладись прогулкой в горах <br> с командой единомышленников</p>
+        <div class="search-tour">
+          <div class="clarifying-details">
+            <div>
+              <div class="select-location-on-tour">
+                <input [(ngModel)]= "selectedLocation" class="fill-details-btns" name="location" placeholder="Локация для тура" type="text" required>
+                <div class="selection-icon">
+                  <button class="selection-icon-wrapper">
+                    <img src="/images/select-icon.svg" alt="select-icon">
+                  </button>
+                  <select class="selection-wrapper" [(ngModel)]= "selectedLocation">
+                    @for (tourLocation of tourLocations; track tourLocation) {
+                      <option [value]="tourLocation">{{ tourLocation }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+              <span class="instruction-for-location">выберите из списка</span>
+            </div>
+            <div>
+              <div class="select-date">
+                <input [(ngModel)]= "selectedHikingDate" class="fill-details-btns" name="dateOfHike" placeholder="Дата похода" type="text" required>
+                <div class="selection-icon">
+                    <input class="select-date-icon" type="date" [(ngModel)]= "selectedHikingDate">
+                    <button class="selection-icon-wrapper">
+                      <img src="/images/calendar-icon.svg" alt="calendar-icon">
+                    </button>
+                </div>
+              </div>
+              <span class="instruction-for-date">укажите диапазон</span>
+            </div>
+            <div>
+              <div class="select-participants">
+                <input [(ngModel)]= "selectedParticipants" class="fill-details-btns" name="participants" placeholder="Участники" type="text" required>
+                <div class="selection-icon">
+                  <button class="selection-icon-wrapper">
+                    <img src="/images/select-icon.svg" alt="select-icon">
+                  </button>
+                  <select class="selection-wrapper" [(ngModel)]= "selectedParticipants">
+                    @for (tourParticipant of tourParticipants; track tourParticipant) {
+                      <option [value]="tourParticipant">{{ tourParticipant }}</option>
+                    }
+                  </select>
+                </div>
+              </div>
+              <span class="instruction-for-participants">выберите из списка</span>
+            </div>
+            <button [disabled]="selectedLocation.length === 0 || selectedHikingDate.length === 0 || selectedParticipants.length === 0" class="find-program-btn">Найти программу</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="live-input-container">
+      <input [(ngModel)]="liveInputValue" class="live-input" type="text" placeholder="Живой инпут">
+      <img class="sel-icon" src="/images/select-icon.svg" alt="select-icon">
+    </div>
+    <span class="live-input-show">{{ liveInputValue }}</span>
+  </section>
+
+  <section class="hike-section">
+    <div class="container hike-info">
+      <img class="first-promo-location" src="/images/misty-mountains.png" alt="misty-mountains">
+      <img class="second-promo-location" src="/images/house-and-nature.png" alt="house-and-nature">
+      <div class="hike-info-description">
+        <span class="hike-preface fs-24 regular">о нашем походе</span>
+        <p class="hike-title extra-bold fs-32">Исследуйте все горные массивы мира вместе с нами</p>
+        <span class="hike-description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</span>
+        <button class="tour-program-btn semi-bold">Программа тура</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="hike-programs">
+    <div class="container">
+      <div class="conditions-wrapper">
+        <div class="title-and-description">
+          <span class="proposal fs-24 regular">наше предложение</span>
+          <p class="programs fs-32 extra-bold">Лучшие программы для тебя</p>
+          <span class="program-description fs-18 regular">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</span>
+        </div>
+        <div class="condition-list">
+          @for (condition of conditions; track condition.id) {
+            <div class="condition-icon-bg" [style.background-color]="condition.bg">
+              <img class="condition-icons" [src]="`/images/${condition.icon}.svg`">
+            </div>
+            <div class="conditions">
+              <h3 class="condition-title fs-18 bold">{{ condition.title }}</h3>
+              <span class="condition-description regular fs-14">{{ condition.description }}</span>
+            </div>
+          }
+          <button class="program-cost-btn fs-16 semi-bold">Стоимость программ</button>
+        </div>
+      </div>
+      <div class="photo-of-places">
+        <img src="/images/rocky-lakes.png" alt="rocky-lakes">
+        <img src="/images/mountain-steppe.png" alt="mountain-steppe">
+        <img src="/images/snowy-mountains.png" alt="snowy-mountains">
+        <img src="/images/green-mountains.png" alt="green-mountains">
+      </div>
+    </div>
+  </section>
+}

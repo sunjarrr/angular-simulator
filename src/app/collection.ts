@@ -35,4 +35,3 @@ gamesCollection.replaceElement(0, 'The Witcher 3');
 
 const moviesCollection: Collection<string> = new Collection<string>(movies);
 moviesCollection.getAllElements();
-
