@@ -1,18 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import './training';
 import './collection';
 import { IAdvantageInfo } from '../interfaces/IAdvantageInfo';
 import { FormsModule } from '@angular/forms';
 import { WidgetType } from './Widget';
+import { IPlace } from '../interfaces/IPlace';
+import { IArticle } from '../interfaces/IArticle';
+import { MessageManagementService } from '../message-management.service';
+import { NgTemplateOutlet } from "@angular/common";
+import { MessageType } from '../enums/MessageType';
+import { LocalStorageService } from '../local-storage.service';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule],
+  imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  providers: [MessageManagementService]
 })
 export class AppComponent {
 
+  localStorageService: LocalStorageService = inject(LocalStorageService);
+  messageManagementService: MessageManagementService = inject(MessageManagementService);
+  readonly MessageType = MessageType;
   selectedLocation: string = '';
   selectedHikingDate: string = '';
   selectedParticipants: string = '';
@@ -22,6 +32,7 @@ export class AppComponent {
   liveInputValue: string = '';
   isLoading: boolean = true;
   companyName: string = 'румтибет';
+  selectedArticleId: number = 2;
 
   conditions: IAdvantageInfo[] = [
     {
@@ -44,6 +55,71 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#F3F1E1',
       icon: 'price-icon'
+    },
+  ];
+
+  detailsPlaces: IPlace[] = [
+    {
+      id: 1,
+      title: 'Озеро возле гор',
+      description: 'романтическое приключение',
+      price: 480,
+      placeImage: 'lake-near-mountains',
+      assessment: '4.9',
+      assessmentIcon: 'star-icon'
+    },
+    {
+      id: 2,
+      title: 'Ночь в горах',
+      description: 'в компании друзей',
+      price: 500,
+      placeImage: 'night-mountains',
+      assessment: '4.5',
+      assessmentIcon: 'star-icon'
+    },
+    {
+      id: 3,
+      title: 'Спорт в горах',
+      description: 'для тех, кто забоится о себе',
+      price: 230,
+      placeImage: 'mountains-sport',
+      assessment: '5.0',
+      assessmentIcon: 'star-icon'
+    },
+  ];
+
+  articles: IArticle[] = [
+    {
+      id: 1,
+      title: 'Красивая Италия, какая она в реальности?',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      date: '01/04/2023',
+      link: 'читать статью',
+      images: 'italy'
+    },
+    {
+      id: 2,
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+      date: '01/04/2023',
+      link: 'читать статью',
+      images: 'clouds-aiplane'
+    },
+    {
+      id: 3,
+      title: 'Как подготовиться к путешествию в одиночку? ',
+      description: 'Для современного мира базовый вектор развития предполагает.',
+      date: '01/04/2023',
+      link: 'читать статью',
+      images: 'alley-human'
+    },
+    {
+      id: 4,
+      title: 'Индия ... летим?',
+      description: 'Для современного мира базовый.',
+      date: '01/04/2023',
+      link: 'читать статью',
+      images: 'india'
     },
   ];
 
@@ -91,6 +167,22 @@ export class AppComponent {
     this.currentWidget = widget;
   }
 
+  showSuccessMessage() {
+    this.messageManagementService.addMessage('Success', 'Направления получены', MessageType.SUCCESS);
+  }
+
+  showInfoMessage() {
+    this.messageManagementService.addMessage('Info', 'Стоимость отправлена на почту', MessageType.INFO);
+  }
+
+  showWarnMessage() {
+    this.messageManagementService.addMessage('Warn', 'Программа недоступна', MessageType.WARN);
+  }
+
+  showErrorMessage() {
+    this.messageManagementService.addMessage('Error', 'Материалы недоступны', MessageType.ERROR);
+  }
+
   private isMainColor(color: Color): boolean {
     const mainColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
     return mainColors.includes(color);
@@ -98,12 +190,12 @@ export class AppComponent {
 
   private saveLastVisit(): void {
     const date: Date = new Date();
-    localStorage.setItem('lastVisit', JSON.stringify(date));
+    this.localStorageService.setValues('lastVisit', date);
   }
 
   private saveVisitCount(): void {
-    const storedCount: string | null = localStorage.getItem('visitCount');
-    let count: number = !storedCount ? 1 :  Number(storedCount) + 1;
-    localStorage.setItem('visitCount', JSON.stringify(count));
+    const storedCount: number | null = this.localStorageService.getValues<number>('visitCount') ?? 0;
+    let count: number = !storedCount ? 1 : storedCount + 1;
+    this.localStorageService.setValues('visitCount', count);
   }
 }

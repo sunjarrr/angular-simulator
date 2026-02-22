@@ -366,7 +366,7 @@
     display: flex;
     width: 200px;
     height: 52px;
-    background-color: var(--btn-colors);
+    background-color: var(--fourth-colors);
     color: var(--main-color);
     align-items: center;
     justify-content: center;
@@ -432,7 +432,7 @@
     width: 236px;
     height: 52px;
     border-radius: 4px;
-    background-color: var(--btn-colors);
+    background-color: var(--fourth-colors);
     color: var(--main-color);
     cursor: pointer;
   }
@@ -482,4 +482,280 @@
 @keyframes scrolling {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.recreation-locations {
+  height: 778px;
+  .photos-recreation-locations {
+    display: flex;
+    gap: 20px;
+  }
+
+  .directions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 50px;
+    height: 66px;
+  }
+
+  .subtitle {
+    margin-bottom: 8px;
+    color: var(--additional-color);
+  }
+
+  .direction-header {
+    margin-top: 0px;
+  }
+
+  .popular-places {
+    color: var(--main-color);
+    display: block;
+    position: absolute;
+    top: 82%;
+    left: 10%;
+    background: #FFFFFF33;
+    backdrop-filter: blur(3px);
+    border-radius: 0 0 32px 32px;
+    width: 380px;
+    z-index: 1;
+    height: 90px;
+    margin: -38px;
+    margin-top: -0px;
+    padding: 1px 32px;
+  }
+
+  .popular-places-image {
+    display: flex;
+    position: relative;
+  }
+
+  .popular-places-price {
+    display: block;
+    position: absolute;
+    text-align: center;
+    padding-top: 10px;
+    margin: -41px 50px;
+    width: 86px;
+    height: 40px;
+    top: 73%;
+    left: 57%;
+    color: var(--main-color);
+    background: #FFFFFF4D;
+    border-radius: 4px;
+  }
+
+  .place-title {
+    padding-top: 20px;
+    margin: 0;
+  }
+
+  .place-description {
+    letter-spacing: 0%;
+  }
+
+  .place-assessment-wrapper {
+    display: flex;
+    position: absolute;
+    top: 10%;
+    left: 83%;
+    background: #FDFDFD66;
+    backdrop-filter: blur(4px);
+    width: 65px;
+    height: 32px;
+    border-radius: 4px 0px 0px 4px;
+  }
+
+  .assessment-icon {
+    position: absolute;
+    top: 15%;
+    left: 6px;
+  }
+
+  .place-assessment {
+    margin: 0 auto;
+    padding: 10px 35px;
+  }
+
+  .direction-rating-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    line-height: 20px;
+    width: 236px;
+    height: 52px;
+    border-radius: 4px;
+    background-color: var(--fourth-colors);
+    color: var(--main-color);
+    cursor: pointer;
+  }
+}
+
+.travel-blog-wrapper {
+  height: 1036px;
+  background-color: var(--third-color);
+  .travel-blog {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-top: 85px;
+    margin-bottom: 40px;
+    height: 66px;
+  }
+
+  .travel-blog-subtitle {
+    margin-bottom: 8px;
+    color: var(--additional-color);
+  }
+
+  .travel-blog-header {
+    margin-top: 0px;
+  }
+
+  .travel-article-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding-top: 40px;
+  }
+
+  .travel-article {
+    display: flex;
+    justify-content: center;
+    width: 580px;
+    height: 312px;
+    box-shadow: 0px 0px 15px 0px #18121E1F;
+    border-radius: 10px;
+    background-color: #F3F5F4;
+  }
+
+  .article-images {
+    display: flex;
+    padding: 16px;
+  }
+
+  .description-articles {
+    width: 294px;
+    height: 280px;
+    padding-left: 4px;
+  }
+
+  .article-description {
+    display: flex;
+    height: 116px;
+    line-height: 20px;
+  }
+
+  .article-details {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+  }
+
+  .article-date {
+    display: flex;
+    flex-wrap: nowrap;
+    color: var(--additional-color);
+    padding-top: 14px;
+  }
+
+  .article-link {
+    display: flex;
+    color: var(--fourth-colors);
+    flex-wrap: nowrap;
+  }
+
+  .third-article {
+    display: flex;
+    position: relative;
+    bottom: 11%;
+  }
+
+  .four-article {
+    display: flex;
+    position: relative;
+    bottom: -9%;
+  }
+
+  .article-info {
+    padding-top: 16px;
+  }
+
+  .other-articles-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: 50px;
+    line-height: 20px;
+    width: 236px;
+    height: 52px;
+    border-radius: 4px;
+    background-color: var(--fourth-colors);
+    color: var(--main-color);
+    cursor: pointer;
+  }
+
+  .active-article {
+    text-decoration: underline;
+    color: var(--fourth-colors);
+  }
+}
+
+.notification-service-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  gap: 15px;
+  padding: 15px;
+}
+
+.notification-service {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 70px;
+  border-radius: 10px;
+  background: #0F172AD9;
+  color: var(--main-color);
+  z-index: 15;
+}
+
+.service-close-btn {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  position: absolute;
+  margin-left: 320px;
+  padding: 10px 10px 0px 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.service-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.service-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0px 15px 70px;
+  position: absolute;
+  gap: 5px;
+}
+
+.service-icon {
+  display: flex;
+  width: 40px;
+  margin: 15px;
 }

@@ -105,7 +105,7 @@
         <span class="hike-preface fs-24 regular">о нашем походе</span>
         <p class="hike-title extra-bold fs-32">Исследуйте все горные массивы мира вместе с нами</p>
         <span class="hike-description fs-18">Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его поисками в классической латинской литературе.</span>
-        <button class="tour-program-btn semi-bold">Программа тура</button>
+        <button class="tour-program-btn semi-bold" (click)="showWarnMessage()">Программа тура</button>
       </div>
     </div>
   </section>
@@ -128,7 +128,7 @@
               <span class="condition-description regular fs-14">{{ condition.description }}</span>
             </div>
           }
-          <button class="program-cost-btn fs-16 semi-bold">Стоимость программ</button>
+          <button class="program-cost-btn fs-16 semi-bold" (click)="showInfoMessage()">Стоимость программ</button>
         </div>
       </div>
       <div class="photo-of-places">
@@ -139,4 +139,78 @@
       </div>
     </div>
   </section>
+
+<section class="recreation-locations">
+  <div class="container">
+    <div class="directions">
+      <p class="subtitle fs-24 regular">по версии отдыхающих</p>
+      <h2 class="direction-header fs-32 extra-bold">Популярные направления</h2>
+    </div>
+    <div class="photos-recreation-locations">
+      @for (place of detailsPlaces; track place.id) {
+        <div class="popular-places-image">
+          <img [src]="`/images/${place.placeImage}.png`">
+          <div class="place-assessment-wrapper">
+            <p class="place-assessment fs-14 bold">{{ place.assessment }}</p>
+            <img class="assessment-icon" [src]="`/images/${place.assessmentIcon}.svg`">
+          </div>
+          <div class="popular-places">
+            <h3 class="place-title fs-24 bold">{{ place.title }}</h3>
+            <span class="place-description fs-14 fw-300">{{ place.description }}</span>
+            <span class="popular-places-price">{{ place.price }} &#36;</span>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="direction-rating-btn" (click)="showSuccessMessage()">Рейтинг направлений</button>
+  </div>
+</section>
+
+<section class="travel-blog-wrapper">
+  <div class="container">
+    <div class="travel-blog">
+      <p class="travel-blog-subtitle fs-24 regular">делимся впечатлениями</p>
+      <h2 class="travel-blog-header fs-32 extra-bold">Блог о путешествиях</h2>
+    </div>
+    <div class="travel-article-wrapper">
+      @for (article of articles; track article.id; let i = $index) {
+        <div class="travel-article">
+          <img class="article-images" [src]="`/images/${article.images}.png`">
+          <div class="description-articles fs-14 bold">
+            <div class="article-info">
+              <p class="fs-24" [id]="'article-' + article.id" [class.active-article]="article.id === selectedArticleId" (mouseenter)="selectedArticleId = article.id">{{ article.title }}</p>
+              <span class="article-description regular">{{ article.description }}</span>
+            </div>
+            <div class="article-details" [class.third-article]="i === 2" [class.four-article]="i === 3" >
+              <span class="article-date">{{ article.date }}</span>
+              <p class="article-link">{{ article.link }}</p>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+    <button class="other-articles-btn" (click)="showErrorMessage()">Другие материалы</button>
+  </div>
+</section>
 }
+
+<div class="notification-service-wrapper">
+  @for (message of messageManagementService.messages; track $index) {
+    <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{$implicit: message, serviceIndex: $index}"></ng-container>
+  }
+</div>
+
+<ng-template #serviceMessage let-msg let-i="serviceIndex">
+  <div class="notification-service">
+    <button class="service-close-btn" id="service-close-btn" (click)="messageManagementService.closeMessage(i)">
+      <img src="/images/close-service-icon.svg" alt="close-service-icon">
+    </button>
+    <div class="service-content-wrapper">
+      <img class="service-icon" src="/images/service-icon.svg" alt="service-icon">
+      <div class="service-content">
+        <span>{{ msg.title }}</span>
+        <span>{{ msg.content }}</span>
+      </div>
+    </div>
+  </div>
+</ng-template>
