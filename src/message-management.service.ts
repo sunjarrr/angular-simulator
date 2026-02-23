@@ -14,7 +14,7 @@ export class MessageManagementService {
       content,
       type,
     };
-    this.messages.unshift(newMessage);
+    this.messages = [newMessage, ...this.messages]
     setTimeout(() => {
       this.messages = this.messages.filter((message) => message.id !== id);
     }, 5000);
