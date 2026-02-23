@@ -178,10 +178,21 @@
           <img class="article-images" [src]="`/images/${article.images}.png`">
           <div class="description-articles fs-14 bold">
             <div class="article-info">
-              <p class="fs-24" [id]="'article-' + article.id" [class.active-article]="article.id === selectedArticleId" (mouseenter)="selectedArticleId = article.id">{{ article.title }}</p>
+              <p
+                class="fs-24"
+                [id]="'article-' + article.id"
+                [class.active-article]="article.id === selectedArticleId"
+                (mouseenter)="selectedArticleId = article.id"
+              >
+                {{ article.title }}
+              </p>
               <span class="article-description regular">{{ article.description }}</span>
             </div>
-            <div class="article-details" [class.third-article]="i === 2" [class.four-article]="i === 3" >
+            <div
+              class="article-details"
+              [class.third-article]="i === 2"
+              [class.four-article]="i === 3"
+            >
               <span class="article-date">{{ article.date }}</span>
               <p class="article-link">{{ article.link }}</p>
             </div>
@@ -196,14 +207,21 @@
 
 <div class="notification-service-wrapper">
   @for (message of messageManagementService.messages; track $index) {
-    <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{$implicit: message, serviceIndex: $index}"></ng-container>
+    <ng-container
+      [ngTemplateOutlet]="serviceMessage"
+      [ngTemplateOutletContext]="{ $implicit: message, serviceIndex: $index }"
+    ></ng-container>
   }
 </div>
 
 <ng-template #serviceMessage let-msg let-i="serviceIndex">
   <div class="notification-service">
-    <button class="service-close-btn" id="service-close-btn" (click)="messageManagementService.closeMessage(i)">
-      <img src="/images/close-service-icon.svg" alt="close-service-icon">
+    <button
+      class="service-close-btn"
+      id="service-close-btn"
+      (click)="messageManagementService.closeMessage(i)"
+    >
+      <img src="/images/close-icon.svg" alt="close-icon">
     </button>
     <div class="service-content-wrapper">
       <img class="service-icon" src="/images/service-icon.svg" alt="service-icon">

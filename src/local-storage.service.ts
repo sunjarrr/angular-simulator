@@ -12,7 +12,7 @@ export class LocalStorageService {
 
   getValues<T>(key: string): T | null {
     const getItems: string | null = localStorage.getItem(key);
-    return getItems ? JSON.parse(getItems) as T : null;
+    return getItems ? (JSON.parse(getItems) as T) : null;
   }
 
   clearElement(key: string): void {

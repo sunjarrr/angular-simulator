@@ -4,20 +4,19 @@ import { MessageType } from './enums/MessageType';
 
 @Injectable()
 export class MessageManagementService {
-
   messages: INotification[] = [];
 
   addMessage(title: string, content: string, type: MessageType) {
     const id: number = Date.now();
-    const newMessages: INotification = {
+    const newMessage: INotification = {
       id,
       title,
       content,
-      type
-    }
-    this.messages.unshift(newMessages);
+      type,
+    };
+    this.messages.unshift(newMessage);
     setTimeout(() => {
-      this.messages = this.messages.filter((message => message.id !== id));
+      this.messages = this.messages.filter((message) => message.id !== id);
     }, 5000);
   }
 

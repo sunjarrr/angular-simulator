@@ -7,7 +7,7 @@ import { WidgetType } from './Widget';
 import { IPlace } from '../interfaces/IPlace';
 import { IArticle } from '../interfaces/IArticle';
 import { MessageManagementService } from '../message-management.service';
-import { NgTemplateOutlet } from "@angular/common";
+import { NgTemplateOutlet } from '@angular/common';
 import { MessageType } from '../enums/MessageType';
 import { LocalStorageService } from '../local-storage.service';
 
@@ -16,7 +16,7 @@ import { LocalStorageService } from '../local-storage.service';
   imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [MessageManagementService]
+  providers: [MessageManagementService],
 })
 export class AppComponent {
 
@@ -40,21 +40,21 @@ export class AppComponent {
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E5EEEB',
-      icon: 'humans-icon'
+      icon: 'humans-icon',
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E3E6EE',
-      icon: 'safety-icon'
+      icon: 'safety-icon',
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#F3F1E1',
-      icon: 'price-icon'
+      icon: 'price-icon',
     },
   ];
 
@@ -66,7 +66,7 @@ export class AppComponent {
       price: 480,
       placeImage: 'lake-near-mountains',
       assessment: '4.9',
-      assessmentIcon: 'star-icon'
+      assessmentIcon: 'star-icon',
     },
     {
       id: 2,
@@ -75,7 +75,7 @@ export class AppComponent {
       price: 500,
       placeImage: 'night-mountains',
       assessment: '4.5',
-      assessmentIcon: 'star-icon'
+      assessmentIcon: 'star-icon',
     },
     {
       id: 3,
@@ -84,7 +84,7 @@ export class AppComponent {
       price: 230,
       placeImage: 'mountains-sport',
       assessment: '5.0',
-      assessmentIcon: 'star-icon'
+      assessmentIcon: 'star-icon',
     },
   ];
 
@@ -95,7 +95,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'italy'
+      images: 'italy',
     },
     {
       id: 2,
@@ -103,7 +103,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'clouds-aiplane'
+      images: 'clouds-aiplane',
     },
     {
       id: 3,
@@ -111,7 +111,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает.',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'alley-human'
+      images: 'alley-human',
     },
     {
       id: 4,
@@ -119,7 +119,7 @@ export class AppComponent {
       description: 'Для современного мира базовый.',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'india'
+      images: 'india',
     },
   ];
 

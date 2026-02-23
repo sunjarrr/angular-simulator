@@ -93,7 +93,7 @@
 }
 
 .main-info {
-  position: relative; 
+  position: relative;
   height: 985px;
   width: 100%;
   .banner {
@@ -463,7 +463,7 @@
     flex-wrap: wrap;
     width: 510px;
     height: 510px;
-    margin-left:700px;
+    margin-left: 700px;
     margin-top: -500px;
     gap: 10px;
   }
@@ -480,8 +480,12 @@
 }
 
 @keyframes scrolling {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .recreation-locations {
