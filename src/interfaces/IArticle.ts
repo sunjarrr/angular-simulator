@@ -4,5 +4,5 @@ export interface IArticle {
   description: string;
   date: string;
   link: string;
-  images: string;
+  image: string;
 }

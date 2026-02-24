@@ -6,9 +6,9 @@ import { FormsModule } from '@angular/forms';
 import { WidgetType } from './Widget';
 import { IPlace } from '../interfaces/IPlace';
 import { IArticle } from '../interfaces/IArticle';
-import { MessageManagementService } from '../message-management.service';
+import { MessageService } from '../message.service';
 import { NgTemplateOutlet } from '@angular/common';
-import { MessageType } from '../enums/MessageType';
+import { MessageType } from '../enums/MessageTypes';
 import { LocalStorageService } from '../local-storage.service';
 
 @Component({
@@ -16,13 +16,12 @@ import { LocalStorageService } from '../local-storage.service';
   imports: [FormsModule, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
-  providers: [MessageManagementService],
 })
 export class AppComponent {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
-  messageManagementService: MessageManagementService = inject(MessageManagementService);
-  readonly MessageType = MessageType;
+  messageService: MessageService = inject(MessageService);
+  readonly MessageType: typeof MessageType = MessageType;
   selectedLocation: string = '';
   selectedHikingDate: string = '';
   selectedParticipants: string = '';
@@ -95,7 +94,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'italy',
+      image: 'italy',
     },
     {
       id: 2,
@@ -103,7 +102,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'clouds-aiplane',
+      image: 'clouds-aiplane',
     },
     {
       id: 3,
@@ -111,7 +110,7 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает.',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'alley-human',
+      image: 'alley-human',
     },
     {
       id: 4,
@@ -119,7 +118,7 @@ export class AppComponent {
       description: 'Для современного мира базовый.',
       date: '01/04/2023',
       link: 'читать статью',
-      images: 'india',
+      image: 'india',
     },
   ];
 
@@ -167,20 +166,20 @@ export class AppComponent {
     this.currentWidget = widget;
   }
 
-  showSuccessMessage() {
-    this.messageManagementService.addMessage('Success', 'Направления получены', MessageType.SUCCESS);
+  showSuccess(): void {
+    this.messageService.showSuccessMessage('Направления получены');
   }
 
-  showInfoMessage() {
-    this.messageManagementService.addMessage('Info', 'Стоимость отправлена на почту', MessageType.INFO);
+  showInfo(): void {
+    this.messageService.showInfoMessage('Стоимость отправлена на почту');
   }
 
-  showWarnMessage() {
-    this.messageManagementService.addMessage('Warn', 'Программа недоступна', MessageType.WARN);
+  showWarn(): void {
+    this.messageService.showWarnMessage('Программа недоступна');
   }
 
-  showErrorMessage() {
-    this.messageManagementService.addMessage('Error', 'Материалы недоступны', MessageType.ERROR);
+  showError(): void {
+    this.messageService.showErrorMessage('Материалы недоступны');
   }
 
   private isMainColor(color: Color): boolean {
