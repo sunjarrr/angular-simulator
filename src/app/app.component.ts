@@ -166,22 +166,6 @@ export class AppComponent {
     this.currentWidget = widget;
   }
 
-  showSuccess(): void {
-    this.messageService.showSuccessMessage('Направления получены');
-  }
-
-  showInfo(): void {
-    this.messageService.showInfoMessage('Стоимость отправлена на почту');
-  }
-
-  showWarn(): void {
-    this.messageService.showWarnMessage('Программа недоступна');
-  }
-
-  showError(): void {
-    this.messageService.showErrorMessage('Материалы недоступны');
-  }
-
   private isMainColor(color: Color): boolean {
     const mainColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
     return mainColors.includes(color);
