@@ -8,9 +8,16 @@
       <nav class="navigation fs-18 semi-bold">
         @for (navigation of navigations; track navigation.id) {
           @if (navigation.id === selectedNavigationId) {
-            <a routerLink="users-page" routerLinkActive="active-link">{{ navigation.text }}</a>
+            <a
+              id="home-and-users"
+              routerLink="users-page"
+              routerLinkActive="active-link"
+            >
+              {{ navigation.text }}
+            </a>
           } @else {
             <a
+              id="home-and-users"
               routerLink=""
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
