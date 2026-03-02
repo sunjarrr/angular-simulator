@@ -1,0 +1,169 @@
+.newsletters-wrapper {
+  display: flex;
+  position: relative;
+  top: -17%;
+  background-color: var(--main-color);
+  justify-content: space-between;
+  box-shadow: 0px 0px 15px 0px #18121e1f;
+  height: 196px;
+}
+
+.travel-newsletters-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 441px;
+  height: 90px;
+  padding: 25px 30px 66px 100px;
+}
+
+.travel-newsletters-subtitle {
+  display: flex;
+  width: 500px;
+  color: var(--additional-color);
+  margin-bottom: 0px;
+}
+
+.travel-newsletters-title {
+  margin-top: 8px;
+  color: var(--secondary-color);
+}
+
+.subscribe-newsletters {
+  display: flex;
+  flex-direction: column;
+  height: 116px;
+  padding: 25px 100px;
+  color: var(--secondary-color);
+}
+
+.input-mail-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.enter-mail {
+  background-color: var(--third-color);
+  border-radius: 4px;
+  width: 280px;
+  padding: 16px;
+  border: none;
+}
+
+.subscribe-news-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 240px;
+  border-radius: 4px;
+  background-color: var(--fourth-colors);
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.input-mail-subtext {
+  display: flex;
+  width: 536px;
+  text-decoration: underline;
+}
+
+.footer-wrapper {
+  height: 587px;
+  background-color: var(--fourth-colors);
+  color: var(--main-color);
+}
+
+.footer {
+  display: flex;
+  margin-top: -30px;
+}
+
+.processing-policy-wrapper {
+  display: flex;
+  margin-top: 77px;
+  height: 66px;
+  background-color: #18121e;
+
+  &-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.processing-policy {
+  text-decoration: underline;
+}
+
+.about-company-wrapper {
+  width: 480px;
+  margin-right: 20px;
+}
+
+.about-company {
+  display: flex;
+  flex-direction: column;
+}
+
+.description-about-company {
+  width: 456px;
+}
+
+.company-contact {
+  margin-bottom: 32px;
+  margin-top: 71px;
+}
+
+.company-contact-icons {
+  display: flex;
+  gap: 16px;
+}
+
+.company-email {
+  padding-right: 24px;
+}
+
+.our-services-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 280px;
+  margin-right: 120px;
+}
+
+.our-services {
+  display: flex;
+  flex-direction: column;
+  margin-top: 17px;
+  gap: 16px;
+}
+
+.our-services a::before {
+  content: '>';
+  padding-right: 8px;
+}
+
+.important-travel-instructions-wrapper {
+  display: flex;
+  position: relative;
+}
+
+.important-travel-instructions {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 10px;
+  padding-left: 16px;
+}
+
+.important-travel-instructions a::before {
+  content: '>';
+  padding-right: 10px;
+  position: absolute;
+  left: -0%;
+}
+
+.medical-insurance {
+  width: 262px;
+}

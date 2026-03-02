@@ -1,0 +1,52 @@
+.notification-service-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 10;
+  gap: 15px;
+  padding: 15px;
+}
+
+.notification-service {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 70px;
+  border-radius: 10px;
+  background: #0F172AD9;
+  color: var(--main-color);
+  z-index: 15;
+}
+
+.service-close-btn {
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  position: absolute;
+  margin-left: 320px;
+  padding: 10px 10px 0px 0px;
+  border: none;
+  cursor: pointer;
+}
+
+.service-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.service-content {
+  display: flex;
+  flex-direction: column;
+  padding: 15px 0px 15px 70px;
+  position: absolute;
+  gap: 5px;
+}
+
+.service-icon {
+  display: flex;
+  width: 40px;
+  margin: 15px;
+}

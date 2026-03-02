@@ -1,0 +1,27 @@
+<div class="notification-service-wrapper">
+  @for (message of messageService.messages; track $index) {
+    <ng-container
+      [ngTemplateOutlet]="serviceMessage"
+      [ngTemplateOutletContext]="{ $implicit: message, serviceIndex: $index }"
+    ></ng-container>
+  }
+</div>
+
+<ng-template #serviceMessage let-msg let-id="serviceIndex">
+  <div class="notification-service">
+    <button
+      class="service-close-btn"
+      id="service-close-btn"
+      (click)="messageService.closeMessage(msg.id)"
+    >
+      <img src="/images/close-icon.svg" alt="close-icon">
+    </button>
+    <div class="service-content-wrapper">
+      <img class="service-icon" src="/images/service-icon.svg" alt="service-icon">
+      <div class="service-content">
+        <span>{{ msg.title }}</span>
+        <span>{{ msg.content }}</span>
+      </div>
+    </div>
+  </div>
+</ng-template>
