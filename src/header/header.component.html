@@ -1,0 +1,51 @@
+<header class="header">
+  <div class="super-header">
+    <div class="container">
+      <div class="header-logo">
+        <img src="/images/mountain-logo.svg" alt="Mountain">
+        <span class="company-name">{{ companyName }}</span>
+      </div>
+      <nav class="navigation fs-18 semi-bold">
+        @for (navigation of navigations; track navigation.id) {
+          @if (navigation.id === selectedNavigationId) {
+            <a
+              id="home-and-users"
+              routerLink="users-page"
+              routerLinkActive="active-link"
+            >
+              {{ navigation.text }}
+            </a>
+          } @else {
+            <a
+              id="home-and-users"
+              routerLink=""
+              routerLinkActive="active-link"
+              [routerLinkActiveOptions]="{ exact: true }"
+              >{{ navigation.text }}
+            </a>
+          }
+        }
+      </nav>
+      <div class="consultation">
+        <button class="semi-bold fs-16 consultation-btn">Консультация</button>
+      </div>
+    </div>
+  </div>
+  <button
+    (click)="switchWidget(currentWidget === 'date' ? 'counter' : 'date')"
+    class="show-task-btn"
+  >
+    {{ currentWidget === 'date' ? 'Показать кликер' : 'Показать дату' }}
+  </button>
+  @if (currentWidget === 'date') {
+    <div class="time-and-date">
+      <span>{{ timer }}</span>
+    </div>
+  } @else {
+    <div class="click-counter">
+      <button (click)="increaseCounter()">+</button>
+      <input [(ngModel)]="counter" class="counter-value">
+      <button [disabled]="counter === 0" (click)="reduceCounter()">-</button>
+    </div>
+  }
+</header>

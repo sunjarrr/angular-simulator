@@ -9,7 +9,7 @@ export class MessageService {
 
   messages: INotification[] = [];
 
-  addMessage(content: string, type: MessageType): void {
+  private addMessage(content: string, type: MessageType): void {
     const id: number = Date.now();
     const newMessage: INotification = { id, title: type, content, type };
     this.messages = [newMessage, ...this.messages];

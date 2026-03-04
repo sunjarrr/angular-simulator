@@ -1,0 +1,105 @@
+.header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: #18121e80;
+  box-shadow: 0px 2px 4px 0px #00000040;
+  .super-header {
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    height: 72px;
+    padding-top: 16px;
+  }
+
+  .header-logo {
+    display: flex;
+    flex-direction: column;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    margin-top: 10px;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .company-name {
+    margin-top: 9px;
+  }
+
+  .navigation {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    margin-left: 212px;
+    margin-top: 30px;
+    cursor: pointer;
+
+    a {
+      color: var(--main-color);
+      &.active-link {
+        color: red;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .consultation {
+    display: flex;
+    align-items: center;
+  }
+
+  .consultation-btn {
+    background-color: var(--main-color);
+    color: var(--fourth-colors);
+    width: 157px;
+    height: 44px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .time-and-date {
+    display: flex;
+    left: 50%;
+    transform: translateX(150%);
+    position: absolute;
+    top: 75%;
+  }
+
+  .counter-value {
+    width: 22px;
+    background: transparent;
+    border: none;
+  }
+
+  .click-counter {
+    display: flex;
+    margin-top: 10px;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(450%);
+  }
+
+  .show-task-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-color);
+    color: var(--fourth-colors);
+    width: 157px;
+    height: 44px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    left: 50%;
+    transform: translateX(276%);
+    margin-top: -2px;
+    margin-bottom: 10px;
+  }
+}
