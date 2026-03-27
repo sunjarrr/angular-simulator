@@ -383,25 +383,6 @@
   }
 }
 
-.loading-icon {
-  display: flex;
-  transition: transform 0.5s ease;
-  animation: scrolling 1s linear infinite;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-@keyframes scrolling {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .recreation-locations {
   height: 778px;
   .photos-recreation-locations {

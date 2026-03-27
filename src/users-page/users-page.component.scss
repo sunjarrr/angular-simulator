@@ -2,3 +2,141 @@
   display: flex;
   justify-content: center;
 }
+
+.users-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  width: 1460px;
+  gap: 10px;
+}
+
+.users-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 440px;
+  height: 630px;
+  padding: 35px 30px 50px 30px;
+  background: #FFFFFF;
+  border-top: 4px solid #D4A373;
+  box-shadow: 0px 10px 30px 0px #0000000F;
+  border-radius: 4px;
+}
+
+.contacts-wrapper {
+  text-transform: uppercase;
+  padding-top: 15px;
+}
+
+.residental-address-wrapper {
+  text-transform: uppercase;
+}
+
+.work-place-wrapper {
+  text-transform: uppercase;
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.phone {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.website-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.website {
+  color: #D4A373;
+}
+
+.city {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.street {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.suite {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.zipcode {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.coordinates {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.company-name {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.catchPhrase-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.catchPhrase {
+  width: 240px;
+  text-align: right;
+  color: #667C7C;
+  font-style: italic;
+}
+
+.specialization {
+  display: flex;
+  justify-content: space-between;
+}
+
+.email {
+  color: #D4A373;
+}
+
+.user-name {
+  margin-bottom: 0px;
+}
+
+.user-tag {
+  color: #D4A373;
+  margin-top: 0px;
+}
+
+.error-message {
+  display: flex;
+  font-weight: 800;
+  font-size: 26px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  height: 90px;
+  width: 606px;
+  background-color: #B15757;
+  color: #FFFFFF;
+}

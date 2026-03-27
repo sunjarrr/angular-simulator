@@ -5,6 +5,7 @@ import { IArticle } from '../interfaces/IArticle';
 import { LocalStorageService } from '../local-storage.service';
 import { IAdvantageInfo } from '../interfaces/IAdvantageInfo';
 import { FormsModule } from '@angular/forms';
+import { LoaderService } from '../loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -14,13 +15,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomePageComponent {
 
+  loaderService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   selectedLocation: string = '';
   selectedHikingDate: string = '';
   selectedParticipants: string = '';
   liveInputValue: string = '';
-  isLoading: boolean = true;
   selectedArticleId: number = 2;
 
   conditions: IAdvantageInfo[] = [
@@ -131,8 +132,9 @@ export class HomePageComponent {
   ];
 
   constructor() {
+    this.loaderService.turnOnSpinner();
     setTimeout(() => {
-      this.isLoading = !this.isLoading;
+      this.loaderService.turnOffSpinner();
     }, 2000);
   }
 
