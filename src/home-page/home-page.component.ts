@@ -131,13 +131,6 @@ export class HomePageComponent {
     'Магфират'
   ];
 
-  constructor() {
-    this.loaderService.turnOnSpinner();
-    setTimeout(() => {
-      this.loaderService.turnOffSpinner();
-    }, 2000);
-  }
-
   private saveLastVisit(): void {
     const date: Date = new Date();
     this.localStorageService.setValues('lastVisit', date);

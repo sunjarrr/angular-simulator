@@ -1,6 +1,3 @@
-import { IAddress } from "./IAddress";
-import { ICompany } from "./ICompany";
-
 export interface IUser {
   id: number;
   name: string;
@@ -10,4 +7,23 @@ export interface IUser {
   website: string;
   address: IAddress;
   company: ICompany;
+}
+
+interface IAddress {
+  street: string;
+  suite: string;
+  city: string;
+  zipcode: string;
+  geo: IGeo;
+}
+
+interface ICompany {
+  name: string;
+  catchPhrase: string;
+  bs: string;
+}
+
+interface IGeo {
+  lat: string;
+  lng: string;
 }

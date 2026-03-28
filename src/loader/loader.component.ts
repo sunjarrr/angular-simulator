@@ -4,7 +4,7 @@ import { LoaderService } from '../loader.service';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 
 @Component({
-  selector: 'app-loader-component',
+  selector: 'app-loader',
   imports: [AsyncPipe],
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.scss',
@@ -12,13 +12,5 @@ import { BehaviorSubject, Observable, tap } from 'rxjs';
 export class LoaderComponent {
 
   loaderService: LoaderService = inject(LoaderService);
-  loader$: Observable<boolean> = this.loaderService.loader$;
-
-  constructor() {
-    this.loader$.pipe<boolean>(
-      tap<boolean>(loader => {
-        document.body.style.overflow = loader ? 'hidden' : '';
-      })
-    ).subscribe();
-  }
+  isLoader$: Observable<boolean> = this.loaderService.isLoader$;
 }

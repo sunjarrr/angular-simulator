@@ -75,3 +75,10 @@
 .grey {
   color: #667C7C;
 }
+
+.scroll {
+  position: fixed;
+  width: 100%;
+  overflow: hidden;
+  height: 100vh;
+}

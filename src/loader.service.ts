@@ -7,13 +7,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LoaderService {
 
   private loaderSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  loader$: Observable<boolean> = this.loaderSubject.asObservable();
+  isLoader$: Observable<boolean> = this.loaderSubject.asObservable();
 
-  turnOnSpinner(): void {
+  showLoader(): void {
     this.loaderSubject.next(true);
-  }
+  };
 
-  turnOffSpinner(): void {
+  hideLoader(): void {
     this.loaderSubject.next(false);
-  }
-}
+  };
+};

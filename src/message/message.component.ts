@@ -3,7 +3,7 @@ import { MessageService } from '../message.service';
 import { NgTemplateOutlet } from '@angular/common';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { INotification } from '../interfaces/INotification';
+import { IMessage } from '../interfaces/IMessage';
 
 @Component({
   selector: 'app-message',
@@ -13,5 +13,5 @@ import { INotification } from '../interfaces/INotification';
 })
 export class MessageComponent {
   messageService: MessageService = inject(MessageService);
-  messages$: Observable<INotification[]> = this.messageService.messages$;
+  messages$: Observable<IMessage[]> = this.messageService.messages$;
 }

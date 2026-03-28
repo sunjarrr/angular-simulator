@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { INotification } from './interfaces/INotification';
+import { IMessage } from './interfaces/IMessage';
 import { MessageType } from './enums/MessageTypes';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -8,12 +8,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class MessageService {
 
-  private messagesSubject: BehaviorSubject<INotification[]> = new BehaviorSubject<INotification[]>([]);
-  messages$: Observable<INotification[]> = this.messagesSubject.asObservable();
+  private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
+  messages$: Observable<IMessage[]> = this.messagesSubject.asObservable();
 
   private addMessage(content: string, type: MessageType): void {
     const id: number = Date.now();
-    const newMessage: INotification = { id, title: type, content, type };
+    const newMessage: IMessage = { id, title: type, content, type };
     this.messagesSubject.next([newMessage, ...this.messagesSubject.getValue()]);
     setTimeout(() => {
       this.closeMessage(id);
@@ -37,8 +37,8 @@ export class MessageService {
   }
 
   closeMessage(id: number): void {
-    const messageList: INotification[] = this.messagesSubject.getValue();
-    const filteredList: INotification[] = messageList.filter((message: INotification) => message.id !== id);
+    const messageList: IMessage[] = this.messagesSubject.getValue();
+    const filteredList: IMessage[] = messageList.filter((message: IMessage) => message.id !== id);
     this.messagesSubject.next([...filteredList]);
   }
 }

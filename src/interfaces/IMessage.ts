@@ -1,4 +1,4 @@
-export interface INotification {
+export interface IMessage {
   id: number;
   title: string;
   content: string;

@@ -15,31 +15,28 @@ export class UserService {
   usersApi: UserApiService = inject(UserApiService);
 
   usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
-
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
 
   setUsers(users: IUser[]): void {
     this.usersSubject.next(users);
-  }
+  };
 
-  getUsers(): Observable<IUser[]> {
-    return this.users$;
-  }
+  getUsers(): IUser[] {
+    return this.usersSubject.getValue();
+  };
 
   loadUsers(): Observable<IUser[]> {
-    this.loaderService.turnOnSpinner();
+    this.loaderService.showLoader();
     return this.usersApi.getUsers()
     .pipe(
-      tap(users => this.setUsers(users)),
-      catchError<IUser[], Observable<IUser[]>>((): Observable<IUser[]> => {
+      tap((users: IUser[]) => this.setUsers(users)),
+      catchError(() => {
         this.messageService.showErrorMessage('Пользователи не отобразились');
         return of([]);
       }),
-      finalize<IUser[]>(() => {
-        setTimeout(()  => {
-          this.loaderService.turnOffSpinner();
-        }, 3000);
-      })
+      finalize(() => {
+        this.loaderService.hideLoader();
+      }),
     );
-  }
-}
+  };
+};
