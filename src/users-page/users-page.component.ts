@@ -3,7 +3,6 @@ import { UserService } from '../user.service';
 import { IUser } from '../interfaces/IUser';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
-import { LoaderComponent } from '../loader/loader.component';
 import { LoaderService } from '../loader.service';
 
 @Component({
