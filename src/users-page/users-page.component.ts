@@ -2,8 +2,9 @@ import { Component, inject } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '../interfaces/IUser';
 import { AsyncPipe } from '@angular/common';
-import { Observable } from 'rxjs';
+import { Observable, catchError, finalize, tap, of } from 'rxjs';
 import { LoaderService } from '../loader.service';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-users-page',
@@ -15,11 +16,22 @@ export class UsersPageComponent {
 
   userService: UserService = inject(UserService);
   private loaderService: LoaderService = inject(LoaderService);
+  messageService: MessageService = inject(MessageService);
 
   users$: Observable<IUser[]> = this.userService.users$;
-  isLoader$ = this.loaderService.isLoader$;
+  isLoading$: Observable<boolean> = this.loaderService.isLoading$;
 
   constructor() {
-    this.userService.loadUsers().subscribe();
-  }
-}
+    this.userService.loadUsers()
+    .pipe(
+      tap((users: IUser[]) => this.userService.setUsers(users)),
+      catchError(() => {
+        this.messageService.showErrorMessage('Пользователи не отобразились');
+        return of([]);
+      }),
+      finalize(() => {
+        this.loaderService.hideLoader();
+      }),
+    ).subscribe();
+  };
+};

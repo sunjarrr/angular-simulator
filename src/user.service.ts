@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, catchError, finalize, pipe, tap, of, Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { UserApiService } from './user-api.service';
 import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
@@ -27,16 +27,6 @@ export class UserService {
 
   loadUsers(): Observable<IUser[]> {
     this.loaderService.showLoader();
-    return this.usersApi.getUsers()
-    .pipe(
-      tap((users: IUser[]) => this.setUsers(users)),
-      catchError(() => {
-        this.messageService.showErrorMessage('Пользователи не отобразились');
-        return of([]);
-      }),
-      finalize(() => {
-        this.loaderService.hideLoader();
-      }),
-    );
+    return this.usersApi.getUsers();
   };
 };

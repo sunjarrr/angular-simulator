@@ -12,5 +12,5 @@ import { Observable } from 'rxjs';
 export class LoaderComponent {
 
   loaderService: LoaderService = inject(LoaderService);
-  isLoader$: Observable<boolean> = this.loaderService.isLoader$;
+  isLoading$: Observable<boolean> = this.loaderService.isLoading$;
 }
