@@ -16,4 +16,5 @@ export class LoaderService {
   hideLoader(): void {
     this.loaderSubject.next(false);
   };
+
 };

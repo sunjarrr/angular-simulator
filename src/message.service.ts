@@ -41,4 +41,5 @@ export class MessageService {
     const filteredList: IMessage[] = messageList.filter((message: IMessage) => message.id !== id);
     this.messagesSubject.next([...filteredList]);
   }
+
 }

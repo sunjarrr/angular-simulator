@@ -141,4 +141,5 @@ export class HomePageComponent {
     let count: number = !storedCount ? 1 : storedCount + 1;
     this.localStorageService.setValues('visitCount', count);
   }
+
 }

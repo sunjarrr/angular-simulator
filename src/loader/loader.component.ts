@@ -13,4 +13,5 @@ export class LoaderComponent {
 
   loaderService: LoaderService = inject(LoaderService);
   isLoading$: Observable<boolean> = this.loaderService.isLoading$;
+
 }

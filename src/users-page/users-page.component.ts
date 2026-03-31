@@ -19,19 +19,12 @@ export class UsersPageComponent {
   messageService: MessageService = inject(MessageService);
 
   users$: Observable<IUser[]> = this.userService.users$;
-  isLoading$: Observable<boolean> = this.loaderService.isLoading$;
 
   constructor() {
     this.userService.loadUsers()
     .pipe(
       tap((users: IUser[]) => this.userService.setUsers(users)),
-      catchError(() => {
-        this.messageService.showErrorMessage('Пользователи не отобразились');
-        return of([]);
-      }),
-      finalize(() => {
-        this.loaderService.hideLoader();
-      }),
     ).subscribe();
   };
+
 };

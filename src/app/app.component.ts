@@ -20,4 +20,5 @@ export class AppComponent {
     const mainColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
     return mainColors.includes(color);
   }
+
 }

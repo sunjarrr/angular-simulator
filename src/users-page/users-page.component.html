@@ -1,5 +1,5 @@
 <div class="users-card-container">
-  <div class="users-card-wrapper" [class.scroll] = 'isLoading$ | async'>
+  <div class="users-card-wrapper">
     @for (user of users$ | async; track user.id) {
       <div class="users-card">
         <div>

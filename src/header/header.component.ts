@@ -46,4 +46,5 @@ export class HeaderComponent {
   reduceCounter(): void {
     this.counter--;
   }
+
 }
