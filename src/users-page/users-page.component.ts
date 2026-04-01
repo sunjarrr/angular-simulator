@@ -2,8 +2,7 @@ import { Component, inject } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '../interfaces/IUser';
 import { AsyncPipe } from '@angular/common';
-import { Observable, catchError, finalize, tap, of } from 'rxjs';
-import { LoaderService } from '../loader.service';
+import { Observable, tap } from 'rxjs';
 import { MessageService } from '../message.service';
 
 @Component({
@@ -15,7 +14,6 @@ import { MessageService } from '../message.service';
 export class UsersPageComponent {
 
   userService: UserService = inject(UserService);
-  private loaderService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
 
   users$: Observable<IUser[]> = this.userService.users$;
