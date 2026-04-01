@@ -7,6 +7,7 @@
   display: flex;
   position: relative;
   justify-content: center;
+  margin-bottom: 150px;
 }
 
 .users-card-wrapper {
@@ -15,7 +16,7 @@
   align-items: center;
   flex-wrap: wrap;
   width: 1460px;
-  gap: 10px;
+  gap: 70px;
   z-index: -11;
 }
 
@@ -140,9 +141,20 @@
   font-size: 26px;
   justify-content: center;
   align-items: center;
+  margin-right: 890px;
   border-radius: 20px;
   height: 90px;
   width: 606px;
+  margin-bottom: 1000px;
   background-color: #B15757;
   color: #FFFFFF;
+}
+
+.users-list {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+  color: #1D3939;
+  font-weight: 800;
+  font-size: 48px;
 }

@@ -113,7 +113,7 @@
       >
       <button
         class="tour-program-btn semi-bold"
-        (click)="messageService.showWarnMessage('Программа недоступна')"
+        (click)="messageService.showWarn('Программа недоступна')"
       >
         Программа тура
       </button>
@@ -144,7 +144,7 @@
         }
         <button
           class="program-cost-btn fs-16 semi-bold"
-          (click)="messageService.showInfoMessage('Стоимость отправлена на почту')"
+          (click)="messageService.showInfo('Стоимость отправлена на почту')"
         >
           Стоимость программ
         </button>
@@ -183,7 +183,7 @@
     </div>
     <button
       class="direction-rating-btn"
-      (click)="messageService.showSuccessMessage('Направления получены')"
+      (click)="messageService.showSuccess('Направления получены')"
     >
       Рейтинг направлений
     </button>
@@ -226,7 +226,7 @@
     </div>
     <button
       class="other-articles-btn"
-      (click)="messageService.showErrorMessage('Материалы недоступны')"
+      (click)="messageService.showError('Материалы недоступны')"
     >
       Другие материалы
     </button>

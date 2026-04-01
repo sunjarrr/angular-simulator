@@ -20,19 +20,19 @@ export class MessageService {
     }, 5000);
   }
 
-  showSuccessMessage(content: string): void {
+  showSuccess(content: string): void {
     this.addMessage(content, MessageType.SUCCESS);
   }
 
-  showInfoMessage(content: string): void {
+  showInfo(content: string): void {
     this.addMessage(content, MessageType.INFO);
   }
 
-  showWarnMessage(content: string): void {
+  showWarn(content: string): void {
     this.addMessage(content, MessageType.WARN);
   }
 
-  showErrorMessage(content: string): void {
+  showError(content: string): void {
     this.addMessage(content, MessageType.ERROR);
   }
 
