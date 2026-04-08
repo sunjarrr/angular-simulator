@@ -1,5 +1,5 @@
 <div class="notification-service-wrapper">
-  @for (message of messageService.messages; track $index) {
+  @for (message of messages$ | async; track $index) {
     <ng-container
       [ngTemplateOutlet]="serviceMessage"
       [ngTemplateOutletContext]="{ $implicit: message, serviceIndex: $index }"

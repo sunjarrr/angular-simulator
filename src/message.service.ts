@@ -1,40 +1,45 @@
 import { Injectable } from '@angular/core';
-import { INotification } from './interfaces/INotification';
+import { IMessage } from './interfaces/IMessage';
 import { MessageType } from './enums/MessageTypes';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MessageService {
 
-  messages: INotification[] = [];
+  private messagesSubject: BehaviorSubject<IMessage[]> = new BehaviorSubject<IMessage[]>([]);
+  messages$: Observable<IMessage[]> = this.messagesSubject.asObservable();
 
   private addMessage(content: string, type: MessageType): void {
     const id: number = Date.now();
-    const newMessage: INotification = { id, title: type, content, type };
-    this.messages = [newMessage, ...this.messages];
+    const newMessage: IMessage = { id, title: type, content, type };
+    this.messagesSubject.next([newMessage, ...this.messagesSubject.getValue()]);
     setTimeout(() => {
       this.closeMessage(id);
     }, 5000);
   }
 
-  showSuccessMessage(content: string): void {
+  showSuccess(content: string): void {
     this.addMessage(content, MessageType.SUCCESS);
   }
 
-  showInfoMessage(content: string): void {
+  showInfo(content: string): void {
     this.addMessage(content, MessageType.INFO);
   }
 
-  showWarnMessage(content: string): void {
+  showWarn(content: string): void {
     this.addMessage(content, MessageType.WARN);
   }
 
-  showErrorMessage(content: string): void {
+  showError(content: string): void {
     this.addMessage(content, MessageType.ERROR);
   }
 
   closeMessage(id: number): void {
-    this.messages = this.messages.filter((message: INotification) => message.id !== id);
+    const messageList: IMessage[] = this.messagesSubject.getValue();
+    const filteredList: IMessage[] = messageList.filter((message: IMessage) => message.id !== id);
+    this.messagesSubject.next([...filteredList]);
   }
+
 }

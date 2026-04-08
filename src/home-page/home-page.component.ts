@@ -5,6 +5,7 @@ import { IArticle } from '../interfaces/IArticle';
 import { LocalStorageService } from '../local-storage.service';
 import { IAdvantageInfo } from '../interfaces/IAdvantageInfo';
 import { FormsModule } from '@angular/forms';
+import { LoaderService } from '../loader.service';
 
 @Component({
   selector: 'app-home-page',
@@ -14,13 +15,13 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomePageComponent {
 
+  loaderService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
   selectedLocation: string = '';
   selectedHikingDate: string = '';
   selectedParticipants: string = '';
   liveInputValue: string = '';
-  isLoading: boolean = true;
   selectedArticleId: number = 2;
 
   conditions: IAdvantageInfo[] = [
@@ -130,12 +131,6 @@ export class HomePageComponent {
     'Магфират'
   ];
 
-  constructor() {
-    setTimeout(() => {
-      this.isLoading = !this.isLoading;
-    }, 2000);
-  }
-
   private saveLastVisit(): void {
     const date: Date = new Date();
     this.localStorageService.setValues('lastVisit', date);
@@ -146,4 +141,5 @@ export class HomePageComponent {
     let count: number = !storedCount ? 1 : storedCount + 1;
     this.localStorageService.setValues('visitCount', count);
   }
+
 }

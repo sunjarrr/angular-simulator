@@ -1,0 +1,5 @@
+@if (isLoading$ | async) {
+  <div class="loader-wrapper" [class.scroll] = 'isLoading$ | async'>
+    <img class="loading-icon" src="/images/loading-icon.svg" alt="loading-icon" />
+  </div>
+}
