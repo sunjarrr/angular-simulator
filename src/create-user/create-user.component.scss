@@ -1,0 +1,35 @@
+.users-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.users-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 600px;
+}
+
+.input-form-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-form {
+  width: 300px;
+}
+
+.input-form-lat {
+  width: 150px;
+  margin-left: 203px;
+}
+
+.input-form-lng {
+  width: 150px;
+}
+
+.submit-form {
+  width: 100%;
+  cursor: pointer;
+}

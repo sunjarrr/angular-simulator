@@ -1,0 +1,128 @@
+:host {
+  display: block;
+}
+
+.users-card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 440px;
+  height: 630px;
+  padding: 35px 30px 50px 30px;
+  background: #ffffff;
+  border-top: 4px solid #d4a373;
+  box-shadow: 0px 10px 30px 0px #0000000f;
+  border-radius: 4px;
+}
+
+.contacts-wrapper {
+  text-transform: uppercase;
+  padding-top: 15px;
+}
+
+.residental-address-wrapper {
+  text-transform: uppercase;
+}
+
+.work-place-wrapper {
+  text-transform: uppercase;
+}
+
+.contacts {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.phone {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.website-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.website {
+  color: #d4a373;
+}
+
+.city {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.street {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.suite {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.zipcode {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.coordinates {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.company-name {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.catchPhrase-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+}
+
+.catchPhrase {
+  width: 240px;
+  text-align: right;
+  color: #667c7c;
+  font-style: italic;
+}
+
+.specialization {
+  display: flex;
+  justify-content: space-between;
+}
+
+.email {
+  color: #d4a373;
+}
+
+.user-name {
+  margin-bottom: 0px;
+}
+
+.user-tag {
+  color: #d4a373;
+  margin-top: 0px;
+}
+
+.delete-user-btn {
+  display: flex;
+  position: relative;
+  margin-top: 10px;
+  cursor: pointer;
+  bottom: -15px;
+  margin: 0 auto;
+  width: 100%;
+}
