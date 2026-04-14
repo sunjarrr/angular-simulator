@@ -4,6 +4,7 @@ import { UserApiService } from './user-api.service';
 import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
 import { IUser } from './interfaces/IUser';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,12 +14,14 @@ export class UserService {
   messageService: MessageService = inject(MessageService);
   loaderService: LoaderService = inject(LoaderService);
   usersApi: UserApiService = inject(UserApiService);
+  localStorageService: LocalStorageService = inject(LocalStorageService);
 
   usersSubject: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.usersSubject.asObservable();
 
   setUsers(users: IUser[]): void {
     this.usersSubject.next(users);
+    this.localStorageService.setValues('users', users);
   };
 
   getUsers(): IUser[] {
@@ -26,21 +29,14 @@ export class UserService {
   };
 
   loadUsers(forceUpdate: boolean = false): Observable<IUser[]> {
+    const usersFromStorage = this.localStorageService.getValues<IUser[]>('users') || [];
+    if (!forceUpdate && usersFromStorage.length > 0) {
+      this.usersSubject.next(usersFromStorage);
+      return of(usersFromStorage);
+    }
     this.loaderService.showLoader();
-      const data: string | null = !forceUpdate ? localStorage.getItem('users'): null;
-      if(data) {
-        const usersFromStorage: IUser[] = JSON.parse(data);
-        this.setUsers(usersFromStorage);
-        this.usersSubject.next(usersFromStorage);
-        this.loaderService.hideLoader();
-        return of(usersFromStorage);
-      }
     return this.usersApi.getUsers()
       .pipe(
-        tap((users: IUser[]) => {
-          localStorage.setItem('users', JSON.stringify(users));
-          this.setUsers(users);
-        }),
         catchError(() => {
           this.messageService.showError('Произошла ошибка при загрузке');
           return of([]);
@@ -53,19 +49,12 @@ export class UserService {
     const currentUser: IUser[] = this.getUsers();
     const filteredUsers: IUser[] = currentUser.filter((user: IUser) => user.id !== id);
     this.setUsers(filteredUsers);
-    localStorage.setItem('users', JSON.stringify(filteredUsers));
   };
 
   createUser(newUser: IUser): void {
     const users: IUser[] = this.usersSubject.getValue();
     const updatedUsers: IUser[] = ([...users, newUser]);
-    this.usersSubject.next(updatedUsers);
-    localStorage.setItem('users', JSON.stringify(updatedUsers));
-  };
-
-  filterUsers(name: string): IUser[] {
-    const oldUsers: IUser[] = this.getUsers();
-    return oldUsers.filter((user: IUser) => user.name.toLowerCase().includes(name.toLowerCase()));
+    this.setUsers(updatedUsers);
   };
 
 };

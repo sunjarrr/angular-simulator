@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '../interfaces/IUser';
 import { AsyncPipe } from '@angular/common';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, filter, map, Observable, tap } from 'rxjs';
 import { MessageService } from '../message.service';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { CreateUserComponent } from '../create-user/create-user.component';
@@ -21,15 +21,28 @@ export class UsersPageComponent implements OnInit{
   userService: UserService = inject(UserService);
   messageService: MessageService = inject(MessageService);
 
-  filteredUsers: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
-  searchInput = new FormControl('');
+  filterControl: FormControl<string | null> = new FormControl('');
+  filterValue$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  filteredUsers$!: Observable<IUser[]>;
 
-  constructor() {
+  constructor() {};
+
+  ngOnInit(): void {
+    this.filteredUsers$ = combineLatest([this.userService.users$, this.filterValue$]).pipe(
+      map(([users, value]) => {
+        return users.filter((user: IUser) => user.name.toLowerCase().includes(value.toLowerCase()));
+      },
+    )),
+    this.filterControl.valueChanges.pipe(
+      tap((value: string | null) => { 
+        this.filterByName(value || '');
+      }
+    )).subscribe();
     this.userService.loadUsers()
       .pipe(
         tap((users: IUser[]) => this.userService.setUsers(users)),
       ).subscribe();
-    };
+    }
 
   deleteUsers(id: number): void {
     this.userService.deleteUser(id);
@@ -39,21 +52,8 @@ export class UsersPageComponent implements OnInit{
     this.userService.createUser(newUser);
   }
 
-  refresh(): void {
-    this.userService.loadUsers(true).subscribe();
-  }
-
   filterByName(name: string): void {
-    const filtered: IUser[] = this.userService.filterUsers(name);
-    this.filteredUsers.next(filtered);
+    this.filterValue$.next(name);
   }
-
-  ngOnInit(): void {
-    this.searchInput.valueChanges.subscribe(value => {
-      this.filterByName(value || '')});
-      this.userService.users$.subscribe((users: IUser[]) => {
-        this.filteredUsers.next(users);
-      });
-    }
 
 };

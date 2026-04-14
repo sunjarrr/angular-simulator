@@ -15,7 +15,7 @@
     </div>
     <div class="website-wrapper">
       <span class="fs-14 grey">Веб-сайт:</span>
-      <span class="fs-14 bold website">{{ user.website }}</span>
+      <span class="fs-14 bold website">{{ user.website || 'Неизвестно' }}</span>
     </div>
     <p class="fs-12 extra-bold residental-address-wrapper">Адрес проживания</p>
     <div class="city">
@@ -28,7 +28,7 @@
     </div>
     <div class="suite">
       <span class="fs-14 grey">Офис:</span>
-      <span class="fs-14 bold">{{ user.address.suite }}</span>
+      <span class="fs-14 bold">{{ user.address.suite || 'Неизвестно' }}</span>
     </div>
     <div class="zipcode">
       <span class="fs-14 grey">Индекс:</span>
@@ -45,11 +45,11 @@
     </div>
     <div class="catchPhrase-wrapper">
       <span class="fs-14 grey">Миссия:</span>
-      <span class="fs-14 bold catchPhrase">{{ user.company.catchPhrase }}</span>
+      <span class="fs-14 bold catchPhrase">{{ user.company.catchPhrase || 'Неизвестно' }}</span>
     </div>
     <div class="specialization">
       <span class="fs-14 grey">Специализация:</span>
-      <span class="fs-14 bold">{{ user.company.bs }}</span>
+      <span class="fs-14 bold">{{ user.company.bs || 'Неизвестно' }}</span>
     </div>
   </div>
   <button (click)="deleteCard()" class="delete-user-btn">Удалить пользователя</button>

@@ -10,9 +10,8 @@ import { IUser } from '../interfaces/IUser';
 })
 export class CreateUserComponent {
 
-  @Output() emitter: EventEmitter<IUser> = new EventEmitter<IUser>();
-
-  private fb:FormBuilder = inject(FormBuilder);
+  @Output() onCreateUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+  private fb: FormBuilder = inject(FormBuilder);
 
   form: FormGroup = this.fb.group({
     id: [Date.now()],
@@ -39,15 +38,9 @@ export class CreateUserComponent {
   });
 
   onSubmit(): void {
-    if(this.form.valid) {
-      const data: IUser = structuredClone(this.form.value);
-      data.id = Date.now();
-      data.address.suite = data.address.suite || 'Неизвестно';
-      data.website = data.website || 'Неизвестно';
-      data.company.catchPhrase = data.company.catchPhrase || 'Неизвестно';
-      data.company.bs = data.company.bs || 'Неизвестно';
-      this.emitter.emit(data);
-      };
-    };
+    const data: IUser = {...this.form.value};
+    data.id = Date.now();
+    this.onCreateUser.emit(data);
+  };
 
 }

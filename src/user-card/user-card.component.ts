@@ -9,11 +9,11 @@ import { IUser } from '../interfaces/IUser';
 })
 export class UserCardComponent {
 
-  @Input({required: true}) user!: IUser;
-  @Output() deleteUser: EventEmitter<number> = new EventEmitter<number>();
+  @Input({ required: true }) user!: IUser;
+  @Output() onDeleteUser: EventEmitter<number> = new EventEmitter<number>();
 
   deleteCard(): void {
-    this.deleteUser.emit(this.user.id);
+    this.onDeleteUser.emit(this.user.id);
   }
 
 }

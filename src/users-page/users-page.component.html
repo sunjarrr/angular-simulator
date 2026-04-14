@@ -1,19 +1,16 @@
 <div class="users-list">
   <p>Список Пользователей</p>
 </div>
-<app-create-user (emitter)="addUser($event)"></app-create-user>
-<app-users-filter (emitUsers)="filterByName($event)"></app-users-filter>
+<app-create-user (onCreateUser)="addUser($event)"></app-create-user>
+<app-users-filter (onSearchUser)="filterByName($event)"></app-users-filter>
 <div class="users-card-container">
   <div class="users-card-wrapper">
-    @for (user of filteredUsers | async; track user.id) {
-      <app-user-card [user]="user" (deleteUser)="deleteUsers($event)"/>
+    @for (user of filteredUsers$ | async; track user.id) {
+      <app-user-card [user]="user" (onDeleteUser)="deleteUsers($event)"/>
     } @empty {
       <div class="error-message">Нет пользователей для отображения</div>
     }
   </div>
 </div>
 <div class="refresh-btn-wrapper">
-  <button class="refresh-btn" (click)="refresh()">
-    <img src="/images/update-users.svg" alt="update-user">
-  </button>
 </div>
