@@ -35,7 +35,7 @@ export class UsersPageComponent implements OnInit{
     )),
     this.filterControl.valueChanges.pipe(
       tap((value: string | null) => { 
-        this.filterByName(value || '');
+        this.onFilter(value || '');
       }
     )).subscribe();
     this.userService.loadUsers()
@@ -44,15 +44,15 @@ export class UsersPageComponent implements OnInit{
       ).subscribe();
     }
 
-  deleteUsers(id: number): void {
+  onDeleteUsers(id: number): void {
     this.userService.deleteUser(id);
   }
 
-  addUser(newUser: IUser): void {
+  onAddUser(newUser: IUser): void {
     this.userService.createUser(newUser);
   }
 
-  filterByName(name: string): void {
+  onFilter(name: string): void {
     this.filterValue$.next(name);
   }
 

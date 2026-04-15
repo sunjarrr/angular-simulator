@@ -10,7 +10,7 @@ import { IUser } from '../interfaces/IUser';
 })
 export class CreateUserComponent {
 
-  @Output() onCreateUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+  @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
   private fb: FormBuilder = inject(FormBuilder);
 
   form: FormGroup = this.fb.group({
@@ -39,7 +39,7 @@ export class CreateUserComponent {
 
   onSubmit(): void {
     const data: IUser = { ...this.form.value, id: Date.now() };
-    this.onCreateUser.emit(data);
+    this.createUser.emit(data);
   };
 
 }

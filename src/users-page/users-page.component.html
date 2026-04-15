@@ -1,12 +1,12 @@
 <div class="users-list">
   <p>Список Пользователей</p>
 </div>
-<app-create-user (onCreateUser)="addUser($event)"></app-create-user>
-<app-users-filter (onSearchUser)="filterByName($event)"></app-users-filter>
+<app-create-user (createUser)="onAddUser($event)"></app-create-user>
+<app-users-filter (searchUser)="onFilter($event)"></app-users-filter>
 <div class="users-card-container">
   <div class="users-card-wrapper">
     @for (user of filteredUsers$ | async; track user.id) {
-      <app-user-card [user]="user" (onDeleteUser)="deleteUsers($event)"/>
+      <app-user-card [user]="user" (deleteUser)="onDeleteUsers($event)"/>
     } @empty {
       <div class="error-message">Нет пользователей для отображения</div>
     }
