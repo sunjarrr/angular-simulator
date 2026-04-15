@@ -12,7 +12,7 @@ export class UserCardComponent {
   @Input({ required: true }) user!: IUser;
   @Output() onDeleteUser: EventEmitter<number> = new EventEmitter<number>();
 
-  deleteCard(): void {
+  deleteUser(): void {
     this.onDeleteUser.emit(this.user.id);
   }
 

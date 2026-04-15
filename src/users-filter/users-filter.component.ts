@@ -13,7 +13,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 export class UsersFilterComponent implements OnInit {
 
   @Output() onSearchUser: EventEmitter<string> = new EventEmitter<string>();
-  @Input() searchInput: FormControl<string | null> = new FormControl<string | null>('');
+  searchInput: FormControl<string | null> = new FormControl<string | null>('');
   destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
