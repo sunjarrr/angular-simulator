@@ -16,35 +16,26 @@ import { UsersFilterComponent } from '../users-filter/users-filter.component';
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
-export class UsersPageComponent implements OnInit{
+export class UsersPageComponent implements OnInit {
 
   userService: UserService = inject(UserService);
   messageService: MessageService = inject(MessageService);
 
-  filterControl: FormControl<string | null> = new FormControl('');
-  filterValue$: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  filteredUsers$!: Observable<IUser[]>;
-
-  constructor() {};
+  filterSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterSubject]).pipe(
+    map(([users, value]) => {
+      return users.filter((user: IUser) => user.name.toLowerCase().includes(value.toLowerCase()));
+    },
+  ));
 
   ngOnInit(): void {
-    this.filteredUsers$ = combineLatest([this.userService.users$, this.filterValue$]).pipe(
-      map(([users, value]) => {
-        return users.filter((user: IUser) => user.name.toLowerCase().includes(value.toLowerCase()));
-      },
-    )),
-    this.filterControl.valueChanges.pipe(
-      tap((value: string | null) => { 
-        this.onFilter(value || '');
-      }
-    )).subscribe();
     this.userService.loadUsers()
       .pipe(
         tap((users: IUser[]) => this.userService.setUsers(users)),
       ).subscribe();
     }
 
-  onDeleteUsers(id: number): void {
+  onDeleteUser(id: number): void {
     this.userService.deleteUser(id);
   }
 
@@ -53,7 +44,7 @@ export class UsersPageComponent implements OnInit{
   }
 
   onFilter(name: string): void {
-    this.filterValue$.next(name);
+    this.filterSubject.next(name);
   }
 
 };

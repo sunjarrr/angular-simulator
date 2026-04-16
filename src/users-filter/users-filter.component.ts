@@ -12,16 +12,16 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 })
 export class UsersFilterComponent implements OnInit {
 
-  @Output() searchUser: EventEmitter<string> = new EventEmitter<string>();
-  searchInput: FormControl<string | null> = new FormControl<string | null>('');
+  @Output() filter: EventEmitter<string> = new EventEmitter<string>();
+  filterControl: FormControl<string | null> = new FormControl<string | null>('');
   destroyRef: DestroyRef = inject(DestroyRef);
 
   ngOnInit(): void {
-    this.searchInput.valueChanges.pipe(
+    this.filterControl.valueChanges.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       tap((value: string | null) => {
-        this.searchUser.emit(value || '');
+        this.filter.emit(value || '');
       }),
       takeUntilDestroyed(this.destroyRef),
     ).subscribe();
