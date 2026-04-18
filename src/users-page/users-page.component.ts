@@ -1,28 +1,50 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '../interfaces/IUser';
 import { AsyncPipe } from '@angular/common';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, combineLatest, filter, map, Observable, tap } from 'rxjs';
 import { MessageService } from '../message.service';
+import { UserCardComponent } from '../user-card/user-card.component';
+import { CreateUserComponent } from '../create-user/create-user.component';
+import { FormControl, FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { UsersFilterComponent } from '../users-filter/users-filter.component';
+
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe],
+  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, FormsModule, UsersFilterComponent, ReactiveFormsModule],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
-export class UsersPageComponent {
+export class UsersPageComponent implements OnInit {
 
   userService: UserService = inject(UserService);
   messageService: MessageService = inject(MessageService);
 
-  users$: Observable<IUser[]> = this.userService.users$;
+  filterSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterSubject]).pipe(
+    map(([users, value]) => {
+      return users.filter((user: IUser) => user.name.toLowerCase().includes(value.toLowerCase()));
+    },
+  ));
 
-  constructor() {
+  ngOnInit(): void {
     this.userService.loadUsers()
       .pipe(
         tap((users: IUser[]) => this.userService.setUsers(users)),
       ).subscribe();
-    };
+    }
+
+  onDeleteUser(id: number): void {
+    this.userService.deleteUser(id);
+  }
+
+  onAddUser(newUser: IUser): void {
+    this.userService.createUser(newUser);
+  }
+
+  onFilter(name: string): void {
+    this.filterSubject.next(name);
+  }
 
 };

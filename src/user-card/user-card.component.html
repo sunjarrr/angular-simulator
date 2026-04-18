@@ -1,0 +1,56 @@
+<div class="users-card">
+  <div>
+    <h2 class="fs-26 extra-bold user-name">{{ user.name }}</h2>
+    <p class="fs-15 bold user-tag">{{ user.username }}</p>
+  </div>
+  <div>
+    <p class="fs-12 extra-bold contacts-wrapper">Контакты</p>
+    <div class="contacts">
+      <span class="fs-14 grey">Эл. почта:</span>
+      <span class="fs-14 bold email">{{ user.email }}</span>
+    </div>
+    <div class="phone">
+      <span class="fs-14 grey">Телефон:</span>
+      <span class="fs-14 bold">{{ user.phone }}</span>
+    </div>
+    <div class="website-wrapper">
+      <span class="fs-14 grey">Веб-сайт:</span>
+      <span class="fs-14 bold website">{{ user.website || 'Неизвестно' }}</span>
+    </div>
+    <p class="fs-12 extra-bold residental-address-wrapper">Адрес проживания</p>
+    <div class="city">
+      <span class="fs-14 grey">Город:</span>
+      <span class="fs-14 bold">{{ user.address.city }}</span>
+    </div>
+    <div class="street">
+      <span class="fs-14 grey">Улица:</span>
+      <span class="fs-14 bold">{{ user.address.street }}</span>
+    </div>
+    <div class="suite">
+      <span class="fs-14 grey">Офис:</span>
+      <span class="fs-14 bold">{{ user.address.suite || 'Неизвестно' }}</span>
+    </div>
+    <div class="zipcode">
+      <span class="fs-14 grey">Индекс:</span>
+      <span class="fs-14 bold">{{ user.address.zipcode }}</span>
+    </div>
+    <div class="coordinates">
+      <span class="fs-14 grey">Координаты:</span>
+      <span class="fs-12 bold">{{ user.address.geo.lat }} {{ user.address.geo.lng }}</span>
+    </div>
+    <p class="fs-12 extra-bold work-place-wrapper">Место работы</p>
+    <div class="company-name">
+      <span class="fs-14 grey">Компания:</span>
+      <span class="fs-14 bold">{{ user.company.name }}</span>
+    </div>
+    <div class="catchPhrase-wrapper">
+      <span class="fs-14 grey">Миссия:</span>
+      <span class="fs-14 bold catchPhrase">{{ user.company.catchPhrase || 'Неизвестно' }}</span>
+    </div>
+    <div class="specialization">
+      <span class="fs-14 grey">Специализация:</span>
+      <span class="fs-14 bold">{{ user.company.bs || 'Неизвестно' }}</span>
+    </div>
+  </div>
+  <button (click)="deleteUser()" class="delete-user-btn">Удалить пользователя</button>
+</div>
