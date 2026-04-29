@@ -82,3 +82,11 @@
   overflow: hidden;
   height: 100vh;
 }
+
+html.my-app-dark {
+  --main-color: #121212;
+  --secondary-color: #000;
+  --third-color: #1e1e1e;
+  --fourth-color: #2a2a2a;
+  --glass-bg: rgba(0, 0, 0, 0.5);
+}

@@ -1,3 +1,10 @@
+.users-page {
+  background-color: var(--main-color);
+  overflow: hidden;
+  background-color: var(--p-primary-color);
+  color: var(--main-color);
+}
+
 .users-card-container {
   display: flex;
   position: relative;
@@ -21,6 +28,7 @@
   color: #1D3939;
   font-weight: 800;
   font-size: 48px;
+  color: var(--main-color);
 }
 
 .error-message {

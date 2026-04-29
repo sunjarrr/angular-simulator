@@ -2,11 +2,12 @@
   display: flex;
   position: relative;
   top: -17%;
-  background-color: var(--main-color);
+  background-color: var(--third-color);
   justify-content: space-between;
   box-shadow: 0px 0px 15px 0px #18121e1f;
   height: 196px;
-}
+  color: var(--main-color);
+  background-color: var(--p-primary-400);
 
 .travel-newsletters-wrapper {
   display: flex;
@@ -14,6 +15,7 @@
   width: 441px;
   height: 90px;
   padding: 25px 30px 66px 100px;
+  color: var(--secondary-color);
 }
 
 .travel-newsletters-subtitle {
@@ -26,6 +28,7 @@
 .travel-newsletters-title {
   margin-top: 8px;
   color: var(--secondary-color);
+  color: var(--main-color);
 }
 
 .subscribe-newsletters {
@@ -34,6 +37,7 @@
   height: 116px;
   padding: 25px 100px;
   color: var(--secondary-color);
+  color: var(--main-color);
 }
 
 .input-mail-wrapper {
@@ -59,6 +63,7 @@
   background-color: var(--fourth-colors);
   color: var(--main-color);
   cursor: pointer;
+  background-color: var(--p-primary-400);
 }
 
 .input-mail-subtext {
@@ -66,11 +71,14 @@
   width: 536px;
   text-decoration: underline;
 }
+}
 
 .footer-wrapper {
   height: 587px;
+  background-color: var(--main-color);
   background-color: var(--fourth-colors);
   color: var(--main-color);
+  background-color: var(--p-primary-400);
 }
 
 .footer {
@@ -83,6 +91,7 @@
   margin-top: 77px;
   height: 66px;
   background-color: #18121e;
+  background-color: var(--p-primary-400);
 
   &-container {
     display: flex;
@@ -117,6 +126,10 @@
 .company-contact-icons {
   display: flex;
   gap: 16px;
+}
+
+.faTelegram {
+  display: flex;
 }
 
 .company-email {
