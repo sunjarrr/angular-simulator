@@ -37,14 +37,14 @@ export class ThemeService {
     aura: Aura,
     lara: Lara,
     nora: Nora,
-  }
+  };
 
   getTheme(): ITheme {
     return {
       theme: this.localStorageService.getValues('my-app-theme') || 'aura',
-      isDark: this.localStorageService.getValues('my-app-dark') === 'dark'
+      isDark: this.localStorageService.getValues('my-app-dark') === 'dark',
     };
-  }
+  };
 
   toggleDarkMode(): void {
     const currentMode: ITheme = this.switchModeSubject.value;
@@ -57,7 +57,7 @@ export class ThemeService {
     this.switchModeSubject.pipe(
       distinctUntilChanged((newValue, currentValue) => newValue.isDark === currentValue.isDark),
       tap((themeConfig: ITheme) => {
-        themeConfig.isDark ? document.documentElement.classList.add('my-app-dark') : document.documentElement.classList.remove('my-app-dark')
+        themeConfig.isDark ? document.documentElement.classList.add('my-app-dark') : document.documentElement.classList.remove('my-app-dark');
       }),
     ).subscribe();
     const initialTheme: ITheme = this.switchModeSubject.value;
