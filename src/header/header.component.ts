@@ -1,13 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { WidgetType } from '../app/Widget';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
 import { RouterLink, RouterLinkActive } from "@angular/router";
+import { CommonModule } from '@angular/common';
+import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { ThemeService } from '../theme.service';
+import { Observable } from 'rxjs';
+import { ITheme } from '../interfaces/ITheme';
 
 @Component({
   selector: 'app-header',
-  imports: [FormsModule, RouterLink, RouterLinkActive],
+  imports: [SelectButtonModule, FormsModule, RouterLink, RouterLinkActive, CommonModule, ToggleSwitchModule],
   templateUrl: './header.component.html',
+  standalone: true,
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
@@ -17,6 +24,8 @@ export class HeaderComponent {
   timer: string = new Date().toLocaleString();
   counter: number = 0;
   selectedNavigationId: number = 2;
+  themeService: ThemeService = inject(ThemeService);
+  state$: Observable<ITheme> = this.themeService.switchMode$;
 
   navigations: INavigation[] = [
     {
@@ -45,6 +54,14 @@ export class HeaderComponent {
 
   reduceCounter(): void {
     this.counter--;
+  }
+
+  toggleMode(): void {
+    this.themeService.toggleDarkMode();
+  }
+
+  toggleTheme(value: string): void {
+    this.themeService.setTheme(value);
   }
 
 }

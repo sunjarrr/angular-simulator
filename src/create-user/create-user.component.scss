@@ -9,6 +9,7 @@
   flex-direction: column;
   justify-content: space-between;
   width: 600px;
+  color: var(--main-color);
 }
 
 .input-form-wrapper {
@@ -18,18 +19,27 @@
 
 .input-form {
   width: 300px;
+  background-color: var(--main-color);
+  background-color: var(--p-primary-color);
 }
 
 .input-form-lat {
   width: 150px;
   margin-left: 203px;
+  background-color: var(--main-color);
+  background-color: var(--p-primary-color);
 }
 
 .input-form-lng {
   width: 150px;
+  background-color: var(--main-color);
+  background-color: var(--p-primary-color);
 }
 
 .submit-form {
   width: 100%;
   cursor: pointer;
+  background-color: var(--main-color);
+  background-color: var(--p-primary-color);
+  color: var(--main-color);
 }

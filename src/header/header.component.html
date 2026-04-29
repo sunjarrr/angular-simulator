@@ -1,4 +1,23 @@
 <header class="header">
+  <p-toggleswitch
+    class="switch-mode"
+    [ngModel]="(state$ | async)?.isDark" 
+    (onChange)="toggleMode()"
+  >
+    <ng-template #handle let-checked="checked">
+      <i [ngClass]="['!text-xs', 'pi', checked ? 'pi-check' : 'pi-times']"></i>
+    </ng-template>
+  </p-toggleswitch>
+  <div class="switch-themes">
+    <p-selectbutton
+      [options]="this.themeService.themes"
+      [ngModel]="(state$ | async)?.theme"
+      (onChange)="toggleTheme($event.value)"
+      optionLabel="label"
+      optionValue="value"
+      aria-labelledby="basic"
+    />
+  </div>
   <div class="super-header">
     <div class="container">
       <div class="header-logo">

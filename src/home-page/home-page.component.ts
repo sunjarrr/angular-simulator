@@ -6,10 +6,13 @@ import { LocalStorageService } from '../local-storage.service';
 import { IAdvantageInfo } from '../interfaces/IAdvantageInfo';
 import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../loader.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faStar, IconDefinition, faCalendar, faCaretSquareDown, faCaretSquareRight } from '@fortawesome/free-regular-svg-icons';
+import { faPeopleGroup, faShield, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule],
+  imports: [FormsModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -23,6 +26,10 @@ export class HomePageComponent {
   selectedParticipants: string = '';
   liveInputValue: string = '';
   selectedArticleId: number = 2;
+  faStar: IconDefinition = faStar;
+  faCalendar: IconDefinition = faCalendar;
+  faCaretSquareDown: IconDefinition = faCaretSquareDown;
+  faCaretSquareRight: IconDefinition = faCaretSquareRight;
 
   conditions: IAdvantageInfo[] = [
     {
@@ -30,21 +37,21 @@ export class HomePageComponent {
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E5EEEB',
-      icon: 'humans-icon',
+      icon: faPeopleGroup,
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E3E6EE',
-      icon: 'safety-icon',
+      icon: faShield,
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#F3F1E1',
-      icon: 'price-icon',
+      icon: faDollarSign,
     },
   ];
 
@@ -56,7 +63,6 @@ export class HomePageComponent {
       price: 480,
       placeImage: 'lake-near-mountains',
       assessment: '4.9',
-      assessmentIcon: 'star-icon',
     },
     {
       id: 2,
@@ -65,7 +71,6 @@ export class HomePageComponent {
       price: 500,
       placeImage: 'night-mountains',
       assessment: '4.5',
-      assessmentIcon: 'star-icon',
     },
     {
       id: 3,
@@ -74,7 +79,6 @@ export class HomePageComponent {
       price: 230,
       placeImage: 'mountains-sport',
       assessment: '5.0',
-      assessmentIcon: 'star-icon',
     },
   ];
 
