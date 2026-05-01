@@ -7,7 +7,6 @@
   box-shadow: 0px 0px 15px 0px #18121e1f;
   height: 196px;
   color: var(--main-color);
-  background-color: var(--p-primary-400);
 
 .travel-newsletters-wrapper {
   display: flex;
@@ -28,7 +27,6 @@
 .travel-newsletters-title {
   margin-top: 8px;
   color: var(--secondary-color);
-  color: var(--main-color);
 }
 
 .subscribe-newsletters {
@@ -37,7 +35,6 @@
   height: 116px;
   padding: 25px 100px;
   color: var(--secondary-color);
-  color: var(--main-color);
 }
 
 .input-mail-wrapper {
@@ -63,7 +60,6 @@
   background-color: var(--fourth-colors);
   color: var(--main-color);
   cursor: pointer;
-  background-color: var(--p-primary-400);
 }
 
 .input-mail-subtext {
@@ -75,10 +71,8 @@
 
 .footer-wrapper {
   height: 587px;
-  background-color: var(--main-color);
   background-color: var(--fourth-colors);
   color: var(--main-color);
-  background-color: var(--p-primary-400);
 }
 
 .footer {
@@ -91,7 +85,6 @@
   margin-top: 77px;
   height: 66px;
   background-color: #18121e;
-  background-color: var(--p-primary-400);
 
   &-container {
     display: flex;

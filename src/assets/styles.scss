@@ -18,6 +18,7 @@
   --additional-color: #F2BE22;
   --fourth-colors: #1A3E3E;
   --third-color: #F3F5F4;
+  --logo-color: #fff;
 }
 
 .fs-14 {
@@ -85,8 +86,8 @@
 
 html.my-app-dark {
   --main-color: #121212;
-  --secondary-color: #000;
+  --secondary-color: #fff;
   --third-color: #1e1e1e;
-  --fourth-color: #2a2a2a;
-  --glass-bg: rgba(0, 0, 0, 0.5);
+  --fourth-colors: #2a2a2a;
+  --company-logo-color: #fff;
 }

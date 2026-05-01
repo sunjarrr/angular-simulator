@@ -1,17 +1,16 @@
 <header class="header">
   <p-toggleswitch
+    id="toggle-mode"
     class="switch-mode"
-    [ngModel]="(state$ | async)?.isDark" 
-    (onChange)="toggleMode()"
+    [ngModel]="(themeService.mode$| async)" 
+    (onChange)="toggleMode($event)"
   >
-    <ng-template #handle let-checked="checked">
-      <i [ngClass]="['!text-xs', 'pi', checked ? 'pi-check' : 'pi-times']"></i>
-    </ng-template>
   </p-toggleswitch>
   <div class="switch-themes">
     <p-selectbutton
+      id="switch-theme"
       [options]="this.themeService.themes"
-      [ngModel]="(state$ | async)?.theme"
+      [ngModel]="(themeService.theme$| async)"
       (onChange)="toggleTheme($event.value)"
       optionLabel="label"
       optionValue="value"

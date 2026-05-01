@@ -4,11 +4,9 @@ import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { CommonModule } from '@angular/common';
-import { ToggleSwitchModule } from 'primeng/toggleswitch';
+import { ToggleSwitchChangeEvent, ToggleSwitchModule} from 'primeng/toggleswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ThemeService } from '../theme.service';
-import { Observable } from 'rxjs';
-import { ITheme } from '../interfaces/ITheme';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +23,6 @@ export class HeaderComponent {
   counter: number = 0;
   selectedNavigationId: number = 2;
   themeService: ThemeService = inject(ThemeService);
-  state$: Observable<ITheme> = this.themeService.switchMode$;
 
   navigations: INavigation[] = [
     {
@@ -56,12 +53,12 @@ export class HeaderComponent {
     this.counter--;
   }
 
-  toggleMode(): void {
-    this.themeService.toggleDarkMode();
+  toggleMode(event: ToggleSwitchChangeEvent): void {
+    this.themeService.toggleDarkMode(event.checked);
   }
 
   toggleTheme(value: string): void {
-    this.themeService.setTheme(value);
+    this.themeService.switchTheme(value);
   }
 
 }

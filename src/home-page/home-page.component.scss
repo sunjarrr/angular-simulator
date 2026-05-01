@@ -86,8 +86,6 @@
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(3px);
-  background: var(--glass-bg);
-  background-color: var(--p-primary-400);
 
   .clarifying-details {
     display: flex;
@@ -100,6 +98,7 @@
     &::placeholder {
       color: var(--main-color);
     }
+    color: var(--main-color);
     display: flex;
     width: 250px;
     height: 48px;
@@ -112,7 +111,6 @@
 
   .find-program-btn {
     background-color: var(--fourth-colors);
-    background-color: var(--p-primary-400);
     color: var(--main-color);
     display: flex;
     font-weight: bold;
@@ -205,6 +203,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    color: var(--main-color);
   }
 
   .selection-icon {
@@ -239,7 +238,6 @@
 .hike-section {
   height: 726px;
   background-color: var(--main-color);
-  background-color: var(--p-primary-400);
   overflow: hidden;
   .hike-info {
     height: 526px;
@@ -275,13 +273,13 @@
 
   .hike-title {
     line-height: 120%;
-    color: var(--main-color);
+    color: var(--secondary-color);
   }
 
   .hike-description {
     line-height: 150%;
     margin-bottom: 40px;
-    color: var(--main-color);
+    color: var(--secondary-color);
   }
 
   .tour-program-btn {
@@ -289,7 +287,6 @@
     width: 200px;
     height: 52px;
     background-color: var(--fourth-colors);
-    background-color: var(--p-primary-400);
     color: var(--main-color);
     align-items: center;
     justify-content: center;
@@ -303,7 +300,6 @@
 .hike-programs {
   height: 771px;
   background-color: var(--third-color);
-  background-color: var(--p-primary-400);
   .conditions-wrapper {
     max-width: 580px;
     height: 591px;
@@ -315,7 +311,7 @@
 
   .title-and-description {
     width: 580px;
-    color: var(--main-color);
+    color: var(--secondary-color);
   }
 
   .proposal {
@@ -343,7 +339,7 @@
     margin-top: -75px;
     padding-bottom: 40px;
     transition: filter 0.3s ease;
-    color: var(--main-color);
+    color: var(--secondary-color);
   }
 
   .conditions:hover {
@@ -359,7 +355,6 @@
     height: 52px;
     border-radius: 4px;
     background-color: var(--fourth-colors);
-    background-color: var(--p-primary-400);
     color: var(--main-color);
     cursor: pointer;
   }
@@ -399,9 +394,8 @@
 .recreation-locations {
   height: 850px;
   background-color: var(--main-color);
-  background-color: var(--p-primary-400);
   overflow: hidden;
-  color: var(--main-color);
+  color: var(--secondary-color);
   .photos-recreation-locations {
     display: flex;
     gap: 20px;
@@ -511,7 +505,6 @@
     height: 52px;
     border-radius: 4px;
     background-color: var(--fourth-colors);
-    background-color: var(--p-primary-400);
     color: var(--main-color);
     cursor: pointer;
   }
@@ -520,8 +513,7 @@
 .travel-blog-wrapper {
   height: 1036px;
   background-color: var(--third-color);
-  background-color: var(--p-primary-400);
-  color: var(--main-color);
+  color: var(--secondary-color);
   .travel-blog {
     display: flex;
     flex-direction: column;
@@ -556,7 +548,6 @@
     box-shadow: 0px 0px 15px 0px #18121E1F;
     border-radius: 10px;
     background-color: var(--third-color);
-    background-color: var(--p-primary-400);
   }
 
   .article-images {
@@ -625,7 +616,6 @@
     background-color: var(--fourth-colors);
     color: var(--main-color);
     cursor: pointer;
-    background-color: var(--p-primary-400);
   }
 
   .active-article {
@@ -690,7 +680,6 @@
 .photo-report {
   background-color: var(--main-color);
   overflow: hidden;
-  background-color: var(--p-primary-400);
 }
 
 .photo-report-wrapper {
@@ -708,7 +697,7 @@
 .photo-report-title {
   margin-top: 8px;
   margin-bottom: 40px;
-  color: var(--main-color);
+  color: var(--secondary-color);
 }
 
 .photo-report-images {
@@ -731,5 +720,4 @@
   color: var(--main-color);
   cursor: pointer;
   margin-bottom: 198px;
-  background-color: var(--p-primary-400);
 }
