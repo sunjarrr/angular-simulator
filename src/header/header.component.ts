@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ToggleSwitchChangeEvent, ToggleSwitchModule} from 'primeng/toggleswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ThemeService } from '../theme.service';
+import { Theme } from '../enums/Theme';
 
 @Component({
   selector: 'app-header',
@@ -57,7 +58,7 @@ export class HeaderComponent {
     this.themeService.toggleDarkMode(event.checked);
   }
 
-  toggleTheme(value: string): void {
+  toggleTheme(value: Theme): void {
     this.themeService.switchTheme(value);
   }
 

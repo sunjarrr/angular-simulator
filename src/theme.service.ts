@@ -7,7 +7,7 @@ import { BehaviorSubject, distinctUntilChanged, Observable, tap } from 'rxjs';
 import { Preset } from '@primeuix/themes/types';
 import { LocalStorageService } from './local-storage.service';
 import { IThemeOption } from './interfaces/IThemeOption';
-import { Themes } from './enums/Themes';
+import { Theme } from './enums/Theme';
 
 @Injectable({
   providedIn: 'root',
@@ -16,34 +16,34 @@ export class ThemeService {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
   private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getMode());
-  mode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
+  isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((isDarkMode: boolean) => {
       const element: HTMLElement = document.documentElement;
       isDarkMode ? element.classList.add('my-app-dark') : element.classList.remove('my-app-dark');
     }),
   );
-  private switchThemeSubject: BehaviorSubject<string> = new BehaviorSubject<string>('aura');
-  theme$: Observable<string> = this.switchThemeSubject.asObservable();
+  private switchThemeSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.AURA);
+  theme$: Observable<Theme> = this.switchThemeSubject.asObservable();
 
   themes: IThemeOption[] = [
     {
       label: 'Aura',
-      value: Themes.aura,
+      value: Theme.AURA,
     },
     {
       label: 'Lara',
-      value: Themes.lara,
+      value: Theme.LARA,
     },
     {
       label: 'Nora',
-      value: Themes.nora,
+      value: Theme.NORA,
     }
   ]
 
-  complianceCard: Record<string, Preset> = {
-    aura: Aura,
-    lara: Lara,
-    nora: Nora,
+  complianceCard: Record<Theme, Preset> = {
+    [Theme.AURA]: Aura,
+    [Theme.LARA]: Lara,
+    [Theme.NORA]: Nora,
   }
 
   toggleDarkMode(isDarkMode: boolean): void {
@@ -52,8 +52,8 @@ export class ThemeService {
   }
 
   initTheme(): void {
-    const currentTheme: string = this.localStorageService.getValues('my-app-theme') as string;
-    const newTheme: string = currentTheme || 'aura'
+    const currentTheme: Theme = this.localStorageService.getValues('my-app-theme') as Theme;
+    const newTheme: Theme = currentTheme || Theme.AURA
     this.switchThemeSubject.next(newTheme);
   }
 
@@ -65,12 +65,12 @@ export class ThemeService {
     this.initTheme();
     this.switchThemeSubject.pipe(
       distinctUntilChanged(),
-      tap((newTheme: string) => {
+      tap((newTheme: Theme) => {
         this.setTheme(newTheme);
       })).subscribe();
   }
 
-  setTheme(newTheme: string): void {
+  setTheme(newTheme: Theme): void {
     const themes: Preset = this.complianceCard[newTheme];
     if (themes) {
       usePreset(themes);
@@ -78,7 +78,7 @@ export class ThemeService {
     this.localStorageService.setValues('my-app-theme', newTheme);
   }
 
-  switchTheme(newTheme: string): void {
+  switchTheme(newTheme: Theme): void {
     this.switchThemeSubject.next(newTheme);
   }
 
