@@ -12,7 +12,12 @@ export class LocalStorageService {
 
   getValues<T>(key: string): T | null {
     const value: string | null = localStorage.getItem(key);
-    return value ? JSON.parse(value) as T : null;
+    if (!value) return null;
+    try {
+      return JSON.parse(value) as T;
+    } catch (error) {
+      return value as unknown as T;
+    }
   }
 
   clearElement(key: string): void {

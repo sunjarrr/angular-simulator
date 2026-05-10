@@ -1,4 +1,22 @@
 <header class="header">
+  <p-toggleswitch
+    id="toggle-mode"
+    class="switch-mode"
+    [ngModel]="(themeService.isDarkMode$ | async)" 
+    (onChange)="toggleMode($event)"
+  >
+  </p-toggleswitch>
+  <div class="switch-themes">
+    <p-selectbutton
+      id="switch-theme"
+      [options]="this.themeService.themes"
+      [ngModel]="(themeService.theme$ | async)"
+      (onChange)="toggleTheme($event.value)"
+      optionLabel="label"
+      optionValue="value"
+      aria-labelledby="basic"
+    />
+  </div>
   <div class="super-header">
     <div class="container">
       <div class="header-logo">

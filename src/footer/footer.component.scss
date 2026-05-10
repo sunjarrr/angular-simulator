@@ -2,11 +2,11 @@
   display: flex;
   position: relative;
   top: -17%;
-  background-color: var(--main-color);
+  background-color: var(--third-color);
   justify-content: space-between;
   box-shadow: 0px 0px 15px 0px #18121e1f;
   height: 196px;
-}
+  color: var(--main-color);
 
 .travel-newsletters-wrapper {
   display: flex;
@@ -14,6 +14,7 @@
   width: 441px;
   height: 90px;
   padding: 25px 30px 66px 100px;
+  color: var(--secondary-color);
 }
 
 .travel-newsletters-subtitle {
@@ -66,6 +67,7 @@
   width: 536px;
   text-decoration: underline;
 }
+}
 
 .footer-wrapper {
   height: 587px;
@@ -117,6 +119,10 @@
 .company-contact-icons {
   display: flex;
   gap: 16px;
+}
+
+.faTelegram {
+  display: flex;
 }
 
 .company-email {

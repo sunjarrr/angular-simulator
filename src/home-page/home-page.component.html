@@ -19,7 +19,7 @@
               />
               <div class="selection-icon">
                 <button class="selection-icon-wrapper">
-                  <img src="/images/select-icon.svg" alt="select-icon" />
+                  <fa-icon [icon]="faCaretSquareDown"></fa-icon>
                 </button>
                 <select class="selection-wrapper" [(ngModel)]="selectedLocation">
                   @for (tourLocation of tourLocations; track tourLocation) {
@@ -43,7 +43,7 @@
               <div class="selection-icon">
                 <input class="select-date-icon" type="date" [(ngModel)]="selectedHikingDate" />
                 <button class="selection-icon-wrapper">
-                  <img src="/images/calendar-icon.svg" alt="calendar-icon" />
+                  <fa-icon class="faCalendar fs-20" [icon]="faCalendar"></fa-icon>
                 </button>
               </div>
             </div>
@@ -61,7 +61,7 @@
               />
               <div class="selection-icon">
                 <button class="selection-icon-wrapper">
-                  <img src="/images/select-icon.svg" alt="select-icon" />
+                  <fa-icon [icon]="faCaretSquareDown"></fa-icon>
                 </button>
                 <select class="selection-wrapper" [(ngModel)]="selectedParticipants">
                   @for (tourParticipant of tourParticipants; track tourParticipant) {
@@ -135,7 +135,7 @@
       <div class="condition-list">
         @for (condition of conditions; track condition.id) {
           <div class="condition-icon-bg" [style.background-color]="condition.bg">
-            <img class="condition-icons" [src]="`/images/${condition.icon}.svg`" />
+            <fa-icon class="fs-32 condition-icons" [icon]="condition.icon"></fa-icon>
           </div>
           <div class="conditions">
             <h3 class="condition-title fs-18 bold">{{ condition.title }}</h3>
@@ -170,8 +170,8 @@
         <div class="popular-places-image">
           <img [src]="`/images/${place.placeImage}.png`" />
           <div class="place-assessment-wrapper">
+            <fa-icon class="faStar" [icon]="faStar"></fa-icon>
             <p class="place-assessment fs-14 bold">{{ place.assessment }}</p>
-            <img class="assessment-icon" [src]="`/images/${place.assessmentIcon}.svg`" />
           </div>
           <div class="popular-places">
             <h3 class="place-title fs-24 bold">{{ place.title }}</h3>
@@ -233,7 +233,7 @@
   </div>
 </section>
 
-<section>
+<section class="photo-report">
   <div class="container photo-report-wrapper">
     <p class="fs-24 regular photo-report-subtitle">фото-отчет</p>
     <h2 class="fs-32 extra-bold photo-report-title">Делимся впечатлениями</h2>

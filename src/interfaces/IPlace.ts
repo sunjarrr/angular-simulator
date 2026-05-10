@@ -5,5 +5,4 @@ export interface IPlace {
   price: number;
   placeImage: string;
   assessment: string;
-  assessmentIcon: string;
 }

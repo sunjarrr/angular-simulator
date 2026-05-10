@@ -84,7 +84,7 @@
   align-items: center;
   margin-bottom: 82px;
   border-radius: 10px;
-  background: #ffffff33;
+  background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(3px);
 
   .clarifying-details {
@@ -98,6 +98,7 @@
     &::placeholder {
       color: var(--main-color);
     }
+    color: var(--main-color);
     display: flex;
     width: 250px;
     height: 48px;
@@ -202,6 +203,7 @@
     background: transparent;
     border: none;
     cursor: pointer;
+    color: var(--main-color);
   }
 
   .selection-icon {
@@ -235,6 +237,8 @@
 
 .hike-section {
   height: 726px;
+  background-color: var(--main-color);
+  overflow: hidden;
   .hike-info {
     height: 526px;
     display: flex;
@@ -269,11 +273,13 @@
 
   .hike-title {
     line-height: 120%;
+    color: var(--secondary-color);
   }
 
   .hike-description {
     line-height: 150%;
     margin-bottom: 40px;
+    color: var(--secondary-color);
   }
 
   .tour-program-btn {
@@ -305,6 +311,7 @@
 
   .title-and-description {
     width: 580px;
+    color: var(--secondary-color);
   }
 
   .proposal {
@@ -332,6 +339,7 @@
     margin-top: -75px;
     padding-bottom: 40px;
     transition: filter 0.3s ease;
+    color: var(--secondary-color);
   }
 
   .conditions:hover {
@@ -363,7 +371,7 @@
   .condition-icons {
     display: flex;
     margin: 0 auto;
-    padding-top: 7px;
+    padding: 10px;
   }
 
   .condition-icon-bg {
@@ -384,7 +392,10 @@
 }
 
 .recreation-locations {
-  height: 778px;
+  height: 850px;
+  background-color: var(--main-color);
+  overflow: hidden;
+  color: var(--secondary-color);
   .photos-recreation-locations {
     display: flex;
     gap: 20px;
@@ -415,7 +426,7 @@
     position: absolute;
     top: 82%;
     left: 10%;
-    background: #FFFFFF33;
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(3px);
     border-radius: 0 0 32px 32px;
     width: 380px;
@@ -442,7 +453,7 @@
     top: 73%;
     left: 57%;
     color: var(--main-color);
-    background: #FFFFFF4D;
+    background: rgba(255, 255, 255, 0.2);
     border-radius: 4px;
   }
 
@@ -460,7 +471,7 @@
     position: absolute;
     top: 10%;
     left: 83%;
-    background: #FDFDFD66;
+    background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(4px);
     width: 65px;
     height: 32px;
@@ -473,9 +484,14 @@
     left: 6px;
   }
 
+  .faStar {
+    display: flex;
+    padding: 9px 0px 0px 10px;
+  }
+
   .place-assessment {
     margin: 0 auto;
-    padding: 10px 35px;
+    padding: 10px 7px;
   }
 
   .direction-rating-btn {
@@ -497,6 +513,7 @@
 .travel-blog-wrapper {
   height: 1036px;
   background-color: var(--third-color);
+  color: var(--secondary-color);
   .travel-blog {
     display: flex;
     flex-direction: column;
@@ -530,7 +547,7 @@
     height: 312px;
     box-shadow: 0px 0px 15px 0px #18121E1F;
     border-radius: 10px;
-    background-color: #F3F5F4;
+    background-color: var(--third-color);
   }
 
   .article-images {
@@ -567,6 +584,7 @@
     display: flex;
     color: var(--fourth-colors);
     flex-wrap: nowrap;
+    color: var(--main-color);
   }
 
   .third-article {
@@ -623,7 +641,7 @@
   width: 350px;
   height: 70px;
   border-radius: 10px;
-  background: #0F172AD9;
+  background: rgba(255, 255, 255, 0.2);
   color: var(--main-color);
   z-index: 15;
 }
@@ -659,6 +677,11 @@
   margin: 15px;
 }
 
+.photo-report {
+  background-color: var(--main-color);
+  overflow: hidden;
+}
+
 .photo-report-wrapper {
   display: flex;
   flex-direction: column;
@@ -674,6 +697,7 @@
 .photo-report-title {
   margin-top: 8px;
   margin-bottom: 40px;
+  color: var(--secondary-color);
 }
 
 .photo-report-images {
