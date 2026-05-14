@@ -1,12 +1,10 @@
 <header class="header">
-  <p-toggleswitch
-    id="toggle-mode"
-    class="switch-mode"
-    [ngModel]="(themeService.isDarkMode$ | async)" 
-    (onChange)="toggleMode($event)"
-  >
-  </p-toggleswitch>
-  <div class="switch-themes">
+  <div class="switch">
+    <p-toggleswitch
+      id="toggle-mode"
+      [ngModel]="(themeService.isDarkMode$ | async)"
+      (onChange)="toggleMode($event)"
+    />
     <p-selectbutton
       id="switch-theme"
       [options]="this.themeService.themes"
