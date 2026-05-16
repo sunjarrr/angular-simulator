@@ -11,7 +11,7 @@
     </div>
     <div class="phone">
       <span class="fs-14 grey">Телефон:</span>
-      <span class="fs-14 bold">{{ user.phone.toString() | phone: 'international'}}</span>
+      <span class="fs-14 bold">{{ user.phone.toString() | phone: phoneMode.MASKED }}</span>
     </div>
     <div class="website-wrapper">
       <span class="fs-14 grey">Веб-сайт:</span>

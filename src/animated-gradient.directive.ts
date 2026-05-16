@@ -1,5 +1,5 @@
 import { Directive, HostBinding, HostListener, Input } from '@angular/core';
-import { IGradient } from './interfaces/IGradient';
+import { IGradientConfig } from './interfaces/IGradient';
 
 @Directive({
   selector: '[animatedGradient]',
@@ -9,7 +9,7 @@ export class AnimatedGradientDirective {
   isActive!: boolean;
   timer!: number;
 
-  @Input('GradientConfiguration') settings: IGradient = {
+  @Input('GradientConfiguration') gradientSettings: IGradientConfig = {
     delay: 1000,
     colors: ['red', 'yellow', 'green'],
     thickness: 2,
@@ -18,7 +18,7 @@ export class AnimatedGradientDirective {
   @HostBinding('style.borderImage')
   get elementBorder(): string {
     if (this.isActive) {
-      return `linear-gradient(${this.settings.colors?.join(', ')}) ${this.settings.thickness}`;
+      return `linear-gradient(${this.gradientSettings.colors?.join(', ')}) ${this.gradientSettings.thickness}`;
     } else {
       return 'none';
     }
@@ -28,7 +28,7 @@ export class AnimatedGradientDirective {
   onEnter(): void {
     this.timer = setTimeout(() => {
       this.isActive = true;
-    }, this.settings.delay);
+    }, this.gradientSettings.delay);
   }
 
   @HostListener('mouseleave')

@@ -1,4 +1,4 @@
-export interface IGradient {
+export interface IGradientConfig {
   delay?: number;
   colors?: string[];
   thickness?: number;

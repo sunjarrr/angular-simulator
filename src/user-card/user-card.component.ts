@@ -4,6 +4,7 @@ import { UpperCasePipe } from '@angular/common';
 import { PhonePipe } from '../phone.pipe';
 import { HoverDirective } from "../hover.directive";
 import { AnimatedGradientDirective } from "../animated-gradient.directive";
+import { PhoneMode } from '../enums/PhoneMode';
 
 @Component({
   selector: 'app-user-card',
@@ -15,6 +16,7 @@ export class UserCardComponent {
 
   @Input({ required: true }) user!: IUser;
   @Output() removeUser: EventEmitter<number> = new EventEmitter<number>();
+  phoneMode = PhoneMode;
 
   deleteUser(): void {
     this.removeUser.emit(this.user.id);

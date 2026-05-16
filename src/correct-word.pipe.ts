@@ -6,7 +6,13 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class CorrectWordPipe implements PipeTransform {
 
   transform(number: number, firstForm: string, secondForm: string, thirdForm: string): unknown {
-    return number === 1 ? `${number} ${firstForm}` : number > 1 && number <= 4 ? `${number} ${secondForm}` : `${number} ${thirdForm}`;
+    if (number === 1) {
+      return `${number} ${firstForm}`
+    } else if (number > 1 && number <= 4) {
+      return `${number} ${secondForm}`
+    } else {
+      return `${number} ${thirdForm}`;
+    }
   }
 
 }
