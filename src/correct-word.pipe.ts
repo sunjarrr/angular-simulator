@@ -7,11 +7,11 @@ export class CorrectWordPipe implements PipeTransform {
 
   transform(number: number, firstForm: string, secondForm: string, thirdForm: string): unknown {
     if (number === 1) {
-      return `${number} ${firstForm}`
+      return `${ number } ${ firstForm }`
     } else if (number > 1 && number <= 4) {
-      return `${number} ${secondForm}`
+      return `${ number } ${ secondForm }`
     } else {
-      return `${number} ${thirdForm}`;
+      return `${ number } ${ thirdForm }`;
     }
   }
 

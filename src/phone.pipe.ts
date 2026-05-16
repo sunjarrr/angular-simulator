@@ -15,13 +15,13 @@ export class PhonePipe implements PipeTransform {
     const thirdPart: string = clearedPhone.slice(10,12);
     switch (phoneMode) {
       case PhoneMode.COMPACT :
-        return `+ ${clearedPhone}`
+        return `+ ${ clearedPhone }`
       case PhoneMode.INTERNATIONAL:
-        return `+ ${countryCode} ${operatorCode} ${firstPart} ${secondPart} ${thirdPart}`;
+        return `+ ${ countryCode } ${ operatorCode } ${ firstPart } ${ secondPart } ${ thirdPart }`;
       case PhoneMode.NATIONAL:
-        return `${operatorCode} ${firstPart} ${secondPart} ${thirdPart}`;
+        return `${ operatorCode } ${ firstPart } ${ secondPart } ${ thirdPart }`;
       case PhoneMode.MASKED:
-        return `+ ${countryCode} ${operatorCode} *** ** ${thirdPart}`;
+        return `+ ${ countryCode } ${ operatorCode } *** ** ${ thirdPart }`;
     }
   }
 

@@ -18,7 +18,7 @@ export class AnimatedGradientDirective {
   @HostBinding('style.borderImage')
   get elementBorder(): string {
     if (this.isActive) {
-      return `linear-gradient(${this.gradientSettings.colors?.join(', ')}) ${this.gradientSettings.thickness}`;
+      return `linear-gradient(${ this.gradientSettings.colors?.join(', ') }) ${ this.gradientSettings.thickness }`;
     } else {
       return 'none';
     }
