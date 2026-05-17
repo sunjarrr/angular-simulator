@@ -6,7 +6,7 @@ import { PhoneMode } from './enums/PhoneMode';
 })
 export class PhonePipe implements PipeTransform {
 
-  transform(phone: string, phoneMode: PhoneMode): unknown {
+  transform(phone: string, phoneMode: PhoneMode): string {
     const clearedPhone: string = phone.replace(/[()-. ]/g, '');
     const countryCode: string = clearedPhone.slice(0,2);
     const operatorCode: string = clearedPhone.slice(2,5);

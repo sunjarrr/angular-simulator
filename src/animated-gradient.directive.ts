@@ -6,14 +6,14 @@ import { IGradientConfig } from './interfaces/IGradient';
 })
 export class AnimatedGradientDirective {
 
-  isActive!: boolean;
-  timer!: number;
-
   @Input('GradientConfiguration') gradientSettings: IGradientConfig = {
     delay: 1000,
     colors: ['red', 'yellow', 'green'],
     thickness: 2,
   };
+
+  isActive!: boolean;
+  timer!: number;
 
   @HostBinding('style.borderImage')
   get elementBorder(): string {
