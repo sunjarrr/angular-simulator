@@ -1,5 +1,8 @@
 <div class="users-page">
   <div class="users-list">
+    <div class="correct-word">
+      {{ (filteredUsers$ | async)?.length ?? 0 | correctWord : 'пользователь' : 'пользователя' : 'пользователей' }}
+    </div>
     <p>Список Пользователей</p>
   </div>
   <app-create-user (createUser)="onAddUser($event)"></app-create-user>
