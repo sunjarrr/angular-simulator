@@ -7,6 +7,9 @@ import Nora from '@primeuix/themes/nora';
 import { routes } from './app.routes';
 import { Theme } from '../enums/Theme';
 import { Preset } from '@primeuix/themes/types';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { LoggingInterceptor } from '../logging.interceptor';
+import { ErrorInterceptor } from '../error.interceptor';
 
 function getTheme(): Preset {
   const value: string | null = localStorage.getItem('my-app-theme');
@@ -31,6 +34,7 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.my-app-dark'
         }
       }
-    })
+    }),
+    provideHttpClient(withInterceptors([LoggingInterceptor, ErrorInterceptor])),
   ]
 };

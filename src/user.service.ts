@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, of, finalize, filter, map, tap } from 'rxjs';
+import { BehaviorSubject, Observable, of, finalize } from 'rxjs';
 import { UserApiService } from './user-api.service';
 import { LoaderService } from './loader.service';
 import { MessageService } from './message.service';
@@ -36,10 +36,6 @@ export class UserService {
     this.loaderService.showLoader();
     return this.usersApi.getUsers()
       .pipe(
-        catchError(() => {
-          this.messageService.showError('Произошла ошибка при загрузке');
-          return of([]);
-        }),
         finalize(() => this.loaderService.hideLoader()),
       );
     };
