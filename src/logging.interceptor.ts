@@ -12,7 +12,7 @@ export const LoggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        console.log(error.message);
+        console.log(req.method, req.url, error.status, Date.now() - requestTime);
         return throwError(() => error);
       }),
     );
