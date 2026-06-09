@@ -113,3 +113,16 @@
     color: var(--fourth-colors);
   }
 }
+
+.redirect-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  margin-right: 10px;
+}
+
+.posts-page-btn {
+  display: flex;
+  flex-direction: column;
+}
