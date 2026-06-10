@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { IPost } from '../IPost';
-import { BehaviorSubject, catchError, EMPTY, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { IPostResponse } from '../IPostResponse';
@@ -12,7 +12,6 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
-import { MessageService } from '../../../message.service';
 
 @Component({
   selector: 'app-posts',
@@ -29,7 +28,6 @@ export class PostsComponent implements OnInit {
   postService: PostService = inject(PostService);
   postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
-  messageService: MessageService = inject(MessageService);
   isLoading: boolean = true;
   pageSize: number = 10;
   totalRecords: number = 0;
@@ -69,10 +67,6 @@ export class PostsComponent implements OnInit {
           this.totalRecords = response.total;
           this.isLoading = false;
         }),
-        catchError(() => {
-          this.messageService.showError('Не удалось загрузить посты');
-          return EMPTY;
-        })
       ).subscribe();
     }
 
