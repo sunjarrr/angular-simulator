@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { PostApiService } from '../post-api.service';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IPost } from '../IPost';
-import { catchError, EMPTY, tap } from 'rxjs';
+import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../message.service';
+import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-post-create',
@@ -16,24 +16,24 @@ import { MessageService } from '../../../message.service';
 export class PostCreateComponent {
 
   private formBuilder: FormBuilder = inject(FormBuilder);
-  postApiService: PostApiService = inject(PostApiService);
+  postService: PostService = inject(PostService);
   messageService: MessageService = inject(MessageService);
   router: Router = inject(Router);
 
-  form = this.formBuilder.group({
-    title: [],
-    tags: [],
-    views: [],
-    body: [],
+  form: FormGroup = this.formBuilder.group({
+    title: ['', [Validators.required]],
+    tags: ['', [Validators.required]],
+    views: ['', [Validators.required]],
+    body: ['', [Validators.required]],
     reactions: this.formBuilder.group({
-      likes: [0],
-      dislikes: [0],
+      likes: [0, [Validators.required]],
+      dislikes: [0, [Validators.required]],
     }),
-    userId: [],
+    userId: ['', [Validators.required]],
   })
 
   onSubmit(): void {
-    this.postApiService.createPost(this.form.value as Partial<IPost>)
+    this.postService.createPost(this.form.value as Partial<IPost>)
       .pipe(
         tap(() => {
           this.router.navigate(['/posts']);

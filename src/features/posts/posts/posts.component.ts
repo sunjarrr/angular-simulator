@@ -1,21 +1,22 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { PostApiService } from '../post-api.service';
 import { TableModule } from 'primeng/table';
 import { SkeletonModule } from 'primeng/skeleton';
 import { IPost } from '../IPost';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, EMPTY, Observable, tap } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { IPostResponse } from '../IPostResponse';
 import { ButtonModule } from 'primeng/button';
-import { Router, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { AsyncPipe } from '@angular/common';
+import { PostService } from '../post.service';
+import { MessageService } from '../../../message.service';
 
 @Component({
   selector: 'app-posts',
-  imports: [TableModule, SkeletonModule, ContextMenuModule, ButtonModule, AsyncPipe, RouterOutlet],
+  imports: [TableModule, SkeletonModule, ContextMenuModule, ButtonModule, AsyncPipe, RouterOutlet, RouterLink],
   standalone: true,
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
@@ -23,11 +24,12 @@ import { AsyncPipe } from '@angular/common';
 })
 export class PostsComponent implements OnInit {
 
-  private router: Router = inject(Router);
-  postApiService: PostApiService = inject(PostApiService);
+  router: Router = inject(Router);
   dialogService: DialogService = inject(DialogService);
+  postService: PostService = inject(PostService);
   postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
+  messageService: MessageService = inject(MessageService);
   isLoading: boolean = true;
   pageSize: number = 10;
   totalRecords: number = 0;
@@ -59,13 +61,17 @@ export class PostsComponent implements OnInit {
     this.loadPosts(this.pageSize, this.firstNumber);
   }
 
-  loadPosts(limit: number, skip: number) {
-    this.postApiService.getPosts(limit, skip)
+  loadPosts(limit: number, skip: number): void {
+    this.postService.getPosts(limit, skip)
       .pipe(
         tap((response: IPostResponse) => {
           this.postsSubject.next(response.posts);
           this.totalRecords = response.total;
           this.isLoading = false;
+        }),
+        catchError(() => {
+          this.messageService.showError('Не удалось загрузить посты');
+          return EMPTY;
         })
       ).subscribe();
     }
@@ -74,13 +80,13 @@ export class PostsComponent implements OnInit {
     this.loadPosts(event.rows, event.first);
   }
 
-  navigates(id: number): void {
-    this.router.navigate([`/posts/${id}`])
+  onPostSelect(id: number): void {
+    this.router.navigate([`/posts/${ id }`])
   }
 
   onView(): void {
     if (this.selectedPost !== null) {
-      this.navigates(this.selectedPost.id);
+      this.onPostSelect(this.selectedPost.id);
     }
   }
 
@@ -103,11 +109,11 @@ export class PostsComponent implements OnInit {
 
   onDelete(): void {
     const selectedPostId: number | undefined = this.selectedPost?.id!;
-    if(this.selectedPost !== null) {
-      this.postApiService.deletePost(this.selectedPost.id)
+    if (this.selectedPost !== null) {
+      this.postService.deletePost(this.selectedPost.id)
         .pipe(
           tap(() => {
-            const deletePost: IPost[] = this.postApiService.filterPost(this.postsSubject.getValue(), selectedPostId);
+            const deletePost: IPost[] = this.postService.filterPost(this.postsSubject.getValue(), selectedPostId);
             this.postsSubject.next(deletePost);
           }
         )

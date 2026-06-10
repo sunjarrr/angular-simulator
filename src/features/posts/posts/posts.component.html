@@ -22,6 +22,7 @@
   <p-contextMenu [model]="menuItems" #contextMenu>
     
   </p-contextMenu>
+  @if (router.url === '/posts') {
   <p-table
       [totalRecords]="totalRecords"
       [paginator]="true"
@@ -43,13 +44,15 @@
       </tr>
     </ng-template>
     <ng-template #body let-post>
-      <tr (dblclick)="navigates(post.id)" [pContextMenuRow]="post">
+      <tr (dblclick)="onPostSelect(post.id)" [pContextMenuRow]="post">
         <td>{{ post.title }}</td>
         <td>{{ post.tags.join(', ') }}</td>
         <td>{{ post.views }}</td>
       </tr>
     </ng-template>
   </p-table>
+  <button class="create-posts-btn" routerLink="/posts/create">Перейти на страницу создания постов</button>
+}
 </div>
 }
-<router-outlet></router-outlet>
+<router-outlet class="post"></router-outlet>

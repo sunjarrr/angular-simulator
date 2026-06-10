@@ -5,8 +5,8 @@ export interface IPost {
   views: number;
   body: string;
   reactions: {
-    likes: number,
-    dislikes: number,
+    likes: number;
+    dislikes: number;
   }
   userId: number;
 }

@@ -2,8 +2,9 @@ import { Component, inject, OnInit } from '@angular/core';
 import { DynamicDialogConfig, DynamicDialogModule, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { IPost } from '../IPost';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { PostApiService } from '../post-api.service';
-import { tap } from 'rxjs';
+import { catchError, EMPTY, tap } from 'rxjs';
+import { PostService } from '../post.service';
+import { MessageService } from '../../../message.service';
 
 @Component({
   selector: 'app-post-edit-dialog',
@@ -15,7 +16,8 @@ export class PostEditDialogComponent implements OnInit {
 
   dynamicDialogConfig: DynamicDialogConfig = inject(DynamicDialogConfig);
   dynamicDialogRef: DynamicDialogRef = inject(DynamicDialogRef);
-  postApiService: PostApiService = inject(PostApiService)
+  postService: PostService = inject(PostService);
+  messageService: MessageService = inject(MessageService);
   formBuilder: FormBuilder = inject(FormBuilder);
   post!: IPost;
 
@@ -35,10 +37,15 @@ export class PostEditDialogComponent implements OnInit {
       tags: this.form.value.tags.split(', '),
       views: this.form.value.views,
     }
-    this.postApiService.updatePost(this.dynamicDialogConfig.data.id, convertedData)
+    this.postService.updatePost(this.dynamicDialogConfig.data.id, convertedData)
       .pipe(
         tap(() => this.dynamicDialogRef.close(),
-      )).subscribe();
+      ),
+      catchError(() => {
+        this.messageService.showError('Не удалось сохранить изменения');
+        return EMPTY;
+      })
+    ).subscribe();
     }
 
 }
