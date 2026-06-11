@@ -1,5 +1,9 @@
 .createPost {
   display: flex;
-  height: 200px;
   justify-content: center;
+  flex-direction: column;
+  width: 200px;
+  position: absolute;
+  top: 28%;
+  left: 40%;
 }

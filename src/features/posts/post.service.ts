@@ -68,7 +68,7 @@ export class PostService {
     }
 
   filterPost(posts: IPost[], id: number): IPost[] {
-    return posts.filter(post => post.id !== id);
+    return posts.filter((post: IPost) => post.id !== id);
   }
 
   createPost(post: Partial<IPost>): Observable<IPost> {
