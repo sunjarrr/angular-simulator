@@ -22,7 +22,6 @@
   <p-contextMenu [model]="menuItems" #contextMenu>
     
   </p-contextMenu>
-  @if (router.url === '/posts') {
   <p-table
       [totalRecords]="totalRecords"
       [paginator]="true"
@@ -52,7 +51,5 @@
     </ng-template>
   </p-table>
   <button id="create-post" class="create-posts-btn" routerLink="/posts/create">Создать пост</button>
-}
 </div>
 }
-<router-outlet class="post"></router-outlet>
