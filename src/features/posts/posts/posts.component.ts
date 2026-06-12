@@ -7,7 +7,7 @@ import { MenuItem } from 'primeng/api';
 import { ContextMenuModule } from 'primeng/contextmenu';
 import { IPostResponse } from '../IPostResponse';
 import { ButtonModule } from 'primeng/button';
-import { Router, RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { AsyncPipe } from '@angular/common';
@@ -15,7 +15,7 @@ import { PostService } from '../post.service';
 
 @Component({
   selector: 'app-posts',
-  imports: [TableModule, SkeletonModule, ContextMenuModule, ButtonModule, AsyncPipe, RouterOutlet, RouterLink],
+  imports: [TableModule, SkeletonModule, ContextMenuModule, ButtonModule, AsyncPipe, RouterLink],
   standalone: true,
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
