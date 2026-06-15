@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="saveChanges()">
+  <label>Title:</label>
+  <input id="tile" type="text" formControlName='title'>
+  <label>Tags:</label>
+  <input id="tags" type="text" formControlName='tags'>
+  <label>Views:</label>
+  <input id="views" type="number" formControlName='views'>
+  <button type="submit">Сохранить</button>
+</form>

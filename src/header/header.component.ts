@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { WidgetType } from '../app/Widget';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
-import { RouterLink, RouterLinkActive } from "@angular/router";
+import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { ToggleSwitchChangeEvent, ToggleSwitchModule} from 'primeng/toggleswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
@@ -11,7 +11,7 @@ import { Theme } from '../enums/Theme';
 
 @Component({
   selector: 'app-header',
-  imports: [SelectButtonModule, FormsModule, RouterLink, RouterLinkActive, CommonModule, ToggleSwitchModule],
+  imports: [SelectButtonModule, FormsModule, RouterLink, RouterLinkActive, CommonModule, ToggleSwitchModule, RouterModule],
   templateUrl: './header.component.html',
   standalone: true,
   styleUrl: './header.component.scss',

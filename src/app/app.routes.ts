@@ -1,18 +1,34 @@
 import { Routes } from '@angular/router';
+import { postResolver } from '../features/posts/post.resolver';
 
 export const routes: Routes = [
   {
-    path: '',
-    loadComponent: () =>
-      import('../home-page/home-page.component').then(
-        (module) => module.HomePageComponent
-      ),
+    path: 'posts/create',
+    loadComponent: () => import('../features/posts/post-create/post-create.component').then(module => module.PostCreateComponent),
+  },
+  {
+    path: 'posts/:id',
+    loadComponent: () => import('../features/posts/post-detail/post-detail.component').then(module => module.PostDetailComponent),
+    resolve: {
+      post: postResolver
+    },
+  },
+  {
+    path: 'posts',
+    loadComponent: () => import('../features/posts/posts/posts.component').then(module => module.PostsComponent),
   },
   {
     path: 'users-page',
     loadComponent: () =>
       import('../users-page/users-page.component').then(
         (module) => module.UsersPageComponent
+      ),
+  },
+  {
+    path: '',
+    loadComponent: () =>
+      import('../home-page/home-page.component').then(
+        (module) => module.HomePageComponent
       ),
   },
   {
