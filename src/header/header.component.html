@@ -49,6 +49,14 @@
         <button class="semi-bold fs-16 consultation-btn">Консультация</button>
       </div>
     </div>
+    <div class="logout">
+      @if(authorizationStatus$ | async) {
+        <p>Авторизован</p>
+        <button id="logout" class="posts-page-btn" routerLink="/login" (click)="onLogout()">Выйти</button>
+      } @else {
+        <p>Не авторизован</p>
+      }
+    </div>
   </div>
   <button
     (click)="switchWidget(currentWidget === 'date' ? 'counter' : 'date')"

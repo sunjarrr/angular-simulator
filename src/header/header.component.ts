@@ -3,15 +3,17 @@ import { WidgetType } from '../app/Widget';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
 import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
-import { CommonModule } from '@angular/common';
+import { AsyncPipe, CommonModule } from '@angular/common';
 import { ToggleSwitchChangeEvent, ToggleSwitchModule} from 'primeng/toggleswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ThemeService } from '../theme.service';
 import { Theme } from '../enums/Theme';
+import { AuthService } from '../features/auth/auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-header',
-  imports: [SelectButtonModule, FormsModule, RouterLink, RouterLinkActive, CommonModule, ToggleSwitchModule, RouterModule],
+  imports: [SelectButtonModule, FormsModule, RouterLink, RouterLinkActive, CommonModule, ToggleSwitchModule, RouterModule, AsyncPipe],
   templateUrl: './header.component.html',
   standalone: true,
   styleUrl: './header.component.scss',
@@ -24,6 +26,8 @@ export class HeaderComponent {
   counter: number = 0;
   selectedNavigationId: number = 2;
   themeService: ThemeService = inject(ThemeService);
+  authService: AuthService = inject(AuthService);
+  authorizationStatus$: Observable<boolean> = this.authService.status$;
 
   navigations: INavigation[] = [
     {
@@ -60,6 +64,10 @@ export class HeaderComponent {
 
   toggleTheme(value: Theme): void {
     this.themeService.switchTheme(value);
+  }
+
+  onLogout(): void {
+    this.authService.logout();
   }
 
 }

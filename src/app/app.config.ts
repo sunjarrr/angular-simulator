@@ -10,6 +10,7 @@ import { Preset } from '@primeuix/themes/types';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { LoggingInterceptor } from '../logging.interceptor';
 import { ErrorInterceptor } from '../error.interceptor';
+import { authInterceptor } from '../features/auth/auth.interceptor';
 
 function getTheme(): Preset {
   const value: string | null = localStorage.getItem('my-app-theme');
@@ -35,6 +36,6 @@ export const appConfig: ApplicationConfig = {
         }
       }
     }),
-    provideHttpClient(withInterceptors([LoggingInterceptor, ErrorInterceptor])),
+    provideHttpClient(withInterceptors([LoggingInterceptor, ErrorInterceptor, authInterceptor])),
   ]
 };
