@@ -29,7 +29,7 @@ export class UserService {
   };
 
   loadUsers(forceUpdate: boolean = false): Observable<IUser[]> {
-    const usersFromStorage: IUser[] = this.localStorageService.getValues<IUser[]>('users') || [];
+    const usersFromStorage: IUser[] = this.localStorageService.getValue<IUser[]>('users') || [];
     if (!forceUpdate && usersFromStorage.length > 0) {
       return of(usersFromStorage);
     }

@@ -1,6 +1,6 @@
-export interface IAuthResponse {
-  accessToken: string;
-  refreshToken: string;
+import { IToken } from "./IToken";
+
+export interface IAuthResponse extends IToken {
   id: number;
   username: string;
   email: string;

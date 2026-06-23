@@ -1,4 +1,3 @@
-@if ((currentUrl$ | async) !== '/login') {
 <header class="header">
   <div class="switch">
     <p-toggleswitch
@@ -53,9 +52,7 @@
     <div class="logout">
       @if(authorizationStatus$ | async) {
         <p>Авторизован</p>
-        <button id="logout" class="posts-page-btn" routerLink="/login" (click)="onLogout()">Выйти</button>
-      } @else {
-        <p>Не авторизован</p>
+        <button id="logout" class="posts-page-btn" routerLink="/login" (click)="logout()">Выйти</button>
       }
     </div>
   </div>
@@ -77,4 +74,3 @@
     </div>
   }
 </header>
-}

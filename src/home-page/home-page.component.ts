@@ -141,7 +141,7 @@ export class HomePageComponent {
   }
 
   private saveVisitCount(): void {
-    const storedCount: number | null = this.localStorageService.getValues<number>('visitCount') ?? 0;
+    const storedCount: number | null = this.localStorageService.getValue<number>('visitCount') ?? 0;
     let count: number = !storedCount ? 1 : storedCount + 1;
     this.localStorageService.setValues('visitCount', count);
   }

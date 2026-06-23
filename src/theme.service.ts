@@ -52,13 +52,13 @@ export class ThemeService {
   }
 
   initTheme(): void {
-    const currentTheme: Theme = this.localStorageService.getValues('my-app-theme') as Theme;
+    const currentTheme: Theme = this.localStorageService.getValue('my-app-theme') as Theme;
     const newTheme: Theme = currentTheme || Theme.AURA
     this.switchThemeSubject.next(newTheme);
   }
 
   private getMode(): boolean {
-    return this.localStorageService.getValues('is-dark') ?? false;
+    return this.localStorageService.getValue('is-dark') ?? false;
   }
 
   constructor() {

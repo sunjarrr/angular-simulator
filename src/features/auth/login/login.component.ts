@@ -22,7 +22,7 @@ export class LoginComponent {
   })
 
   onSubmit(): void {
-    this.authService.loginRequest(this.form.value)
+    this.authService.login(this.form.value)
       .pipe(
         tap(() => {
           this.router.navigate(['/']);
