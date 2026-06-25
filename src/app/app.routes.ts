@@ -4,42 +4,46 @@ import { authGuard } from '../features/auth/auth.guard';
 
 export const routes: Routes = [
   {
-    path: 'posts/create',
-    loadComponent: () => import('../features/posts/post-create/post-create.component').then(module => module.PostCreateComponent),
-    canActivate: [authGuard],
-  },
-  {
-    path: 'posts/:id',
-    loadComponent: () => import('../features/posts/post-detail/post-detail.component').then(module => module.PostDetailComponent),
-    canActivate: [authGuard],
-    resolve: {
-      post: postResolver
-    },
-  },
-  {
-    path: 'posts',
-    loadComponent: () => import('../features/posts/posts/posts.component').then(module => module.PostsComponent),
-    canActivate: [authGuard],
-  },
-  {
     path: 'login',
     loadComponent: () => import('../features/auth/login/login.component').then(module => module.LoginComponent),
   },
   {
-    path: 'users-page',
-    loadComponent: () =>
-      import('../users-page/users-page.component').then(
-        (module) => module.UsersPageComponent
-      ),
-    canActivate: [authGuard],
-  },
-  {
     path: '',
-    loadComponent: () =>
-      import('../home-page/home-page.component').then(
-        (module) => module.HomePageComponent
-      ),
+    loadComponent: () => import('../features/auth/layout/layout.component').then(
+      (module => module.LayoutComponent),
+    ),
     canActivate: [authGuard],
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('../home-page/home-page.component').then(
+          (module => module.HomePageComponent),
+        ),
+        pathMatch: 'full',
+      },
+      {
+        path: 'posts/create',
+        loadComponent: () => import('../features/posts/post-create/post-create.component').then(module => module.PostCreateComponent),
+      },
+      {
+        path: 'posts/:id',
+        loadComponent: () => import('../features/posts/post-detail/post-detail.component').then(module => module.PostDetailComponent),
+        resolve: {
+          post: postResolver,
+        },
+      },
+      {
+        path: 'posts',
+        loadComponent: () => import('../features/posts/posts/posts.component').then(module => module.PostsComponent),
+      },
+      {
+        path: 'users-page',
+        loadComponent: () =>
+        import('../users-page/users-page.component').then(
+          (module) => module.UsersPageComponent
+        ),
+      },
+    ],
   },
   {
     path: '**',
