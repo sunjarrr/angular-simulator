@@ -8,6 +8,9 @@ import { ToggleSwitchChangeEvent, ToggleSwitchModule} from 'primeng/toggleswitch
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ThemeService } from '../theme.service';
 import { Theme } from '../enums/Theme';
+import { AuthService } from '../features/auth/auth.service';
+import { Observable } from 'rxjs';
+import { IAuthUser } from '../features/auth/IAuthUser';
 
 @Component({
   selector: 'app-header',
@@ -18,12 +21,14 @@ import { Theme } from '../enums/Theme';
 })
 export class HeaderComponent {
 
+  themeService: ThemeService = inject(ThemeService);
+  authService: AuthService = inject(AuthService);
   companyName: string = 'румтибет';
   currentWidget: WidgetType = 'date';
   timer: string = new Date().toLocaleString();
   counter: number = 0;
   selectedNavigationId: number = 2;
-  themeService: ThemeService = inject(ThemeService);
+  authorizationStatus$: Observable<IAuthUser | null> = this.authService.currentUser$;
 
   navigations: INavigation[] = [
     {
@@ -60,6 +65,10 @@ export class HeaderComponent {
 
   toggleTheme(value: Theme): void {
     this.themeService.switchTheme(value);
+  }
+
+  logout(): void {
+    this.authService.logout();
   }
 
 }
