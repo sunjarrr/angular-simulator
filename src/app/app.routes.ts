@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { postResolver } from '../features/posts/post.resolver';
 import { authGuard } from '../features/auth/auth.guard';
+import { adminGuard } from '../features/auth/admin-guard.guard';
 
 export const routes: Routes = [
   {
@@ -24,6 +25,7 @@ export const routes: Routes = [
       {
         path: 'posts/create',
         loadComponent: () => import('../features/posts/post-create/post-create.component').then(module => module.PostCreateComponent),
+        canActivate: [adminGuard],
       },
       {
         path: 'posts/:id',
@@ -31,10 +33,12 @@ export const routes: Routes = [
         resolve: {
           post: postResolver,
         },
+        canActivate: [adminGuard],
       },
       {
         path: 'posts',
         loadComponent: () => import('../features/posts/posts/posts.component').then(module => module.PostsComponent),
+        canActivate: [adminGuard],
       },
       {
         path: 'users-page',
@@ -42,6 +46,7 @@ export const routes: Routes = [
         import('../users-page/users-page.component').then(
           (module) => module.UsersPageComponent
         ),
+        canActivate: [adminGuard],
       },
     ],
   },

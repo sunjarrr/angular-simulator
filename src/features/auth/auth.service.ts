@@ -53,6 +53,10 @@ export class AuthService {
       );
     }
 
+  getUser(): IAuthUser | null {
+    return this.currentUserSubject.value;
+  }
+
   getTokens(): IToken | null {
     return this.localStorageService.getValue('tokens') ?? null;
   }

@@ -6,4 +6,5 @@ export interface IAuthUser {
   lastName: string;
   gender: string;
   image: string;
+  role: string;
 }
