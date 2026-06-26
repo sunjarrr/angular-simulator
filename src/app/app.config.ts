@@ -40,7 +40,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([LoggingInterceptor, ErrorInterceptor, authInterceptor])),
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
-      return authService.fetchCurrentUser();
+      return authService.getCurrentProfile();
     }),
   ]
 };

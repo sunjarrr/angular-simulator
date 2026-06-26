@@ -8,8 +8,6 @@ import { MessageService } from '../../message.service';
 import { IAuthUser } from './IAuthUser';
 import { IToken } from './IToken';
 
-const API_URL: string = 'https://dummyjson.com';
-
 @Injectable({
   providedIn: 'root',
 })
@@ -20,14 +18,15 @@ export class AuthService {
   private messageService: MessageService = inject(MessageService);
   currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
+  API_URL: string = 'https://dummyjson.com';
 
   saveTokens(response: IAuthResponse): void {
     const tokens: IToken = { accessToken: response.accessToken, refreshToken: response.refreshToken };
     this.localStorageService.setValues('tokens', tokens);
   }
 
-  fetchCurrentUser(): Observable<IAuthUser | null> {
-    return this.httpClient.get<IAuthUser | null>(`${API_URL}/auth/me`)
+  getCurrentProfile(): Observable<IAuthUser | null> {
+    return this.httpClient.get<IAuthUser | null>(`${ this.API_URL }/auth/me`)
       .pipe(
         tap((result: IAuthUser | null) => {
           this.currentUserSubject.next(result);
@@ -40,7 +39,7 @@ export class AuthService {
     }
 
   login(userData: ILogin): Observable<IAuthResponse> {
-    return this.httpClient.post<IAuthResponse>(`${API_URL}/auth/login`, userData)
+    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/login`, userData)
       .pipe(
         tap((response: IAuthResponse) => {
           const { accessToken, refreshToken, ...userInfo }: IAuthResponse = response;
@@ -79,7 +78,7 @@ export class AuthService {
 
   refreshToken(): Observable<IAuthResponse> {
     const tokens: IToken | null = this.getTokens();
-    return this.httpClient.post<IAuthResponse>(`${API_URL}/auth/refresh`, {refreshToken: tokens?.refreshToken})
+    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/refresh`, {refreshToken: tokens?.refreshToken})
       .pipe(
         tap((response: IAuthResponse) => {
           this.saveTokens(response);
