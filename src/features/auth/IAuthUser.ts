@@ -1,3 +1,5 @@
+import { UserRole } from "../../enums/UserRole";
+
 export interface IAuthUser {
   id: number;
   username: string;
@@ -6,5 +8,5 @@ export interface IAuthUser {
   lastName: string;
   gender: string;
   image: string;
-  role: string;
+  role: UserRole;
 }
