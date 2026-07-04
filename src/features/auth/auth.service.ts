@@ -78,6 +78,7 @@ export class AuthService {
   logout(): void {
     this.localStorageService.clearElement('tokens');
     this.currentUserSubject.next(null);
+    console.log('test');
   }
 
   refreshToken(): Observable<IAuthResponse> {
