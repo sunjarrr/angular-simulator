@@ -22,34 +22,31 @@ export class UserService {
   setUsers(users: IUser[]): void {
     this.usersSubject.next(users);
     this.localStorageService.setValues('users', users);
-  };
+  }
 
   getUsers(): IUser[] {
     return this.usersSubject.getValue();
-  };
+  }
 
-  loadUsers(forceUpdate: boolean = false): Observable<IUser[]> {
+  loadUsers(forceUpdate = false): Observable<IUser[]> {
     const usersFromStorage: IUser[] = this.localStorageService.getValue<IUser[]>('users') || [];
     if (!forceUpdate && usersFromStorage.length > 0) {
       return of(usersFromStorage);
     }
     this.loaderService.showLoader();
-    return this.usersApi.getUsers()
-      .pipe(
-        finalize(() => this.loaderService.hideLoader()),
-      );
-    };
+    return this.usersApi.getUsers().pipe(finalize(() => this.loaderService.hideLoader()));
+  }
 
   deleteUser(id: number): void {
     const currentUser: IUser[] = this.getUsers();
     const filteredUsers: IUser[] = currentUser.filter((user: IUser) => user.id !== id);
     this.setUsers(filteredUsers);
-  };
+  }
 
   createUser(newUser: IUser): void {
     const users: IUser[] = this.usersSubject.getValue();
-    const updatedUsers: IUser[] = ([...users, newUser]);
+    const updatedUsers: IUser[] = [...users, newUser];
     this.setUsers(updatedUsers);
-  };
+  }
 
-};
+}

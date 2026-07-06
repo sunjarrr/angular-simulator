@@ -6,13 +6,21 @@ import { BehaviorSubject, combineLatest, map, Observable, tap } from 'rxjs';
 import { MessageService } from '../message.service';
 import { UserCardComponent } from '../user-card/user-card.component';
 import { CreateUserComponent } from '../create-user/create-user.component';
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
 import { CorrectWordPipe } from '../correct-word.pipe';
 
 @Component({
   selector: 'app-users-page',
-  imports: [AsyncPipe, UserCardComponent, CreateUserComponent, FormsModule, UsersFilterComponent, ReactiveFormsModule, CorrectWordPipe],
+  imports: [
+    AsyncPipe,
+    UserCardComponent,
+    CreateUserComponent,
+    FormsModule,
+    UsersFilterComponent,
+    ReactiveFormsModule,
+    CorrectWordPipe,
+  ],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',
 })
@@ -22,18 +30,21 @@ export class UsersPageComponent implements OnInit {
   messageService: MessageService = inject(MessageService);
 
   filterSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
-  filteredUsers$: Observable<IUser[]> = combineLatest([this.userService.users$, this.filterSubject]).pipe(
+  filteredUsers$: Observable<IUser[]> = combineLatest([
+    this.userService.users$,
+    this.filterSubject,
+  ]).pipe(
     map(([users, value]) => {
       return users.filter((user: IUser) => user.name.toLowerCase().includes(value.toLowerCase()));
-    },
-  ));
+    }),
+  );
 
   ngOnInit(): void {
-    this.userService.loadUsers()
-      .pipe(
-        tap((users: IUser[]) => this.userService.setUsers(users)),
-      ).subscribe();
-    }
+    this.userService
+      .loadUsers()
+      .pipe(tap((users: IUser[]) => this.userService.setUsers(users)))
+      .subscribe();
+  }
 
   onDeleteUser(id: number): void {
     this.userService.deleteUser(id);
@@ -47,4 +58,4 @@ export class UsersPageComponent implements OnInit {
     this.filterSubject.next(name);
   }
 
-};
+}

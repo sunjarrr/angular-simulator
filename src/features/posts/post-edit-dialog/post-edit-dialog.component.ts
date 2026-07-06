@@ -34,12 +34,11 @@ export class PostEditDialogComponent implements OnInit {
       title: this.form.value.title,
       tags: this.form.value.tags.split(', '),
       views: this.form.value.views,
-    }
-    this.postService.updatePost(this.dynamicDialogConfig.data.id, convertedData)
-      .pipe(
-        tap(() => this.dynamicDialogRef.close(),
-      ),
-    ).subscribe();
+    };
+    this.postService
+      .updatePost(this.dynamicDialogConfig.data.id, convertedData)
+      .pipe(tap(() => this.dynamicDialogRef.close()))
+      .subscribe();
   }
 
 }

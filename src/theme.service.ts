@@ -15,13 +15,17 @@ import { Theme } from './enums/Theme';
 export class ThemeService {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
-  private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(this.getMode());
+  private isDarkModeSubject: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
+    this.getMode(),
+  );
+
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((isDarkMode: boolean) => {
       const element: HTMLElement = document.documentElement;
       isDarkMode ? element.classList.add('my-app-dark') : element.classList.remove('my-app-dark');
     }),
   );
+
   private switchThemeSubject: BehaviorSubject<Theme> = new BehaviorSubject<Theme>(Theme.AURA);
   theme$: Observable<Theme> = this.switchThemeSubject.asObservable();
 
@@ -37,14 +41,14 @@ export class ThemeService {
     {
       label: 'Nora',
       value: Theme.NORA,
-    }
-  ]
+    },
+  ];
 
   complianceCard: Record<Theme, Preset> = {
     [Theme.AURA]: Aura,
     [Theme.LARA]: Lara,
     [Theme.NORA]: Nora,
-  }
+  };
 
   toggleDarkMode(isDarkMode: boolean): void {
     this.isDarkModeSubject.next(isDarkMode);
@@ -53,7 +57,7 @@ export class ThemeService {
 
   initTheme(): void {
     const currentTheme: Theme = this.localStorageService.getValue('my-app-theme') as Theme;
-    const newTheme: Theme = currentTheme || Theme.AURA
+    const newTheme: Theme = currentTheme || Theme.AURA;
     this.switchThemeSubject.next(newTheme);
   }
 
@@ -63,18 +67,21 @@ export class ThemeService {
 
   constructor() {
     this.initTheme();
-    this.switchThemeSubject.pipe(
-      distinctUntilChanged(),
-      tap((newTheme: Theme) => {
-        this.setTheme(newTheme);
-      })).subscribe();
+    this.switchThemeSubject
+      .pipe(
+        distinctUntilChanged(),
+        tap((newTheme: Theme) => {
+          this.setTheme(newTheme);
+        }),
+      )
+      .subscribe();
   }
 
   setTheme(newTheme: Theme): void {
     const themes: Preset = this.complianceCard[newTheme];
     if (themes) {
       usePreset(themes);
-    };
+    }
     this.localStorageService.setValues('my-app-theme', newTheme);
   }
 

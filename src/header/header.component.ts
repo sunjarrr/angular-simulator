@@ -2,9 +2,9 @@ import { Component, inject } from '@angular/core';
 import { WidgetType } from '../app/Widget';
 import { FormsModule } from '@angular/forms';
 import { INavigation } from '../interfaces/INavigation';
-import { RouterLink, RouterLinkActive, RouterModule } from "@angular/router";
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { ToggleSwitchChangeEvent, ToggleSwitchModule} from 'primeng/toggleswitch';
+import { ToggleSwitchChangeEvent, ToggleSwitchModule } from 'primeng/toggleswitch';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { ThemeService } from '../theme.service';
 import { Theme } from '../enums/Theme';
@@ -14,7 +14,15 @@ import { IAuthUser } from '../features/auth/IAuthUser';
 
 @Component({
   selector: 'app-header',
-  imports: [SelectButtonModule, FormsModule, RouterLink, RouterLinkActive, CommonModule, ToggleSwitchModule, RouterModule],
+  imports: [
+    SelectButtonModule,
+    FormsModule,
+    RouterLink,
+    RouterLinkActive,
+    CommonModule,
+    ToggleSwitchModule,
+    RouterModule,
+  ],
   templateUrl: './header.component.html',
   standalone: true,
   styleUrl: './header.component.scss',
@@ -23,11 +31,11 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
-  companyName: string = 'румтибет';
+  companyName = 'румтибет';
   currentWidget: WidgetType = 'date';
   timer: string = new Date().toLocaleString();
-  counter: number = 0;
-  selectedNavigationId: number = 2;
+  counter = 0;
+  selectedNavigationId = 2;
   authorizationStatus$: Observable<IAuthUser | null> = this.authService.currentUser$;
 
   navigations: INavigation[] = [
@@ -38,7 +46,7 @@ export class HeaderComponent {
     {
       id: 2,
       text: 'Пользователи',
-    }
+    },
   ];
 
   constructor() {

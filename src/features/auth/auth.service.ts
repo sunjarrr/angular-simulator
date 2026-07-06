@@ -16,42 +16,46 @@ export class AuthService {
   private httpClient: HttpClient = inject(HttpClient);
   private localStorageService: LocalStorageService = inject(LocalStorageService);
   private messageService: MessageService = inject(MessageService);
-  currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(null);
+  currentUserSubject: BehaviorSubject<IAuthUser | null> = new BehaviorSubject<IAuthUser | null>(
+    null,
+  );
+
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
-  API_URL: string = 'https://dummyjson.com';
+  API_URL = 'https://dummyjson.com';
 
   saveTokens(response: IAuthResponse): void {
-    const tokens: IToken = { accessToken: response.accessToken, refreshToken: response.refreshToken };
+    const tokens: IToken = {
+      accessToken: response.accessToken,
+      refreshToken: response.refreshToken,
+    };
     this.localStorageService.setValues('tokens', tokens);
   }
 
   getCurrentProfile(): Observable<IAuthUser | null> {
-    return this.httpClient.get<IAuthUser | null>(`${ this.API_URL }/auth/me`)
-      .pipe(
-        tap((result: IAuthUser | null) => {
-          this.currentUserSubject.next(result);
-        }),
-        catchError(() => {
-          this.currentUserSubject.next(null)
-          return EMPTY;
-        })
-      )
-    }
+    return this.httpClient.get<IAuthUser | null>(`${ this.API_URL }/auth/me`).pipe(
+      tap((result: IAuthUser | null) => {
+        this.currentUserSubject.next(result);
+      }),
+      catchError(() => {
+        this.currentUserSubject.next(null);
+        return EMPTY;
+      }),
+    );
+  }
 
   login(userData: ILogin): Observable<IAuthResponse> {
-    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/login`, userData)
-      .pipe(
-        tap((response: IAuthResponse) => {
-          const { accessToken, refreshToken, ...userInfo }: IAuthResponse = response;
-          this.saveTokens(response);
-          this.currentUserSubject.next(userInfo);
-        }),
-        catchError(() => {
-          this.messageService.showError('Не верный логин или пароль');
-          return EMPTY;
-        }),
-      );
-    }
+    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/login`, userData).pipe(
+      tap((response: IAuthResponse) => {
+        const { accessToken, refreshToken, ...userInfo }: IAuthResponse = response;
+        this.saveTokens(response);
+        this.currentUserSubject.next(userInfo);
+      }),
+      catchError(() => {
+        this.messageService.showError('Не верный логин или пароль');
+        return EMPTY;
+      }),
+    );
+  }
 
   getUser(): IAuthUser | null {
     return this.currentUserSubject.value;
@@ -78,17 +82,17 @@ export class AuthService {
   logout(): void {
     this.localStorageService.clearElement('tokens');
     this.currentUserSubject.next(null);
-    console.log('test');
   }
 
   refreshToken(): Observable<IAuthResponse> {
     const tokens: IToken | null = this.getTokens();
-    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/refresh`, {refreshToken: tokens?.refreshToken})
+    return this.httpClient
+      .post<IAuthResponse>(`${ this.API_URL }/auth/refresh`, { refreshToken: tokens?.refreshToken })
       .pipe(
         tap((response: IAuthResponse) => {
           this.saveTokens(response);
         }),
       );
-    }
+  }
 
 }

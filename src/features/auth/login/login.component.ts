@@ -19,15 +19,17 @@ export class LoginComponent {
   form: FormGroup = this.formBuilder.group({
     username: ['', [Validators.required]],
     password: ['', [Validators.required]],
-  })
+  });
 
   onSubmit(): void {
-    this.authService.login(this.form.value)
+    this.authService
+      .login(this.form.value)
       .pipe(
         tap(() => {
           this.router.navigate(['/']);
-        })
-      ).subscribe();
-    }
+        }),
+      )
+      .subscribe();
+  }
 
 }

@@ -2,13 +2,13 @@
   <div class="switch">
     <p-toggleswitch
       id="toggle-mode"
-      [ngModel]="(themeService.isDarkMode$ | async)"
+      [ngModel]="themeService.isDarkMode$ | async"
       (onChange)="toggleMode($event)"
     />
     <p-selectbutton
       id="switch-theme"
       [options]="this.themeService.themes"
-      [ngModel]="(themeService.theme$ | async)"
+      [ngModel]="themeService.theme$ | async"
       (onChange)="toggleTheme($event.value)"
       optionLabel="label"
       optionValue="value"
@@ -18,17 +18,13 @@
   <div class="super-header">
     <div class="container">
       <div class="header-logo">
-        <img src="/images/mountain-logo.svg" alt="Mountain">
+        <img src="/images/mountain-logo.svg" alt="Mountain" />
         <span class="company-name">{{ companyName }}</span>
       </div>
       <nav class="navigation fs-18 semi-bold">
         @for (navigation of navigations; track navigation.id) {
           @if (navigation.id === selectedNavigationId) {
-            <a
-              id="home-and-users"
-              routerLink="users-page"
-              routerLinkActive="active-link"
-            >
+            <a id="home-and-users" routerLink="users-page" routerLinkActive="active-link">
               {{ navigation.text }}
             </a>
           } @else {
@@ -44,15 +40,19 @@
       </nav>
       <div class="consultation">
         <div class="redirect-btns">
-          <button id="posts-page" class="posts-page-btn" routerLink="/posts">Страница постов</button>
+          <button id="posts-page" class="posts-page-btn" routerLink="/posts">
+            Страница постов
+          </button>
         </div>
         <button class="semi-bold fs-16 consultation-btn">Консультация</button>
       </div>
     </div>
     <div class="logout">
-      @if(authorizationStatus$ | async) {
+      @if (authorizationStatus$ | async) {
         <p>Авторизован</p>
-        <button id="logout" class="posts-page-btn" routerLink="/login" (click)="logout()">Выйти</button>
+        <button id="logout" class="posts-page-btn" routerLink="/login" (click)="logout()">
+          Выйти
+        </button>
       }
     </div>
   </div>
@@ -69,7 +69,7 @@
   } @else {
     <div class="click-counter">
       <button (click)="increaseCounter()">+</button>
-      <input [(ngModel)]="counter" class="counter-value">
+      <input [(ngModel)]="counter" class="counter-value" />
       <button [disabled]="counter === 0" (click)="reduceCounter()">-</button>
     </div>
   }

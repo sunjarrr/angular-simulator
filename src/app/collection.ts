@@ -28,6 +28,7 @@ export class Collection<T> {
   replaceElement(index: number, newItem: T): void {
     this.items.splice(index, 1, newItem);
   }
+
 }
 
 const gamesCollection: Collection<string> = new Collection<string>(games);

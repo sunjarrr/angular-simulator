@@ -7,7 +7,13 @@ import { IAdvantageInfo } from '../interfaces/IAdvantageInfo';
 import { FormsModule } from '@angular/forms';
 import { LoaderService } from '../loader.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faStar, IconDefinition, faCalendar, faCaretSquareDown, faCaretSquareRight } from '@fortawesome/free-regular-svg-icons';
+import {
+  faStar,
+  IconDefinition,
+  faCalendar,
+  faCaretSquareDown,
+  faCaretSquareRight,
+} from '@fortawesome/free-regular-svg-icons';
 import { faPeopleGroup, faShield, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
@@ -21,11 +27,11 @@ export class HomePageComponent {
   loaderService: LoaderService = inject(LoaderService);
   messageService: MessageService = inject(MessageService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
-  selectedLocation: string = '';
-  selectedHikingDate: string = '';
-  selectedParticipants: string = '';
-  liveInputValue: string = '';
-  selectedArticleId: number = 2;
+  selectedLocation = '';
+  selectedHikingDate = '';
+  selectedParticipants = '';
+  liveInputValue = '';
+  selectedArticleId = 2;
   faStar: IconDefinition = faStar;
   faCalendar: IconDefinition = faCalendar;
   faCaretSquareDown: IconDefinition = faCaretSquareDown;
@@ -35,21 +41,24 @@ export class HomePageComponent {
     {
       id: 1,
       title: 'Опытный гид',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E5EEEB',
       icon: faPeopleGroup,
     },
     {
       id: 2,
       title: 'Безопасный поход',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#E3E6EE',
       icon: faShield,
     },
     {
       id: 3,
       title: 'Лояльные цены',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       bg: '#F3F1E1',
       icon: faDollarSign,
     },
@@ -86,7 +95,8 @@ export class HomePageComponent {
     {
       id: 1,
       title: 'Красивая Италия, какая она в реальности?',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       date: '01/04/2023',
       link: 'читать статью',
       image: 'italy',
@@ -94,7 +104,8 @@ export class HomePageComponent {
     {
       id: 2,
       title: 'Долой сомнения! Весь мир открыт для вас!',
-      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+      description:
+        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
       date: '01/04/2023',
       link: 'читать статью',
       image: 'clouds-aiplane',
@@ -117,23 +128,9 @@ export class HomePageComponent {
     },
   ];
 
-  tourLocations: string[] = [
-    'Мадрид',
-    'Париж',
-    'Лондон',
-    'Берлин',
-    'Монако',
-    'Барселона'
-  ];
+  tourLocations: string[] = ['Мадрид', 'Париж', 'Лондон', 'Берлин', 'Монако', 'Барселона'];
 
-  tourParticipants: string[] = [
-    'Санжар',
-    'Влад',
-    'Нигина',
-    'Нурбек',
-    'Даурен',
-    'Магфират'
-  ];
+  tourParticipants: string[] = ['Санжар', 'Влад', 'Нигина', 'Нурбек', 'Даурен', 'Магфират'];
 
   private saveLastVisit(): void {
     const date: Date = new Date();
@@ -142,7 +139,7 @@ export class HomePageComponent {
 
   private saveVisitCount(): void {
     const storedCount: number | null = this.localStorageService.getValue<number>('visitCount') ?? 0;
-    let count: number = !storedCount ? 1 : storedCount + 1;
+    const count: number = !storedCount ? 1 : storedCount + 1;
     this.localStorageService.setValues('visitCount', count);
   }
 

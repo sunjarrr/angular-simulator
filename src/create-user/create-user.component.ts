@@ -42,6 +42,6 @@ export class CreateUserComponent {
   onSubmit(): void {
     const data: IUser = { ...this.form.value, id: Date.now() };
     this.createUser.emit(data);
-  };
+  }
 
 }

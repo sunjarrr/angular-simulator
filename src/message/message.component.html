@@ -14,10 +14,10 @@
       id="service-close-btn"
       (click)="messageService.closeMessage(msg.id)"
     >
-    <fa-icon [icon]="faCircleXmark"></fa-icon>
+      <fa-icon [icon]="faCircleXmark"></fa-icon>
     </button>
     <div class="service-content-wrapper">
-      <img class="service-icon" src="/images/service-icon.svg" alt="service-icon">
+      <img class="service-icon" src="/images/service-icon.svg" alt="service-icon" />
       <div class="service-content">
         <span>{{ msg.title }}</span>
         <span>{{ msg.content }}</span>

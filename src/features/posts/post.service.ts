@@ -16,56 +16,52 @@ export class PostService {
   loaderService: LoaderService = inject(LoaderService);
 
   getPosts(limit: number, skip: number): Observable<IPostResponse> {
-    return this.postApiService.getPosts(limit, skip)
-      .pipe(
-        catchError(() => {
-          this.messageService.showError('Не удалось получить посты');
-          return EMPTY;
-        }),
-      )
-    }
+    return this.postApiService.getPosts(limit, skip).pipe(
+      catchError(() => {
+        this.messageService.showError('Не удалось получить посты');
+        return EMPTY;
+      }),
+    );
+  }
 
   getPost(id: number): Observable<IPost> {
     this.loaderService.showLoader();
-    return this.postApiService.getPost(id)
-      .pipe(
-        finalize(() => {
-          this.loaderService.hideLoader();
-        }),
-        catchError(() => {
-          this.messageService.showError('Не удалось получить пост');
-          return EMPTY;
-        }),
-      )
-    }
+    return this.postApiService.getPost(id).pipe(
+      finalize(() => {
+        this.loaderService.hideLoader();
+      }),
+      catchError(() => {
+        this.messageService.showError('Не удалось получить пост');
+        return EMPTY;
+      }),
+    );
+  }
 
   updatePost(id: number, data: Partial<IPost>): Observable<IPost> {
     this.loaderService.showLoader();
-    return this.postApiService.updatePost(id, data)
-      .pipe(
-        finalize(() => {
-          this.loaderService.hideLoader();
-        }),
-        catchError(() => {
-          this.messageService.showError('Редактирование не удалось');
-          return EMPTY;
-        }),
-      )
-    }
+    return this.postApiService.updatePost(id, data).pipe(
+      finalize(() => {
+        this.loaderService.hideLoader();
+      }),
+      catchError(() => {
+        this.messageService.showError('Редактирование не удалось');
+        return EMPTY;
+      }),
+    );
+  }
 
   deletePost(id: number): Observable<IPost> {
     this.loaderService.showLoader();
-    return this.postApiService.deletePost(id)
-      .pipe(
-        finalize(() => {
-          this.loaderService.hideLoader();
-        }),
-        catchError(() => {
-          this.messageService.showError('Не удалось удалить пост');
-          return EMPTY;
-        }),
-      )
-    }
+    return this.postApiService.deletePost(id).pipe(
+      finalize(() => {
+        this.loaderService.hideLoader();
+      }),
+      catchError(() => {
+        this.messageService.showError('Не удалось удалить пост');
+        return EMPTY;
+      }),
+    );
+  }
 
   filterPost(posts: IPost[], id: number): IPost[] {
     return posts.filter((post: IPost) => post.id !== id);
@@ -73,16 +69,15 @@ export class PostService {
 
   createPost(post: Partial<IPost>): Observable<IPost> {
     this.loaderService.showLoader();
-    return this.postApiService.createPost(post)
-      .pipe(
-        finalize(() => {
-          this.loaderService.hideLoader();
-        }),
-        catchError(() => {
-          this.messageService.showError('Не удалось создать пост');
-          return EMPTY;
-        }),
-      )
-    }
+    return this.postApiService.createPost(post).pipe(
+      finalize(() => {
+        this.loaderService.hideLoader();
+      }),
+      catchError(() => {
+        this.messageService.showError('Не удалось создать пост');
+        return EMPTY;
+      }),
+    );
+  }
 
 }

@@ -1,4 +1,10 @@
-import { ApplicationConfig, inject, provideAppInitializer, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  inject,
+  provideAppInitializer,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
@@ -21,7 +27,7 @@ function getTheme(): Preset {
     [Theme.LARA]: Lara,
     [Theme.NORA]: Nora,
   };
-  return (theme && complianceCard[theme]) ? complianceCard[theme] : Aura;
+  return theme && complianceCard[theme] ? complianceCard[theme] : Aura;
 }
 
 export const appConfig: ApplicationConfig = {
@@ -33,14 +39,14 @@ export const appConfig: ApplicationConfig = {
       theme: {
         preset: getTheme(),
         options: {
-          darkModeSelector: '.my-app-dark'
-        }
-      }
+          darkModeSelector: '.my-app-dark',
+        },
+      },
     }),
     provideHttpClient(withInterceptors([LoggingInterceptor, ErrorInterceptor, authInterceptor])),
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
       return authService.getCurrentProfile();
     }),
-  ]
+  ],
 };

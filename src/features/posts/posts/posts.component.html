@@ -1,6 +1,6 @@
 @if (isLoading) {
   <div class="card">
-    <p-table  [tableStyle]="{ 'min-width': '50rem' }">
+    <p-table [tableStyle]="{ 'min-width': '50rem' }">
       <ng-template #header>
         <tr>
           <th>Title</th>
@@ -19,10 +19,8 @@
   </div>
 } @else {
   <div class="p-table">
-  <p-contextMenu [model]="menuItems" #contextMenu>
-    
-  </p-contextMenu>
-  <p-table
+    <p-contextMenu [model]="menuItems" #contextMenu> </p-contextMenu>
+    <p-table
       [totalRecords]="totalRecords"
       [paginator]="true"
       [first]="firstNumber"
@@ -34,22 +32,24 @@
       [rowsPerPageOptions]="[10, 20, 50]"
       [lazy]="true"
       [(contextMenuSelection)]="selectedPost"
-   >
-    <ng-template #header>
-      <tr>
-        <th>Title</th>
-        <th>Tags</th>
-        <th>View</th>
-      </tr>
-    </ng-template>
-    <ng-template #body let-post>
-      <tr (dblclick)="onPostSelect(post.id)" [pContextMenuRow]="post">
-        <td>{{ post.title }}</td>
-        <td>{{ post.tags.join(', ') }}</td>
-        <td>{{ post.views }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
-  <button id="create-post" class="create-posts-btn" routerLink="/posts/create">Создать пост</button>
-</div>
+    >
+      <ng-template #header>
+        <tr>
+          <th>Title</th>
+          <th>Tags</th>
+          <th>View</th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-post>
+        <tr (dblclick)="onPostSelect(post.id)" [pContextMenuRow]="post">
+          <td>{{ post.title }}</td>
+          <td>{{ post.tags.join(', ') }}</td>
+          <td>{{ post.views }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <button id="create-post" class="create-posts-btn" routerLink="/posts/create">
+      Создать пост
+    </button>
+  </div>
 }
