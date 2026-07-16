@@ -12,6 +12,7 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
+import { PaginatorState } from 'primeng/paginator';
 
 @Component({
   selector: 'app-posts',
@@ -19,7 +20,7 @@ import { PostService } from '../post.service';
   standalone: true,
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class PostsComponent implements OnInit {
 
@@ -28,10 +29,10 @@ export class PostsComponent implements OnInit {
   postService: PostService = inject(PostService);
   postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
-  isLoading: boolean = true;
-  pageSize: number = 10;
-  totalRecords: number = 0;
-  firstNumber: number = 0;
+  isLoading = true;
+  pageSize = 10;
+  totalRecords = 0;
+  firstNumber = 0;
   selectedPost!: IPost | null;
 
   menuItems: MenuItem[] = [
@@ -39,19 +40,19 @@ export class PostsComponent implements OnInit {
       label: 'Просмотр',
       command: () => {
         this.onView();
-      }
+      },
     },
     {
       label: 'Редактировать',
       command: () => {
         this.onEdit();
-      }
+      },
     },
     {
       label: 'Удалить',
       command: () => {
         this.onDelete();
-      }
+      },
     },
   ];
 
@@ -60,22 +61,24 @@ export class PostsComponent implements OnInit {
   }
 
   loadPosts(limit: number, skip: number): void {
-    this.postService.getPosts(limit, skip)
+    this.postService
+      .getPosts(limit, skip)
       .pipe(
         tap((response: IPostResponse) => {
           this.postsSubject.next(response.posts);
           this.totalRecords = response.total;
           this.isLoading = false;
         }),
-      ).subscribe();
-    }
+      )
+      .subscribe();
+  }
 
-  pageChange(event: any): void {
-    this.loadPosts(event.rows, event.first);
+  pageChange(event: PaginatorState): void {
+    this.loadPosts(event.rows ?? 0, event.first ?? 0);
   }
 
   onPostSelect(id: number): void {
-    this.router.navigate([`/posts/${ id }`])
+    this.router.navigate([`/posts/${ id }`]);
   }
 
   onView(): void {
@@ -90,11 +93,11 @@ export class PostsComponent implements OnInit {
       width: '50vw',
       modal: true,
       contentStyle: {
-        overflow: 'auto'
+        overflow: 'auto',
       },
       breakpoints: {
         '960px': '75vw',
-        '640px': '90vw'
+        '640px': '90vw',
       },
       data: this.selectedPost,
       draggable: false,
@@ -104,14 +107,18 @@ export class PostsComponent implements OnInit {
   onDelete(): void {
     const selectedPostId: number | undefined = this.selectedPost?.id!;
     if (this.selectedPost !== null) {
-      this.postService.deletePost(this.selectedPost.id)
+      this.postService
+        .deletePost(this.selectedPost.id)
         .pipe(
           tap(() => {
-            const deletePost: IPost[] = this.postService.filterPost(this.postsSubject.getValue(), selectedPostId);
+            const deletePost: IPost[] = this.postService.filterPost(
+              this.postsSubject.getValue(),
+              selectedPostId,
+            );
             this.postsSubject.next(deletePost);
-          }
+          }),
         )
-      ).subscribe();
+        .subscribe();
     }
   }
 

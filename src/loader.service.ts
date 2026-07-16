@@ -11,10 +11,10 @@ export class LoaderService {
 
   showLoader(): void {
     this.loaderSubject.next(true);
-  };
+  }
 
   hideLoader(): void {
     this.loaderSubject.next(false);
-  };
+  }
 
-};
+}

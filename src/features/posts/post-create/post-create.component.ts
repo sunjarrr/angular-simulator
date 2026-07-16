@@ -30,15 +30,17 @@ export class PostCreateComponent {
       dislikes: [0, [Validators.required]],
     }),
     userId: ['', [Validators.required]],
-  })
+  });
 
   onSubmit(): void {
-    this.postService.createPost(this.form.value as Partial<IPost>)
+    this.postService
+      .createPost(this.form.value as Partial<IPost>)
       .pipe(
         tap(() => {
           this.router.navigate(['/posts']);
         }),
-      ).subscribe();
-    }
+      )
+      .subscribe();
+  }
 
 }

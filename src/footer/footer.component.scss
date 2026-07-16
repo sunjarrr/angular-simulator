@@ -8,65 +8,65 @@
   height: 196px;
   color: var(--main-color);
 
-.travel-newsletters-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 441px;
-  height: 90px;
-  padding: 25px 30px 66px 100px;
-  color: var(--secondary-color);
-}
+  .travel-newsletters-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 441px;
+    height: 90px;
+    padding: 25px 30px 66px 100px;
+    color: var(--secondary-color);
+  }
 
-.travel-newsletters-subtitle {
-  display: flex;
-  width: 500px;
-  color: var(--additional-color);
-  margin-bottom: 0px;
-}
+  .travel-newsletters-subtitle {
+    display: flex;
+    width: 500px;
+    color: var(--additional-color);
+    margin-bottom: 0px;
+  }
 
-.travel-newsletters-title {
-  margin-top: 8px;
-  color: var(--secondary-color);
-}
+  .travel-newsletters-title {
+    margin-top: 8px;
+    color: var(--secondary-color);
+  }
 
-.subscribe-newsletters {
-  display: flex;
-  flex-direction: column;
-  height: 116px;
-  padding: 25px 100px;
-  color: var(--secondary-color);
-}
+  .subscribe-newsletters {
+    display: flex;
+    flex-direction: column;
+    height: 116px;
+    padding: 25px 100px;
+    color: var(--secondary-color);
+  }
 
-.input-mail-wrapper {
-  display: flex;
-  flex-wrap: nowrap;
-}
+  .input-mail-wrapper {
+    display: flex;
+    flex-wrap: nowrap;
+  }
 
-.enter-mail {
-  background-color: var(--third-color);
-  border-radius: 4px;
-  width: 280px;
-  padding: 16px;
-  border: none;
-}
+  .enter-mail {
+    background-color: var(--third-color);
+    border-radius: 4px;
+    width: 280px;
+    padding: 16px;
+    border: none;
+  }
 
-.subscribe-news-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-  width: 240px;
-  border-radius: 4px;
-  background-color: var(--fourth-colors);
-  color: var(--main-color);
-  cursor: pointer;
-}
+  .subscribe-news-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    width: 240px;
+    border-radius: 4px;
+    background-color: var(--fourth-colors);
+    color: var(--main-color);
+    cursor: pointer;
+  }
 
-.input-mail-subtext {
-  display: flex;
-  width: 536px;
-  text-decoration: underline;
-}
+  .input-mail-subtext {
+    display: flex;
+    width: 536px;
+    text-decoration: underline;
+  }
 }
 
 .footer-wrapper {

@@ -1,7 +1,10 @@
 <div class="users-page">
   <div class="users-list">
     <div class="correct-word">
-      {{ (filteredUsers$ | async)?.length ?? 0 | correctWord : 'пользователь' : 'пользователя' : 'пользователей' }}
+      {{
+        (filteredUsers$ | async)?.length ?? 0
+          | correctWord: 'пользователь' : 'пользователя' : 'пользователей'
+      }}
     </div>
     <p>Список Пользователей</p>
   </div>
@@ -10,12 +13,11 @@
   <div class="users-card-container">
     <div class="users-card-wrapper">
       @for (user of filteredUsers$ | async; track user.id) {
-        <app-user-card [user]="user" (removeUser)="onDeleteUser($event)"/>
+        <app-user-card [user]="user" (removeUser)="onDeleteUser($event)" />
       } @empty {
         <div class="error-message">Нет пользователей для отображения</div>
       }
     </div>
   </div>
-  <div class="refresh-btn-wrapper">
-  </div>
+  <div class="refresh-btn-wrapper"></div>
 </div>

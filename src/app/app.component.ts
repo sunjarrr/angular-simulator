@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
 import { MessageComponent } from '../message/message.component';
 import { LoaderComponent } from '../loader/loader.component';
+import { Color } from '../enums/Color';
 
 @Component({
   selector: 'app-root',

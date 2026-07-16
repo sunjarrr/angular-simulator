@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faTelegram, faVk, faPinterest, faSkype, IconDefinition } from '@fortawesome/free-brands-svg-icons';
+import {
+  faTelegram,
+  faVk,
+  faPinterest,
+  faSkype,
+  IconDefinition,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-footer',

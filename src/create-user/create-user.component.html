@@ -3,11 +3,17 @@
     <div class="users-form-wrapper">
       <div class="input-form-wrapper">
         <label>Имя:</label>
-        <input animatedGradient class="input-form" id="name" type="name" formControlName='name' >
+        <input animatedGradient class="input-form" id="name" type="name" formControlName="name" />
       </div>
       <div class="input-form-wrapper">
         <label>Имя пользователя:</label>
-        <input animatedGradient class="input-form" id="username" type="username" formControlName='username' >
+        <input
+          animatedGradient
+          class="input-form"
+          id="username"
+          type="username"
+          formControlName="username"
+        />
       </div>
       <div class="input-form-wrapper">
         <label>Почта:</label>
@@ -16,44 +22,94 @@
           class="input-form"
           id="email"
           type="email"
-          formControlName='email'
-        >
+          formControlName="email"
+        />
       </div>
       <div class="input-form-wrapper">
         <label>Телефон:</label>
-        <input animatedGradient class="input-form" id="phone" type="phone" formControlName='phone' >
+        <input
+          animatedGradient
+          class="input-form"
+          id="phone"
+          type="phone"
+          formControlName="phone"
+        />
       </div>
       <div class="input-form-wrapper">
         <label>Веб-сайт:</label>
-        <input animatedGradient class="input-form" id="website" type="website" formControlName='website' value="Неизвестно">
+        <input
+          animatedGradient
+          class="input-form"
+          id="website"
+          type="website"
+          formControlName="website"
+          value="Неизвестно"
+        />
       </div>
       <div formGroupName="address">
         <div class="input-form-wrapper">
           <label>Город:</label>
-          <input animatedGradient class="input-form" id="city" type="city" formControlName='city' >
+          <input animatedGradient class="input-form" id="city" type="city" formControlName="city" />
         </div>
         <div class="input-form-wrapper">
           <label>Улица:</label>
-          <input animatedGradient class="input-form" id="street" type="street" formControlName='street' >
+          <input
+            animatedGradient
+            class="input-form"
+            id="street"
+            type="street"
+            formControlName="street"
+          />
         </div>
         <div class="input-form-wrapper">
           <label>Офис:</label>
-          <input animatedGradient class="input-form" id="suite" type="text" formControlName='suite' value="Неизвестно">
+          <input
+            animatedGradient
+            class="input-form"
+            id="suite"
+            type="text"
+            formControlName="suite"
+            value="Неизвестно"
+          />
         </div>
         <div class="input-form-wrapper">
           <label>Индекс:</label>
-          <input animatedGradient class="input-form" id="zipcode" type="zipcode" formControlName='zipcode' >
+          <input
+            animatedGradient
+            class="input-form"
+            id="zipcode"
+            type="zipcode"
+            formControlName="zipcode"
+          />
         </div>
         <div class="input-form-wrapper" formGroupName="geo">
           <label>Координаты:</label>
-          <input animatedGradient class="input-form-lat" id="lat" type="lat" formControlName='lat' >
-          <input animatedGradient class="input-form-lng" id="lng" type="lng" formControlName='lng' >
+          <input
+            animatedGradient
+            class="input-form-lat"
+            id="lat"
+            type="lat"
+            formControlName="lat"
+          />
+          <input
+            animatedGradient
+            class="input-form-lng"
+            id="lng"
+            type="lng"
+            formControlName="lng"
+          />
         </div>
       </div>
       <div formGroupName="company">
         <div class="input-form-wrapper">
           <label>Компания:</label>
-          <input animatedGradient class="input-form" id="company-name" type="name" formControlName='name' >
+          <input
+            animatedGradient
+            class="input-form"
+            id="company-name"
+            type="name"
+            formControlName="name"
+          />
         </div>
         <div class="input-form-wrapper">
           <label>Миссия:</label>
@@ -62,21 +118,21 @@
             class="input-form"
             id="catchPhrase"
             type="catchPhrase"
-            formControlName='catchPhrase'
+            formControlName="catchPhrase"
             value="Неизвестно"
-          >
+          />
         </div>
         <div class="input-form-wrapper">
           <label>Специализация:</label>
           <input
             animatedGradient
-            [GradientConfiguration] = "{ delay: 3000, colors: ['blue', 'purple'], thickness: 5 }"
+            [GradientConfiguration]="{ delay: 3000, colors: ['blue', 'purple'], thickness: 5 }"
             class="input-form"
             id="specialization"
             type="specialization"
-            formControlName='bs'
+            formControlName="bs"
             value="Неизвестно"
-          >
+          />
         </div>
       </div>
     </div>

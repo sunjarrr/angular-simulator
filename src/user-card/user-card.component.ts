@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../interfaces/IUser';
 import { UpperCasePipe } from '@angular/common';
 import { PhonePipe } from '../phone.pipe';
-import { HoverDirective } from "../hover.directive";
-import { AnimatedGradientDirective } from "../animated-gradient.directive";
+import { HoverDirective } from '../hover.directive';
+import { AnimatedGradientDirective } from '../animated-gradient.directive';
 import { PhoneMode } from '../enums/PhoneMode';
 
 @Component({
