@@ -18,6 +18,8 @@ import { LoggingInterceptor } from '../logging.interceptor';
 import { ErrorInterceptor } from '../error.interceptor';
 import { authInterceptor } from '../features/auth/auth.interceptor';
 import { AuthService } from '../features/auth/auth.service';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { applicationConfig } from '../config.token';
 
 function getTheme(): Preset {
   const value: string | null = localStorage.getItem('my-app-theme');
@@ -48,5 +50,21 @@ export const appConfig: ApplicationConfig = {
       const authService: AuthService = inject(AuthService);
       return authService.getCurrentProfile();
     }),
+    {
+      provide: DATE_PIPE_DEFAULT_OPTIONS,
+      useValue: {
+        dateFormat: 'dd.MM.yyyy HH:mm',
+      }
+    },
+    {
+      provide: applicationConfig,
+      useValue: {
+        companyName: 'РУМТИБЕТ',
+        enableLogs: true,
+        enableNotifications: true,
+        enableTheming: true,
+        sessionTimeout: 1
+      }
+    }
   ],
 };

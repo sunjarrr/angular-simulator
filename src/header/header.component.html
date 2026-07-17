@@ -2,8 +2,9 @@
   <div class="switch">
     <p-toggleswitch
       id="toggle-mode"
-      [ngModel]="themeService.isDarkMode$ | async"
+      [ngModel]="config.enableTheming ? (themeService.isDarkMode$ | async) : false"
       (onChange)="toggleMode($event)"
+      [disabled]="!config.enableTheming"
     />
     <p-selectbutton
       id="switch-theme"
@@ -13,13 +14,14 @@
       optionLabel="label"
       optionValue="value"
       aria-labelledby="basic"
+      [disabled]="!config.enableTheming"
     />
   </div>
   <div class="super-header">
     <div class="container">
       <div class="header-logo">
         <img src="/images/mountain-logo.svg" alt="Mountain" />
-        <span class="company-name">{{ companyName }}</span>
+        <span class="company-name">{{ config.companyName }}</span>
       </div>
       <nav class="navigation fs-18 semi-bold">
         @for (navigation of navigations; track navigation.id) {
@@ -64,8 +66,9 @@
   </button>
   @if (currentWidget === 'date') {
     <div class="time-and-date">
-      <span>{{ timer }}</span>
+      <span>{{ timer | date }}</span>
     </div>
+    <span class="last-login">Дата последнего входа: {{ lastLogin | date }}</span>
   } @else {
     <div class="click-counter">
       <button (click)="increaseCounter()">+</button>
