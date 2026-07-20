@@ -47,7 +47,7 @@ export class AuthService {
   }
 
   login(userData: ILogin): Observable<IAuthResponse> {
-    const data = {
+    const data: IApplicationConfig | ILogin = {
       sessionTimeout: this.config.sessionTimeout, ...userData
     };
     return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/login`, data).pipe(

@@ -1,21 +1,21 @@
 <header class="header">
   <div class="switch">
-    <p-toggleswitch
-      id="toggle-mode"
-      [ngModel]="config.enableTheming ? (themeService.isDarkMode$ | async) : false"
-      (onChange)="toggleMode($event)"
-      [disabled]="!config.enableTheming"
-    />
-    <p-selectbutton
-      id="switch-theme"
-      [options]="this.themeService.themes"
-      [ngModel]="themeService.theme$ | async"
-      (onChange)="toggleTheme($event.value)"
-      optionLabel="label"
-      optionValue="value"
-      aria-labelledby="basic"
-      [disabled]="!config.enableTheming"
-    />
+    @if (config.enableTheming) {
+      <p-toggleswitch
+        id="toggle-mode"
+        [ngModel]="themeService.isDarkMode$ | async"
+        (onChange)="toggleMode($event)"
+      />
+      <p-selectbutton
+        id="switch-theme"
+        [options]="this.themeService.themes"
+        [ngModel]="themeService.theme$ | async"
+        (onChange)="toggleTheme($event.value)"
+        optionLabel="label"
+        optionValue="value"
+        aria-labelledby="basic"
+      />
+    }
   </div>
   <div class="super-header">
     <div class="container">

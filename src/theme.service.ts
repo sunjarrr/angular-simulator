@@ -25,11 +25,8 @@ export class ThemeService {
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((isDarkMode: boolean) => {
       const element: HTMLElement = document.documentElement;
-      if (!this.config.enableTheming) {
-        element.classList.remove('my-app-dark');
-      } else {
-        isDarkMode ? element.classList.add('my-app-dark') : element.classList.remove('my-app-dark');
-      }
+      element.classList.remove('my-app-dark');
+      isDarkMode ? element.classList.add('my-app-dark') : element.classList.remove('my-app-dark');
     }),
   );
 
@@ -65,9 +62,7 @@ export class ThemeService {
   initTheme(): void {
     const currentTheme: Theme = this.localStorageService.getValue('my-app-theme') as Theme;
     const newTheme: Theme = currentTheme || Theme.AURA;
-    if (this.config.enableTheming) {
-      this.switchThemeSubject.next(newTheme);
-    }
+    this.switchThemeSubject.next(newTheme);
   }
 
   private getMode(): boolean {
