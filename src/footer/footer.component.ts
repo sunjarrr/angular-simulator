@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faTelegram,
@@ -7,6 +7,8 @@ import {
   faSkype,
   IconDefinition,
 } from '@fortawesome/free-brands-svg-icons';
+import { IApplicationConfig } from '../interfaces/IApplicationConfig';
+import { applicationConfig } from '../config.token';
 
 @Component({
   selector: 'app-footer',
@@ -20,5 +22,6 @@ export class FooterComponent {
   faVk: IconDefinition = faVk;
   faPinterest: IconDefinition = faPinterest;
   faSkype: IconDefinition = faSkype;
+  config: IApplicationConfig = inject(applicationConfig);
 
 }

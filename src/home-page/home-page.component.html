@@ -217,7 +217,7 @@
               [class.third-article]="i === 2"
               [class.four-article]="i === 3"
             >
-              <span class="article-date">{{ article.date }}</span>
+              <span class="article-date">{{ article.date | date }}</span>
               <p class="article-link">{{ article.link }}</p>
             </div>
           </div>

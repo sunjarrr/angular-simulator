@@ -11,6 +11,8 @@ import { Theme } from '../enums/Theme';
 import { AuthService } from '../features/auth/auth.service';
 import { Observable } from 'rxjs';
 import { IAuthUser } from '../features/auth/IAuthUser';
+import { applicationConfig } from '../config.token';
+import { IApplicationConfig } from '../interfaces/IApplicationConfig';
 
 @Component({
   selector: 'app-header',
@@ -31,9 +33,10 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
-  companyName = 'румтибет';
   currentWidget: WidgetType = 'date';
-  timer: string = new Date().toLocaleString();
+  timer: Date = new Date();
+  lastLogin: Date = new Date();
+  config: IApplicationConfig = inject(applicationConfig);
   counter = 0;
   selectedNavigationId = 2;
   authorizationStatus$: Observable<IAuthUser | null> = this.authService.currentUser$;
@@ -51,7 +54,7 @@ export class HeaderComponent {
 
   constructor() {
     setInterval(() => {
-      this.timer = new Date().toLocaleString();
+      this.timer = new Date();
     }, 1000);
   }
 
