@@ -15,10 +15,11 @@ import {
   faCaretSquareRight,
 } from '@fortawesome/free-regular-svg-icons';
 import { faPeopleGroup, faShield, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, FontAwesomeModule],
+  imports: [FormsModule, FontAwesomeModule, DatePipe],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })

@@ -7,6 +7,8 @@ import { IAuthResponse } from './IAuthResponse';
 import { MessageService } from '../../message.service';
 import { IAuthUser } from './IAuthUser';
 import { IToken } from './IToken';
+import { applicationConfig } from '../../config.token';
+import { IApplicationConfig } from '../../interfaces/IApplicationConfig';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +24,7 @@ export class AuthService {
 
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
   API_URL = 'https://dummyjson.com';
+  config: IApplicationConfig = inject(applicationConfig);
 
   saveTokens(response: IAuthResponse): void {
     const tokens: IToken = {
@@ -44,7 +47,10 @@ export class AuthService {
   }
 
   login(userData: ILogin): Observable<IAuthResponse> {
-    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/login`, userData).pipe(
+    const data: IApplicationConfig | ILogin = {
+      sessionTimeout: this.config.sessionTimeout, ...userData
+    };
+    return this.httpClient.post<IAuthResponse>(`${ this.API_URL }/auth/login`, data).pipe(
       tap((response: IAuthResponse) => {
         const { accessToken, refreshToken, ...userInfo }: IAuthResponse = response;
         this.saveTokens(response);
@@ -87,7 +93,7 @@ export class AuthService {
   refreshToken(): Observable<IAuthResponse> {
     const tokens: IToken | null = this.getTokens();
     return this.httpClient
-      .post<IAuthResponse>(`${ this.API_URL }/auth/refresh`, { refreshToken: tokens?.refreshToken })
+      .post<IAuthResponse>(`${ this.API_URL }/auth/refresh`, { refreshToken: tokens?.refreshToken, sessionTimeout: this.config.sessionTimeout })
       .pipe(
         tap((response: IAuthResponse) => {
           this.saveTokens(response);
