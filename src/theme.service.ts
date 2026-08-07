@@ -25,7 +25,6 @@ export class ThemeService {
   isDarkMode$: Observable<boolean> = this.isDarkModeSubject.asObservable().pipe(
     tap((isDarkMode: boolean) => {
       const element: HTMLElement = document.documentElement;
-      element.classList.remove('my-app-dark');
       isDarkMode ? element.classList.add('my-app-dark') : element.classList.remove('my-app-dark');
     }),
   );
