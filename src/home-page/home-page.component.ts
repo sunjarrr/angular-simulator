@@ -16,10 +16,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { faPeopleGroup, faShield, faDollarSign } from '@fortawesome/free-solid-svg-icons';
 import { DatePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home-page',
-  imports: [FormsModule, FontAwesomeModule, DatePipe],
+  imports: [FormsModule, FontAwesomeModule, DatePipe, TranslatePipe],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
@@ -41,25 +42,25 @@ export class HomePageComponent {
   conditions: IAdvantageInfo[] = [
     {
       id: 1,
-      title: 'Опытный гид',
+      title: 'main.ourOffer.conditionsOne',
       description:
-        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+        'main.ourOffer.conditionsDescription',
       bg: '#E5EEEB',
       icon: faPeopleGroup,
     },
     {
       id: 2,
-      title: 'Безопасный поход',
+      title: 'main.ourOffer.conditionsTwo',
       description:
-        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+        'main.ourOffer.conditionsDescription',
       bg: '#E3E6EE',
       icon: faShield,
     },
     {
       id: 3,
-      title: 'Лояльные цены',
+      title: 'main.ourOffer.conditionsThree',
       description:
-        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+        'main.ourOffer.conditionsDescription',
       bg: '#F3F1E1',
       icon: faDollarSign,
     },
@@ -68,24 +69,24 @@ export class HomePageComponent {
   detailsPlaces: IPlace[] = [
     {
       id: 1,
-      title: 'Озеро возле гор',
-      description: 'романтическое приключение',
+      title: 'main.directions.firstDirectionTitle',
+      description: 'main.directions.firstDirectionDescription',
       price: 480,
       placeImage: 'lake-near-mountains',
       assessment: '4.9',
     },
     {
       id: 2,
-      title: 'Ночь в горах',
-      description: 'в компании друзей',
+      title: 'main.directions.secondDirectionTitle',
+      description: 'main.directions.secondDirectionDescription',
       price: 500,
       placeImage: 'night-mountains',
       assessment: '4.5',
     },
     {
       id: 3,
-      title: 'Спорт в горах',
-      description: 'для тех, кто забоится о себе',
+      title: 'main.directions.thirdDirectionTitle',
+      description: 'main.directions.thirdDirectionDescription',
       price: 230,
       placeImage: 'mountains-sport',
       assessment: '5.0',
@@ -95,36 +96,36 @@ export class HomePageComponent {
   articles: IArticle[] = [
     {
       id: 1,
-      title: 'Красивая Италия, какая она в реальности?',
+      title: 'main.travelBlog.firstArticleTitle',
       description:
-        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+        'main.travelBlog.firstArticleDescription',
       date: '01/04/2023',
-      link: 'читать статью',
+      link: 'main.travelBlog.readArticle',
       image: 'italy',
     },
     {
       id: 2,
-      title: 'Долой сомнения! Весь мир открыт для вас!',
+      title: 'main.travelBlog.secondArticleTitle',
       description:
-        'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...',
+        'main.travelBlog.secondArticleDescription',
       date: '01/04/2023',
-      link: 'читать статью',
+      link: 'main.travelBlog.readArticle',
       image: 'clouds-aiplane',
     },
     {
       id: 3,
-      title: 'Как подготовиться к путешествию в одиночку? ',
-      description: 'Для современного мира базовый вектор развития предполагает.',
+      title: 'main.travelBlog.thirdArticleTitle',
+      description: 'main.travelBlog.thirdArticleDescription',
       date: '01/04/2023',
-      link: 'читать статью',
+      link: 'main.travelBlog.readArticle',
       image: 'alley-human',
     },
     {
       id: 4,
-      title: 'Индия ... летим?',
-      description: 'Для современного мира базовый.',
+      title: 'main.travelBlog.fourthArticleTitle',
+      description: 'main.travelBlog.fourthArticleDescription',
       date: '01/04/2023',
-      link: 'читать статью',
+      link: 'main.travelBlog.readArticle',
       image: 'india',
     },
   ];

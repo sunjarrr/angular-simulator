@@ -10,24 +10,27 @@
         id="switch-theme"
         [options]="this.themeService.themes"
         [ngModel]="themeService.theme$ | async"
-        (onChange)="toggleTheme($event.value)"
+        (onChange)="toggleTheme($event.value)">
+        <ng-template pTemplate="item" let-theme>
+          <span>{{ theme.key | translate }}</span>
+        </ng-template>
         optionLabel="label"
         optionValue="value"
         aria-labelledby="basic"
-      />
+      </p-selectbutton>
     }
   </div>
   <div class="super-header">
     <div class="container">
       <div class="header-logo">
         <img src="/images/mountain-logo.svg" alt="Mountain" />
-        <span class="company-name">{{ config.companyName }}</span>
+        <span class="company-name">{{ "header.companyName" | translate }}</span>
       </div>
       <nav class="navigation fs-18 semi-bold">
         @for (navigation of navigations; track navigation.id) {
           @if (navigation.id === selectedNavigationId) {
             <a id="home-and-users" routerLink="users-page" routerLinkActive="active-link">
-              {{ navigation.text }}
+              {{ navigation.text | translate }}
             </a>
           } @else {
             <a
@@ -35,7 +38,7 @@
               routerLink=""
               routerLinkActive="active-link"
               [routerLinkActiveOptions]="{ exact: true }"
-              >{{ navigation.text }}
+              >{{ navigation.text | translate }}
             </a>
           }
         }
@@ -43,17 +46,17 @@
       <div class="consultation">
         <div class="redirect-btns">
           <button id="posts-page" class="posts-page-btn" routerLink="/posts">
-            Страница постов
+            {{ "buttons.postsPage" | translate }}
           </button>
         </div>
-        <button class="semi-bold fs-16 consultation-btn">Консультация</button>
+        <button class="semi-bold fs-16 consultation-btn">{{ "buttons.consultation" | translate }}</button>
       </div>
     </div>
     <div class="logout">
       @if (authorizationStatus$ | async) {
-        <p>Авторизован</p>
+        <p>{{ "header.authorization" | translate }}</p>
         <button id="logout" class="posts-page-btn" routerLink="/login" (click)="logout()">
-          Выйти
+          {{ "buttons.exit" | translate }}
         </button>
       }
     </div>
@@ -62,13 +65,13 @@
     (click)="switchWidget(currentWidget === 'date' ? 'counter' : 'date')"
     class="show-task-btn"
   >
-    {{ currentWidget === 'date' ? 'Показать кликер' : 'Показать дату' }}
+    {{ (currentWidget === 'date' ? 'buttons.showClicker' : 'buttons.showDate') | translate }}
   </button>
   @if (currentWidget === 'date') {
     <div class="time-and-date">
       <span>{{ timer | date }}</span>
     </div>
-    <span class="last-login">Дата последнего входа: {{ lastLogin | date }}</span>
+    <span class="last-login">{{ "header.lastLogin" | translate: { date: (lastLogin | date) } }}</span>
   } @else {
     <div class="click-counter">
       <button (click)="increaseCounter()">+</button>
@@ -76,4 +79,7 @@
       <button [disabled]="counter === 0" (click)="reduceCounter()">-</button>
     </div>
   }
+  <button (click)="onLanguageChange(Languages.KK)">KK</button>
+  <button (click)="onLanguageChange(Languages.EN)">EN</button>
+  <button (click)="onLanguageChange(Languages.RU)">RU</button>
 </header>

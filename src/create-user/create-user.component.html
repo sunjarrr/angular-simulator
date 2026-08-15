@@ -2,11 +2,11 @@
   <form [formGroup]="form">
     <div class="users-form-wrapper">
       <div class="input-form-wrapper">
-        <label>Имя:</label>
+        <label>{{ "usersPage.fields.name" | translate }}</label>
         <input animatedGradient class="input-form" id="name" type="name" formControlName="name" />
       </div>
       <div class="input-form-wrapper">
-        <label>Имя пользователя:</label>
+        <label>{{ "usersPage.fields.username" | translate }}</label>
         <input
           animatedGradient
           class="input-form"
@@ -16,7 +16,7 @@
         />
       </div>
       <div class="input-form-wrapper">
-        <label>Почта:</label>
+        <label>{{ "usersPage.fields.email" | translate }}</label>
         <input
           animatedGradient
           class="input-form"
@@ -26,7 +26,7 @@
         />
       </div>
       <div class="input-form-wrapper">
-        <label>Телефон:</label>
+        <label>{{ "usersPage.fields.phone" | translate }}</label>
         <input
           animatedGradient
           class="input-form"
@@ -36,7 +36,7 @@
         />
       </div>
       <div class="input-form-wrapper">
-        <label>Веб-сайт:</label>
+        <label>{{ "usersPage.fields.website" | translate }}</label>
         <input
           animatedGradient
           class="input-form"
@@ -48,11 +48,11 @@
       </div>
       <div formGroupName="address">
         <div class="input-form-wrapper">
-          <label>Город:</label>
+          <label>{{ "usersPage.fields.city" | translate }}</label>
           <input animatedGradient class="input-form" id="city" type="city" formControlName="city" />
         </div>
         <div class="input-form-wrapper">
-          <label>Улица:</label>
+          <label>{{ "usersPage.fields.street" | translate }}</label>
           <input
             animatedGradient
             class="input-form"
@@ -62,7 +62,7 @@
           />
         </div>
         <div class="input-form-wrapper">
-          <label>Офис:</label>
+          <label>{{ "usersPage.fields.suite" | translate }}</label>
           <input
             animatedGradient
             class="input-form"
@@ -73,7 +73,7 @@
           />
         </div>
         <div class="input-form-wrapper">
-          <label>Индекс:</label>
+          <label>{{ "usersPage.fields.zipcode" | translate }}</label>
           <input
             animatedGradient
             class="input-form"
@@ -83,7 +83,7 @@
           />
         </div>
         <div class="input-form-wrapper" formGroupName="geo">
-          <label>Координаты:</label>
+          <label>{{ "usersPage.fields.coordinates" | translate }}</label>
           <input
             animatedGradient
             class="input-form-lat"
@@ -102,7 +102,7 @@
       </div>
       <div formGroupName="company">
         <div class="input-form-wrapper">
-          <label>Компания:</label>
+          <label>{{ "usersPage.fields.company" | translate }}</label>
           <input
             animatedGradient
             class="input-form"
@@ -112,7 +112,7 @@
           />
         </div>
         <div class="input-form-wrapper">
-          <label>Миссия:</label>
+          <label>{{ "usersPage.fields.mission" | translate }}</label>
           <input
             animatedGradient
             class="input-form"
@@ -123,7 +123,7 @@
           />
         </div>
         <div class="input-form-wrapper">
-          <label>Специализация:</label>
+          <label>{{ "usersPage.fields.specialization" | translate }}</label>
           <input
             animatedGradient
             [GradientConfiguration]="{ delay: 3000, colors: ['blue', 'purple'], thickness: 5 }"
@@ -136,6 +136,6 @@
         </div>
       </div>
     </div>
-    <button hover class="submit-form" type="submit" (click)="onSubmit()">Отправить</button>
+    <button hover class="submit-form" type="submit" (click)="onSubmit()">{{ "usersPage.submitButton" | translate }}</button>
   </form>
 </div>

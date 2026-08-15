@@ -4,10 +4,11 @@ import { IPost } from '../IPost';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { tap } from 'rxjs';
 import { PostService } from '../post.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-post-edit-dialog',
-  imports: [DynamicDialogModule, ReactiveFormsModule],
+  imports: [DynamicDialogModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './post-edit-dialog.component.html',
   styleUrl: './post-edit-dialog.component.scss',
 })

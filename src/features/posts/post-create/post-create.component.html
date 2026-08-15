@@ -1,21 +1,21 @@
 <div class="createPost">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <label>Title:</label>
+    <label>{{ "posts.create.title" | translate }}</label>
     <input id="title" type="text" formControlName="title" />
-    <label>Tags:</label>
+    <label>{{ "posts.create.tags" | translate }}</label>
     <input id="tags" type="text" formControlName="tags" />
-    <label>Views:</label>
+    <label>{{ "posts.create.views" | translate }}</label>
     <input id="views" type="number" formControlName="views" />
-    <label>Body:</label>
+    <label>{{ "posts.create.body" | translate }}</label>
     <input id="body" type="text" formControlName="body" />
     <div formGroupName="reactions">
-      <label>Likes:</label>
+      <label>{{ "posts.create.likes" | translate }}</label>
       <input id="likes" type="number" formControlName="likes" />
-      <label>Dislikes:</label>
+      <label>{{ "posts.create.dislikes" | translate }}</label>
       <input id="dislikes" type="number" formControlName="dislikes" />
     </div>
-    <label>User ID:</label>
+    <label>{{ "posts.create.userId" | translate }}</label>
     <input id="userId" type="number" formControlName="userId" />
-    <button type="submit">Отправить</button>
+    <button type="submit">{{ "posts.create.send" | translate }}</button>
   </form>
 </div>

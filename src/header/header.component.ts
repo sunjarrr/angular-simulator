@@ -13,6 +13,9 @@ import { Observable } from 'rxjs';
 import { IAuthUser } from '../features/auth/IAuthUser';
 import { applicationConfig } from '../config.token';
 import { IApplicationConfig } from '../interfaces/IApplicationConfig';
+import { LanguageService } from '../language.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Languages } from '../enums/Languages';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +27,7 @@ import { IApplicationConfig } from '../interfaces/IApplicationConfig';
     CommonModule,
     ToggleSwitchModule,
     RouterModule,
+    TranslatePipe
   ],
   templateUrl: './header.component.html',
   standalone: true,
@@ -33,6 +37,8 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
+  languageService: LanguageService = inject(LanguageService);
+  readonly Languages = Languages;
   currentWidget: WidgetType = 'date';
   timer: Date = new Date();
   lastLogin: Date = new Date();
@@ -44,11 +50,11 @@ export class HeaderComponent {
   navigations: INavigation[] = [
     {
       id: 1,
-      text: 'Главная',
+      text: 'header.headerMain',
     },
     {
       id: 2,
-      text: 'Пользователи',
+      text: 'header.users',
     },
   ];
 
@@ -80,6 +86,10 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  onLanguageChange(lang: Languages): void {
+    this.languageService.setLanguage(lang);
   }
 
 }

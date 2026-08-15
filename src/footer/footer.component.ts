@@ -9,10 +9,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { IApplicationConfig } from '../interfaces/IApplicationConfig';
 import { applicationConfig } from '../config.token';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-footer',
-  imports: [FontAwesomeModule],
+  imports: [FontAwesomeModule, TranslatePipe],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })

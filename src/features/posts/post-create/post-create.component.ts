@@ -5,10 +5,11 @@ import { tap } from 'rxjs';
 import { Router } from '@angular/router';
 import { MessageService } from '../../../message.service';
 import { PostService } from '../post.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-post-create',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './post-create.component.html',
   styleUrl: './post-create.component.scss',
   standalone: true,

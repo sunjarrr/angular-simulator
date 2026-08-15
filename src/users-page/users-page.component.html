@@ -2,11 +2,10 @@
   <div class="users-list">
     <div class="correct-word">
       {{
-        (filteredUsers$ | async)?.length ?? 0
-          | correctWord: 'пользователь' : 'пользователя' : 'пользователей'
+        'usersPage.usersCount' | translate: { count: (filteredUsers$ | async)?.length ?? 0 }
       }}
     </div>
-    <p>Список Пользователей</p>
+    <p>{{ "usersPage.title" | translate }}</p>
   </div>
   <app-create-user (createUser)="onAddUser($event)"></app-create-user>
   <app-users-filter (filter)="onFilter($event)"></app-users-filter>

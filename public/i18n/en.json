@@ -1,0 +1,156 @@
+{
+  "header": {
+    "headerMain": "Home",
+    "users": "Users",
+    "lastLogin": "Last login date: {{ date }}",
+    "authorization": "Authorized",
+    "companyName": "RUMTIBET",
+    "themeSwitch": {
+      "aura": "Aura",
+      "lara": "Lara",
+      "nora": "Nora"
+    }
+  },
+  "buttons": {
+    "postsPage": "Posts page",
+    "consultation": "Consultation",
+    "exit": "Logout",
+    "showClicker": "Show clicker",
+    "showData": "Show date",
+    "tourProgram": "Tour program",
+    "programCosts": "Program costs",
+    "destinationRating": "Destination rating",
+    "otherMaterials": "Other materials",
+    "ourPinterest": "Our Pinterest",
+    "subscribeNews": "Subscribe to news"
+  },
+  "main": {
+    "searchForm": {
+      "mainTitle": "Enjoy a mountain hike <br /> with a team of like-minded people",
+      "tourLocation": "Tour location",
+      "dateHike": "Hike date",
+      "participants": "Participants",
+      "selectList": "select from the list",
+      "range": "specify a range",
+      "findProgram": "Find program",
+      "liveInput": "Live input"
+    },
+    "hikeInfo": {
+      "hikePreface": "about our hike",
+      "hikeTitle": "Explore all the mountain ranges of the world with us",
+      "hikeDescription": "Its roots go back to a fragment of classical Latin from 45 BC, more than two thousand years old. Richard McClintock, a professor of Latin at Hampden-Sydney College in Virginia, took one of the more obscure Latin words, consectetur, and looked it up in classical Latin literature."
+    },
+    "ourOffer": {
+      "proposal": "our offer",
+      "programs": "Best programs for you",
+      "programDescription": "Its roots go back to a fragment of classical Latin from 45 BC, more than two thousand years old. Richard McClintock, a professor of Latin.",
+      "conditionsOne": "Experienced guide",
+      "conditionsTwo": "Safe hike",
+      "conditionsThree": "Fair prices",
+      "conditionsDescription": "For the modern world, the basic vector of development involves independent ways of implementing the relevant conditions for activation."
+    },
+    "directions": {
+      "subtitle": "according to travelers",
+      "header": "Popular destinations",
+      "firstDirectionTitle": "Lake near the mountains",
+      "firstDirectionDescription": "a romantic adventure",
+      "secondDirectionTitle": "Night in the mountains",
+      "secondDirectionDescription": "with friends",
+      "thirdDirectionTitle": "Sport in the mountains",
+      "thirdDirectionDescription": "for those who care about themselves"
+    },
+    "travelBlog": {
+      "subtitle": "sharing impressions",
+      "title": "Travel blog",
+      "firstArticleTitle": "Beautiful Italy, what is it really like?",
+      "secondArticleTitle": "Away with doubts! The whole world is open to you!",
+      "thirdArticleTitle": "How to prepare for a solo trip?",
+      "fourthArticleTitle": "India ... let's fly?",
+      "firstArticleDescription": "For the modern world, the basic vector of development involves independent ways of implementing the relevant conditions for activation.",
+      "secondArticleDescription": "For the modern world, the basic vector of development involves independent ways of implementing the relevant conditions for activation ... independent ways of implementing the relevant...",
+      "thirdArticleDescription": "For the modern world, the basic vector of development involves.",
+      "fourthArticleDescription": "For the modern basic world.",
+      "readArticle": "read the article"
+    },
+    "photoReport": {
+      "subtitle": "photo report",
+      "title": "Sharing impressions"
+    }
+  },
+  "footer": {
+    "travelNewsletters": {
+      "subtitle": "relevant",
+      "title": "Get useful travel newsletters",
+      "emailTitle": "Enter your e-mail address",
+      "emailTemplate": "name@domain.com",
+      "inputMailSubtext": "by subscribing to the news, you automatically agree to the terms of personal data processing and the rules of promotional mailings"
+    },
+    "companyName": "\"RUMTIBET\" Company",
+    "companyDescription": "Its roots go back to a fragment of classical Latin from 45 BC, more than two thousand years old. Richard McClintock, a professor of Latin at Hampden-Sydney College.",
+    "services": {
+      "ourServices": "Our services",
+      "hikingMountains": "Summer mountain hikes",
+      "winterHiking": "Winter mountain hikes",
+      "mountainsTemples": "Visiting mountain temples",
+      "extremeTypesTourism": "Extreme types of tourism",
+      "hikingAmazonJungle": "Hiking in the Amazon jungle",
+      "africaTrip": "Trip to Africa"
+    },
+    "journey": {
+      "importantForTravel": "Important for travel",
+      "longHike": "How to pack for a long hike?",
+      "importantHikingItems": "Vital items for a hike",
+      "medicalInsurance": "Medical insurance, safety guarantees",
+      "forDoctors": "If you are a doctor - check this out"
+    },
+    "companyProcessingPolicy": "IE Konstantinopolsky K.K., 2023",
+    "processingPolicy": "Personal data processing policy"
+  },
+"usersPage": {
+    "title": "User List",
+    "usersCount": "{ count, plural, =0 { No users } one { # user } other { # users }}",
+    "searchPlaceholder": "Search user:",
+    "deleteButton": "Delete user",
+    "fields": {
+      "name": "Name:",
+      "username": "Username:",
+      "email": "Email:",
+      "phone": "Phone:",
+      "website": "Website:",
+      "city": "City:",
+      "street": "Street:",
+      "suite": "Suite:",
+      "zipcode": "Zip code:",
+      "coordinates": "Coordinates:",
+      "company": "Company:",
+      "mission": "Mission:",
+      "specialization": "Specialization:"
+    },
+    "userCard": {
+      "contacts": "Contacts",
+      "address": "Home address",
+      "workplace": "Workplace"
+    },
+    "submitButton": "Submit"
+  },
+  "posts": {
+    "create": {
+      "title": "Title:",
+      "tags": "Tags:",
+      "views": "Views:",
+      "body": "Body:",
+      "likes": "Likes:",
+      "dislikes": "Dislikes:",
+      "userId": "User ID:",
+      "send": "Send"
+    },
+    "createPost": "Create post",
+    "menuItems": {
+      "viewing": "Viewing",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "savePost": "Save post",
+    "postId": "ID:"
+  }
+}

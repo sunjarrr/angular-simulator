@@ -1,10 +1,7 @@
 <section class="main-info">
   <div class="banner">
     <div class="main-title">
-      <p class="title">
-        Насладись прогулкой в горах <br />
-        с командой единомышленников
-      </p>
+      <p class="title" [innerHTML]="'main.searchForm.mainTitle' | translate"></p>
       <div class="search-tour">
         <div class="clarifying-details">
           <div>
@@ -13,7 +10,7 @@
                 [(ngModel)]="selectedLocation"
                 class="fill-details-btns"
                 name="location"
-                placeholder="Локация для тура"
+                [placeholder]="'main.searchForm.tourLocation' | translate"
                 type="text"
                 required
               />
@@ -28,7 +25,7 @@
                 </select>
               </div>
             </div>
-            <span class="instruction-for-location">выберите из списка</span>
+            <span class="instruction-for-location">{{ "main.searchForm.selectList" | translate }}</span>
           </div>
           <div>
             <div class="select-date">
@@ -36,7 +33,7 @@
                 [(ngModel)]="selectedHikingDate"
                 class="fill-details-btns"
                 name="dateOfHike"
-                placeholder="Дата похода"
+                [placeholder]="'main.searchForm.dateHike' | translate"
                 type="text"
                 required
               />
@@ -47,7 +44,7 @@
                 </button>
               </div>
             </div>
-            <span class="instruction-for-date">укажите диапазон</span>
+            <span class="instruction-for-date">{{ "main.searchForm.range" | translate }}</span>
           </div>
           <div>
             <div class="select-participants">
@@ -55,7 +52,7 @@
                 [(ngModel)]="selectedParticipants"
                 class="fill-details-btns"
                 name="participants"
-                placeholder="Участники"
+                [placeholder]="'main.searchForm.participants' | translate"
                 type="text"
                 required
               />
@@ -70,7 +67,7 @@
                 </select>
               </div>
             </div>
-            <span class="instruction-for-participants">выберите из списка</span>
+            <span class="instruction-for-participants">{{ "main.searchForm.selectList" | translate }}</span>
           </div>
           <button
             [disabled]="
@@ -80,7 +77,7 @@
             "
             class="bold fs-16 find-program-btn"
           >
-            Найти программу
+            {{ "main.searchForm.findProgram" | translate }}
           </button>
         </div>
       </div>
@@ -90,7 +87,7 @@
         [(ngModel)]="liveInputValue"
         class="live-input"
         type="text"
-        placeholder="Живой инпут"
+        [placeholder]="'main.searchForm.liveInput' | translate"
       />
       <img class="arrow-icon" src="/images/select-icon.svg" alt="select-icon" />
       <span class="live-input-show">{{ liveInputValue }}</span>
@@ -103,19 +100,16 @@
     <img class="first-promo-location" src="/images/misty-mountains.png" alt="misty-mountains" />
     <img class="second-promo-location" src="/images/house-and-nature.png" alt="house-and-nature" />
     <div class="hike-info-description">
-      <span class="hike-preface fs-24 regular">о нашем походе</span>
-      <p class="hike-title extra-bold fs-32">Исследуйте все горные массивы мира вместе с нами</p>
+      <span class="hike-preface fs-24 regular">{{ "main.hikeInfo.hikePreface" | translate }}</span>
+      <p class="hike-title extra-bold fs-32">{{ "main.hikeInfo.hikeTitle" | translate }}</p>
       <span class="hike-description fs-18"
-        >Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
-        тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат
-        Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur"и занялся его
-        поисками в классической латинской литературе.</span
+        >{{ "main.hikeInfo.hikeDescription" | translate }}</span
       >
       <button
         class="tour-program-btn semi-bold"
         (click)="messageService.showWarn('Программа недоступна')"
       >
-        Программа тура
+        {{ "buttons.tourProgram" | translate }}
       </button>
     </div>
   </div>
@@ -125,11 +119,10 @@
   <div class="container">
     <div class="conditions-wrapper">
       <div class="title-and-description">
-        <span class="proposal fs-24 regular">наше предложение</span>
-        <p class="programs fs-32 extra-bold">Лучшие программы для тебя</p>
+        <span class="proposal fs-24 regular">{{ "main.ourOffer.proposal" | translate }}</span>
+        <p class="programs fs-32 extra-bold">{{ "main.ourOffer.programs" | translate }}</p>
         <span class="program-description fs-18 regular"
-          >Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
-          тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.</span
+          >{{ "main.ourOffer.programDescription" | translate }}</span
         >
       </div>
       <div class="condition-list">
@@ -138,15 +131,15 @@
             <fa-icon class="fs-32 condition-icons" [icon]="condition.icon"></fa-icon>
           </div>
           <div class="conditions">
-            <h3 class="condition-title fs-18 bold">{{ condition.title }}</h3>
-            <span class="condition-description regular fs-14">{{ condition.description }}</span>
+            <h3 class="condition-title fs-18 bold">{{ condition.title | translate }}</h3>
+            <span class="condition-description regular fs-14">{{ condition.description | translate }}</span>
           </div>
         }
         <button
           class="program-cost-btn fs-16 semi-bold"
           (click)="messageService.showInfo('Стоимость отправлена на почту')"
         >
-          Стоимость программ
+          {{ "buttons.programCosts" | translate }}
         </button>
       </div>
     </div>
@@ -162,8 +155,8 @@
 <section class="recreation-locations">
   <div class="container">
     <div class="directions">
-      <p class="subtitle fs-24 regular">по версии отдыхающих</p>
-      <h2 class="direction-header fs-32 extra-bold">Популярные направления</h2>
+      <p class="subtitle fs-24 regular">{{ "main.directions.subtitle" | translate }}</p>
+      <h2 class="direction-header fs-32 extra-bold">{{ "main.directions.header" | translate }}</h2>
     </div>
     <div class="photos-recreation-locations">
       @for (place of detailsPlaces; track place.id) {
@@ -174,8 +167,8 @@
             <p class="place-assessment fs-14 bold">{{ place.assessment }}</p>
           </div>
           <div class="popular-places">
-            <h3 class="place-title fs-24 bold">{{ place.title }}</h3>
-            <span class="place-description fs-14 fw-300">{{ place.description }}</span>
+            <h3 class="place-title fs-24 bold">{{ place.title | translate }}</h3>
+            <span class="place-description fs-14 fw-300">{{ place.description | translate }}</span>
             <span class="popular-places-price">{{ place.price }} &#36;</span>
           </div>
         </div>
@@ -185,7 +178,7 @@
       class="direction-rating-btn"
       (click)="messageService.showSuccess('Направления получены')"
     >
-      Рейтинг направлений
+      {{ "buttons.destinationRating" | translate }}
     </button>
   </div>
 </section>
@@ -193,8 +186,8 @@
 <section class="travel-blog-wrapper">
   <div class="container">
     <div class="travel-blog">
-      <p class="travel-blog-subtitle fs-24 regular">делимся впечатлениями</p>
-      <h2 class="travel-blog-header fs-32 extra-bold">Блог о путешествиях</h2>
+      <p class="travel-blog-subtitle fs-24 regular">{{ "main.travelBlog.subtitle" | translate }}</p>
+      <h2 class="travel-blog-header fs-32 extra-bold">{{ "main.travelBlog.title" | translate }}</h2>
     </div>
     <div class="travel-article-wrapper">
       @for (article of articles; track article.id; let i = $index) {
@@ -208,9 +201,9 @@
                 [class.active-article]="article.id === selectedArticleId"
                 (mouseenter)="selectedArticleId = article.id"
               >
-                {{ article.title }}
+                {{ article.title | translate }}
               </p>
-              <span class="article-description regular">{{ article.description }}</span>
+              <span class="article-description regular">{{ article.description | translate }}</span>
             </div>
             <div
               class="article-details"
@@ -218,22 +211,22 @@
               [class.four-article]="i === 3"
             >
               <span class="article-date">{{ article.date | date }}</span>
-              <p class="article-link">{{ article.link }}</p>
+              <p class="article-link">{{ article.link | translate }}</p>
             </div>
           </div>
         </div>
       }
     </div>
     <button class="other-articles-btn" (click)="messageService.showError('Материалы недоступны')">
-      Другие материалы
+      {{ "buttons.otherMaterials" | translate }}
     </button>
   </div>
 </section>
 
 <section class="photo-report">
   <div class="container photo-report-wrapper">
-    <p class="fs-24 regular photo-report-subtitle">фото-отчет</p>
-    <h2 class="fs-32 extra-bold photo-report-title">Делимся впечатлениями</h2>
+    <p class="fs-24 regular photo-report-subtitle">{{ "main.photoReport.subtitle" | translate }}</p>
+    <h2 class="fs-32 extra-bold photo-report-title">{{ "main.photoReport.title" | translate }}</h2>
   </div>
   <div class="container photo-report-images">
     <img src="/images/landscape-made-baloons.png" alt="landscape-made-baloons" />
@@ -243,5 +236,5 @@
     <img src="/images/man-on-canyon.png" alt="man-on-canyon" />
     <img src="/images/items-on-dark-map.png" alt="items-on-dark-map" />
   </div>
-  <button class="fs-16 our-pinterest-btn">Наш pinterest</button>
+  <button class="fs-16 our-pinterest-btn">{{ "buttons.ourPinterest" | translate }}</button>
 </section>

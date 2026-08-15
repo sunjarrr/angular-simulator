@@ -13,13 +13,17 @@ import Nora from '@primeuix/themes/nora';
 import { routes } from './app.routes';
 import { Theme } from '../enums/Theme';
 import { Preset } from '@primeuix/themes/types';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { LoggingInterceptor } from '../logging.interceptor';
 import { ErrorInterceptor } from '../error.interceptor';
 import { authInterceptor } from '../features/auth/auth.interceptor';
 import { AuthService } from '../features/auth/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 import { applicationConfig } from '../config.token';
+import { provideTranslateService, TranslateCompiler } from "@ngx-translate/core";
+import { provideTranslateHttpLoader, TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { LanguageService } from '../language.service';
+import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
 
 function getTheme(): Preset {
   const value: string | null = localStorage.getItem('my-app-theme');
@@ -30,6 +34,10 @@ function getTheme(): Preset {
     [Theme.NORA]: Nora,
   };
   return theme && complianceCard[theme] ? complianceCard[theme] : Aura;
+}
+
+function getTranslate(http: HttpClient) {
+  return TranslateHttpLoader
 }
 
 export const appConfig: ApplicationConfig = {
@@ -48,6 +56,8 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([LoggingInterceptor, ErrorInterceptor, authInterceptor])),
     provideAppInitializer(() => {
       const authService: AuthService = inject(AuthService);
+      const languageService: LanguageService = inject(LanguageService);
+      languageService.initLanguage();
       return authService.getCurrentProfile();
     }),
     {
@@ -65,6 +75,18 @@ export const appConfig: ApplicationConfig = {
         enableTheming: true,
         sessionTimeout: 1
       }
-    }
+    },
+    provideTranslateService({
+      loader: provideTranslateHttpLoader({
+        prefix: '/i18n/',
+        suffix: '.json'
+      }),
+      fallbackLang: 'en',
+      lang: 'en',
+      compiler: {
+        provide: TranslateCompiler,
+        useClass: TranslateMessageFormatCompiler
+      }
+    }),
   ],
 };
