@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 import { Router, RouterLink } from '@angular/router';
 import { DialogService } from 'primeng/dynamicdialog';
 import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.component';
-import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
 import { PaginatorState } from 'primeng/paginator';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -37,26 +37,7 @@ export class PostsComponent implements OnInit {
   firstNumber = 0;
   selectedPost!: IPost | null;
 
-  menuItems: MenuItem[] = [
-    {
-      label: 'posts.menuItems.viewing',
-      command: () => {
-        this.onView();
-      },
-    },
-    {
-      label: 'Редактировать',
-      command: () => {
-        this.onEdit();
-      },
-    },
-    {
-      label: 'Удалить',
-      command: () => {
-        this.onDelete();
-      },
-    },
-  ];
+  menuItems: MenuItem[] = [];
 
   ngOnInit() {
     this.translate.stream([
@@ -119,7 +100,7 @@ export class PostsComponent implements OnInit {
 
   onEdit(): void {
     this.dialogService.open(PostEditDialogComponent, {
-      header: 'Post Edit',
+      header: this.translate.instant('posts.edit'),
       width: '50vw',
       modal: true,
       contentStyle: {

@@ -15,7 +15,7 @@ import { applicationConfig } from '../config.token';
 import { IApplicationConfig } from '../interfaces/IApplicationConfig';
 import { LanguageService } from '../language.service';
 import { TranslatePipe } from '@ngx-translate/core';
-import { Languages } from '../enums/Languages';
+import { Language } from '../enums/Language';
 
 @Component({
   selector: 'app-header',
@@ -38,7 +38,6 @@ export class HeaderComponent {
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
   languageService: LanguageService = inject(LanguageService);
-  readonly Languages = Languages;
   currentWidget: WidgetType = 'date';
   timer: Date = new Date();
   lastLogin: Date = new Date();
@@ -57,6 +56,8 @@ export class HeaderComponent {
       text: 'header.users',
     },
   ];
+
+  languages: Language[] = [Language.EN, Language.KK, Language.RU];
 
   constructor() {
     setInterval(() => {
@@ -88,8 +89,9 @@ export class HeaderComponent {
     this.authService.logout();
   }
 
-  onLanguageChange(lang: Languages): void {
-    this.languageService.setLanguage(lang);
+  onLanguageChange(event: Event): void {
+    const eventTarget: string = (event.target as HTMLSelectElement).value;
+    this.languageService.setLanguage(eventTarget);
   }
 
 }

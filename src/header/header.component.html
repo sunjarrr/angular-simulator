@@ -10,13 +10,13 @@
         id="switch-theme"
         [options]="this.themeService.themes"
         [ngModel]="themeService.theme$ | async"
-        (onChange)="toggleTheme($event.value)">
+        (onChange)="toggleTheme($event.value)"
+        optionLabel="label"
+        optionValue="value"
+        aria-labelledby="basic">
         <ng-template pTemplate="item" let-theme>
           <span>{{ theme.key | translate }}</span>
         </ng-template>
-        optionLabel="label"
-        optionValue="value"
-        aria-labelledby="basic"
       </p-selectbutton>
     }
   </div>
@@ -79,7 +79,9 @@
       <button [disabled]="counter === 0" (click)="reduceCounter()">-</button>
     </div>
   }
-  <button (click)="onLanguageChange(Languages.KK)">KK</button>
-  <button (click)="onLanguageChange(Languages.EN)">EN</button>
-  <button (click)="onLanguageChange(Languages.RU)">RU</button>
+  <select (change)="onLanguageChange($event)">
+    @for (language of languages; track language) {
+      <option [value]="language">{{ language }}</option>
+    }
+  </select>
 </header>
