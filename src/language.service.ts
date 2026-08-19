@@ -1,7 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, Translation } from '@ngx-translate/core';
 import { Language } from './enums/Language';
+import { tap } from 'rxjs';
+import { PrimeNG } from 'primeng/config';
 
 @Injectable({
   providedIn: 'root',
@@ -10,6 +12,7 @@ export class LanguageService {
 
   private localStorage: LocalStorageService = inject(LocalStorageService);
   private translate: TranslateService = inject(TranslateService);
+  private config: PrimeNG = inject(PrimeNG);
 
   determineLanguage(): Language {
     const savedLanguage : Language | null = this.localStorage.getValue<Language>("appLanguage");
@@ -29,6 +32,11 @@ export class LanguageService {
 
   setLanguage(language: Language | string): void {
     this.translate.use(language);
+    this.translate.get('primeNG')
+      .pipe(
+        tap((translate: Translation) => {
+          this.config.setTranslation(translate);
+      })).subscribe();
     this.localStorage.setValues("appLanguage", language);
   }
 
