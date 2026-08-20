@@ -59,6 +59,9 @@
           {{ "buttons.exit" | translate }}
         </button>
       }
+      <div class="select-language">
+        <p-select (onChange)="onLanguageChange($event.value)" appendTo="body" [options]="languages" placeholder="Select language"/>
+      </div>
     </div>
   </div>
   <button
@@ -79,9 +82,4 @@
       <button [disabled]="counter === 0" (click)="reduceCounter()">-</button>
     </div>
   }
-  <select (change)="onLanguageChange($event)">
-    @for (language of languages; track language) {
-      <option [value]="language">{{ language }}</option>
-    }
-  </select>
 </header>

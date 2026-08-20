@@ -16,6 +16,7 @@ import { IApplicationConfig } from '../interfaces/IApplicationConfig';
 import { LanguageService } from '../language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Language } from '../enums/Language';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-header',
@@ -27,7 +28,8 @@ import { Language } from '../enums/Language';
     CommonModule,
     ToggleSwitchModule,
     RouterModule,
-    TranslatePipe
+    TranslatePipe,
+    SelectModule
   ],
   templateUrl: './header.component.html',
   standalone: true,
@@ -57,7 +59,7 @@ export class HeaderComponent {
     },
   ];
 
-  languages: Language[] = [Language.EN, Language.KK, Language.RU];
+  languages: Language[] = Object.values(Language);
 
   constructor() {
     setInterval(() => {
@@ -89,9 +91,8 @@ export class HeaderComponent {
     this.authService.logout();
   }
 
-  onLanguageChange(event: Event): void {
-    const eventTarget: string = (event.target as HTMLSelectElement).value;
-    this.languageService.setLanguage(eventTarget);
+  onLanguageChange(event: Language): void {
+    this.languageService.setLanguage(event);
   }
 
 }
