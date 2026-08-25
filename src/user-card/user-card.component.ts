@@ -5,10 +5,11 @@ import { PhonePipe } from '../phone.pipe';
 import { HoverDirective } from '../hover.directive';
 import { AnimatedGradientDirective } from '../animated-gradient.directive';
 import { PhoneMode } from '../enums/PhoneMode';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-card',
-  imports: [UpperCasePipe, PhonePipe, HoverDirective, AnimatedGradientDirective],
+  imports: [UpperCasePipe, PhonePipe, HoverDirective, AnimatedGradientDirective, TranslatePipe],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
 })

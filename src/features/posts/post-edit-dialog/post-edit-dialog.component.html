@@ -1,9 +1,9 @@
 <form [formGroup]="form" (ngSubmit)="saveChanges()">
-  <label>Title:</label>
+  <label>{{ "posts.create.title" | translate }}</label>
   <input id="tile" type="text" formControlName="title" />
-  <label>Tags:</label>
+  <label>{{ "posts.create.tags" | translate }}</label>
   <input id="tags" type="text" formControlName="tags" />
-  <label>Views:</label>
+  <label>{{ "posts.create.views" | translate }}</label>
   <input id="views" type="number" formControlName="views" />
-  <button type="submit">Сохранить</button>
+  <button type="submit">{{ "posts.savePost" | translate }}</button>
 </form>

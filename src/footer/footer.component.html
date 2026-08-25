@@ -1,30 +1,28 @@
 <footer class="footer-wrapper">
   <div class="container newsletters-wrapper">
     <div class="travel-newsletters-wrapper">
-      <p class="fs-18 regular travel-newsletters-subtitle">актуально</p>
+      <p class="fs-18 regular travel-newsletters-subtitle">{{ "footer.travelNewsletters.subtitle" | translate }}</p>
       <h2 class="fs-26 extra-bold travel-newsletters-title">
-        Получайте полезные рассылки о путешествиях
+        {{ "footer.travelNewsletters.title" | translate }}
       </h2>
     </div>
     <div class="subscribe-newsletters">
-      <p class="fs-16 semi-bold">Введите e-mail адрес</p>
+      <p class="fs-16 semi-bold">{{ "footer.travelNewsletters.emailTitle" | translate }}</p>
       <div class="input-mail-wrapper">
-        <input class="enter-mail" type="text" placeholder="name@domain.com" />
-        <button class="subscribe-news-btn">Подписаться на новости</button>
+        <input class="enter-mail" type="text" [placeholder]="'footer.travelNewsletters.emailTemplate' | translate" />
+        <button class="subscribe-news-btn">{{ "buttons.subscribeNews" | translate }}</button>
       </div>
       <p class="fs-14 semi-bold input-mail-subtext">
-        подписываясь на новости, вы автоматически соглашаетесь с условиями обработки персональных
-        данных и правилами рекламных рассылок
+        {{ "footer.travelNewsletters.inputMailSubtext" | translate }}
       </p>
     </div>
   </div>
   <div class="container footer">
     <div class="about-company-wrapper">
       <div class="about-company">
-        <h2 class="fs-20">Компания «{{ config.companyName }}»</h2>
+        <h2 class="fs-20">{{ "footer.companyName" | translate }}</h2>
         <p class="fs-14 description-about-company">
-          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух
-          тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney.
+          {{ "footer.companyDescription" | translate }}
         </p>
         <div class="company-contact fs-14">
           <span class="company-email">info@domain.com</span>
@@ -39,34 +37,34 @@
       </div>
     </div>
     <div class="our-services-wrapper">
-      <h2 class="fs-20">Наши услуги</h2>
+      <h2 class="fs-20">{{ "footer.services.ourServices" | translate }}</h2>
       <nav class="fs-14 our-services">
-        <a id="hiking-mountains">Прогулки в горы летом</a>
-        <a id="winter-hiking">Зимние походы в горы</a>
-        <a id="mountains-temples">Посещение храмов в горах</a>
-        <a id="extreme-types-tourism">Экстремальные виды туризма</a>
-        <a id="hiking-amazon-jungle">Походы в джунглях Амазонии</a>
-        <a id="africa-trip">Поездка в Африку</a>
+        <a id="hiking-mountains">{{ "footer.services.hikingMountains" | translate }}</a>
+        <a id="winter-hiking">{{ "footer.services.winterHiking" | translate }}</a>
+        <a id="mountains-temples">{{ "footer.services.mountainsTemples" | translate }}</a>
+        <a id="extreme-types-tourism">{{ "footer.services.extremeTypesTourism" | translate }}</a>
+        <a id="hiking-amazon-jungle">{{ "footer.services.hikingAmazonJungle" | translate }}</a>
+        <a id="africa-trip">{{ "footer.services.africaTrip" | translate }}</a>
       </nav>
     </div>
     <div>
-      <h2 class="fs-20 travel-instructions-title">Важно для путешествий</h2>
+      <h2 class="fs-20 travel-instructions-title">{{ "footer.journey.importantForTravel" | translate }}</h2>
       <div class="important-travel-instructions-wrapper">
         <nav class="fs-14 important-travel-instructions">
-          <a id="long-hike">Как собрать в долгий поход?</a>
-          <a id="important-hiking-items">Жизненно важные предметы для похода</a>
+          <a id="long-hike">{{ "footer.journey.longHike" | translate }}</a>
+          <a id="important-hiking-items">{{ "footer.journey.importantHikingItems" | translate }}</a>
           <a id="medical-insurance" class="medical-insurance"
-            >Медицинская страховка, гарантии безопасности</a
+            >{{ "footer.journey.medicalInsurance" | translate }}</a
           >
-          <a id="for-doctors">Если вы врач - загляните сюда</a>
+          <a id="for-doctors">{{ "footer.journey.forDoctors" | translate }}</a>
         </nav>
       </div>
     </div>
   </div>
   <div class="processing-policy-wrapper">
     <div class="container processing-policy-wrapper-container">
-      <span>ИП Константинопольский К.К., 2023</span>
-      <span class="processing-policy">Политика обработки персональных данных</span>
+      <span>{{ "footer.companyProcessingPolicy" | translate }}</span>
+      <span class="processing-policy">{{ "footer.processingPolicy" | translate }}</span>
     </div>
   </div>
 </footer>

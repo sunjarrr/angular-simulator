@@ -34,14 +34,17 @@ export class ThemeService {
 
   themes: IThemeOption[] = [
     {
+      key: 'header.themeSwitch.aura',
       label: 'Aura',
       value: Theme.AURA,
     },
     {
+      key: 'header.themeSwitch.lara',
       label: 'Lara',
       value: Theme.LARA,
     },
     {
+      key: 'header.themeSwitch.nora',
       label: 'Nora',
       value: Theme.NORA,
     },

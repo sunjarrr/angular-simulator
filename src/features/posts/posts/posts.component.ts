@@ -13,10 +13,11 @@ import { PostEditDialogComponent } from '../post-edit-dialog/post-edit-dialog.co
 import { AsyncPipe } from '@angular/common';
 import { PostService } from '../post.service';
 import { PaginatorState } from 'primeng/paginator';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-posts',
-  imports: [TableModule, SkeletonModule, ContextMenuModule, ButtonModule, AsyncPipe, RouterLink],
+  imports: [TableModule, SkeletonModule, ContextMenuModule, ButtonModule, AsyncPipe, RouterLink, TranslatePipe],
   standalone: true,
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
@@ -27,6 +28,7 @@ export class PostsComponent implements OnInit {
   router: Router = inject(Router);
   dialogService: DialogService = inject(DialogService);
   postService: PostService = inject(PostService);
+  translate: TranslateService = inject(TranslateService);
   postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
   isLoading = true;
@@ -35,30 +37,39 @@ export class PostsComponent implements OnInit {
   firstNumber = 0;
   selectedPost!: IPost | null;
 
-  menuItems: MenuItem[] = [
-    {
-      label: 'Просмотр',
-      command: () => {
-        this.onView();
-      },
-    },
-    {
-      label: 'Редактировать',
-      command: () => {
-        this.onEdit();
-      },
-    },
-    {
-      label: 'Удалить',
-      command: () => {
-        this.onDelete();
-      },
-    },
-  ];
+  menuItems: MenuItem[] = [];
 
   ngOnInit() {
+    this.translate.stream([
+      "posts.menuItems.viewing",
+      "posts.menuItems.edit",
+      "posts.menuItems.delete",
+    ]).pipe(
+      tap((trans) => {
+        this.menuItems = [
+          {
+            label: trans['posts.menuItems.viewing'],
+            command: () => {
+              this.onView();
+            },
+          },
+          {
+            label: trans['posts.menuItems.edit'],
+            command: () => {
+              this.onEdit();
+            },
+          },
+          {
+            label: trans['posts.menuItems.delete'],
+            command: () => {
+              this.onDelete();
+            },
+          }
+        ]
+      })).subscribe()
     this.loadPosts(this.pageSize, this.firstNumber);
   }
+
 
   loadPosts(limit: number, skip: number): void {
     this.postService
@@ -78,7 +89,7 @@ export class PostsComponent implements OnInit {
   }
 
   onPostSelect(id: number): void {
-    this.router.navigate([`/posts/${ id }`]);
+    this.router.navigate([`/posts/${id}`]);
   }
 
   onView(): void {
@@ -89,7 +100,7 @@ export class PostsComponent implements OnInit {
 
   onEdit(): void {
     this.dialogService.open(PostEditDialogComponent, {
-      header: 'Post Edit',
+      header: this.translate.instant('posts.edit'),
       width: '50vw',
       modal: true,
       contentStyle: {

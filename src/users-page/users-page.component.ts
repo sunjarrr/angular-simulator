@@ -8,7 +8,7 @@ import { UserCardComponent } from '../user-card/user-card.component';
 import { CreateUserComponent } from '../create-user/create-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersFilterComponent } from '../users-filter/users-filter.component';
-import { CorrectWordPipe } from '../correct-word.pipe';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-users-page',
@@ -19,7 +19,7 @@ import { CorrectWordPipe } from '../correct-word.pipe';
     FormsModule,
     UsersFilterComponent,
     ReactiveFormsModule,
-    CorrectWordPipe,
+    TranslatePipe
   ],
   templateUrl: './users-page.component.html',
   styleUrl: './users-page.component.scss',

@@ -13,6 +13,10 @@ import { Observable } from 'rxjs';
 import { IAuthUser } from '../features/auth/IAuthUser';
 import { applicationConfig } from '../config.token';
 import { IApplicationConfig } from '../interfaces/IApplicationConfig';
+import { LanguageService } from '../language.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { Language } from '../enums/Language';
+import { SelectModule } from 'primeng/select';
 
 @Component({
   selector: 'app-header',
@@ -24,6 +28,8 @@ import { IApplicationConfig } from '../interfaces/IApplicationConfig';
     CommonModule,
     ToggleSwitchModule,
     RouterModule,
+    TranslatePipe,
+    SelectModule
   ],
   templateUrl: './header.component.html',
   standalone: true,
@@ -33,6 +39,7 @@ export class HeaderComponent {
 
   themeService: ThemeService = inject(ThemeService);
   authService: AuthService = inject(AuthService);
+  languageService: LanguageService = inject(LanguageService);
   currentWidget: WidgetType = 'date';
   timer: Date = new Date();
   lastLogin: Date = new Date();
@@ -44,13 +51,15 @@ export class HeaderComponent {
   navigations: INavigation[] = [
     {
       id: 1,
-      text: 'Главная',
+      text: 'header.headerMain',
     },
     {
       id: 2,
-      text: 'Пользователи',
+      text: 'header.users',
     },
   ];
+
+  languages: Language[] = Object.values(Language);
 
   constructor() {
     setInterval(() => {
@@ -80,6 +89,10 @@ export class HeaderComponent {
 
   logout(): void {
     this.authService.logout();
+  }
+
+  onLanguageChange(event: Language): void {
+    this.languageService.setLanguage(event);
   }
 
 }
