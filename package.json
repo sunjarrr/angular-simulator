@@ -42,6 +42,7 @@
     "@primeuix/themes": "^2.0.3",
     "messageformat": "^4.0.0",
     "ngx-translate-messageformat-compiler": "^7.3.0",
+    "primeicons": "^8.0.1",
     "primeng": "^21.1.6",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

@@ -22,7 +22,9 @@
     "destinationRating": "Рейтинг направлений",
     "otherMaterials": "Другие материалы",
     "ourPinterest": "Наш pinterest",
-    "subscribeNews": "Подписаться на новости"
+    "subscribeNews": "Подписаться на новости",
+    "productsPage": "Страница продуктов",
+    "cartPage": "Корзина"
   },
   "main": {
     "searchForm": {
@@ -153,5 +155,36 @@
     "savePost": "Сохранить",
     "postId": "Идентификатор поста:",
     "edit": "Редактировать публикацию"
+  },
+  "products": {
+    "search": "Поиск продуктов...",
+    "empty": "Список товаров пуст",
+    "buyNow": "Купить",
+    "chooseSort": "Выберите поле сортировки",
+    "chooseCategory": "Выберите категорию"
+  },
+  "productDetail": {
+    "brand": "Бренд:",
+    "notSpecified": "Не указан",
+    "stock": "В наличии:",
+    "pieces": "шт.",
+    "addToCart": "Добавить в корзину",
+    "warranty": "Гарантия",
+    "shipping": "Доставка",
+    "return": "Возврат",
+    "dimensions": "Габариты и вес",
+    "barcode": "Штрихкод:"
+  },
+  "cart": {
+    "title": "Корзина покупок",
+    "itemsCount": "шт.",
+    "orderSummary": "Итог заказа",
+    "subtotal": "Сумма",
+    "tax": "Налог",
+    "total": "К оплате",
+    "checkout": "Перейти к оформлению",
+    "emptyTitle": "Ваша корзина пуста",
+    "emptyDescription": "Кажется, вы ещё ничего не добавили в заказ.",
+    "catalog": "Перейти в каталог"
   }
 }

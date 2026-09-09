@@ -60,7 +60,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/assets/styles.scss"],
+            "styles": [
+              "node_modules/primeicons/primeicons.css",
+              "src/assets/styles.scss"
+            ],
             "polyfills": ["zone.js"]
           },
           "configurations": {

@@ -1,0 +1,131 @@
+<div class="search-product">
+  <input
+    #searchInput
+    type="text"
+    pInputText
+    [value]="searchProduct()"
+    (input)="onInputChange(searchInput.value)"
+    [placeholder]="'products.search' | translate"
+  />
+</div>
+@if (productsResource.isLoading()) {
+  <div class="card card-content">
+    <div class="products-list-container">
+      @for (item of pageList; track $index; let first = $first) {
+        <div class="product-item-row" [class.bordered-row]="!first">
+          <div class="skeleton-thumb-box">
+            <p-skeleton width="110px" height="80px" borderRadius="6px" />
+          </div>
+          <div class="skeleton-info-col">
+            <p-skeleton width="80px" height="12px" />
+            <p-skeleton width="180px" height="18px" />
+            <p-skeleton width="45px" height="14px" />
+          </div>
+          <div class="skeleton-actions-col">
+            <p-skeleton width="90px" height="22px" />
+            <p-skeleton width="115px" height="38px" borderRadius="6px" />
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+} @else {
+  <div class="card card-content">
+    @if (productsResource.value()) {
+      <p-dataView
+        #dv
+        [value]="productsResource.value()?.products"
+        [paginator]="true"
+        [first]="skip()"
+        [rows]="pageSize()"
+        [totalRecords]="productsResource.value()?.total ?? 0"
+        [lazy]="true"
+        [rowsPerPageOptions]="[10, 20, 30]"
+        (onPage)="onPageChange($event)"
+      >
+        <ng-template #header>
+          <div class="catalog-filters-bar">
+            <p-select
+              optionLabel="label"
+              optionValue="value"
+              [options]="directions"
+              [ngModel]="directionsField()"
+              (onChange)="onDirectionChange($event.value)"
+            />
+            <p-select
+              optionLabel="label"
+              [showClear]="true"
+              optionValue="value"
+              [options]="fieldList"
+              [ngModel]="sortField()"
+              [placeholder]="'products.chooseSort' | translate"
+              (onChange)="onSortChange($event.value)"
+            />
+            <p-select
+              [options]="categoryList()"
+              [showClear]="true"
+              [ngModel]="categories()"
+              [placeholder]="'products.chooseCategory' | translate"
+              (onChange)="onCategoryChange($event.value)"
+            />
+            <p-button id="products-page" routerLink="cart">
+              {{ 'buttons.cartPage' | translate }}
+            </p-button>
+          </div>
+        </ng-template>
+        <ng-template #list let-products>
+          <div class="products-list-container">
+            @for (product of products; track product.id ?? $index; let first = $first) {
+              <div class="product-row-wrapper">
+                <div class="product-item-row" [class.bordered-row]="!first">
+                  <div class="product-thumb-box" (click)="onProductSelect(product.id)">
+                    <img
+                      class="product-thumb-image"
+                      [src]="product.thumbnail"
+                      [alt]="product.title"
+                    />
+                    <p-tag
+                      [value]="product.availabilityStatus"
+                      [severity]="getSeverity(product)"
+                      class="status-tag"
+                    />
+                  </div>
+                  <div class="row-content-body">
+                    <div class="product-info-column">
+                      <div>
+                        <span class="product-category-text">{{ product.category }}</span>
+                        <div class="product-title-text">{{ product.title }}</div>
+                      </div>
+                      <div class="product-rating-badge">
+                        <div class="rating-inner">
+                          <span class="rating-value">{{ product.rating }}</span>
+                          <i class="pi pi-star-fill star-icon"></i>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-actions-column">
+                      <span class="product-price">{{ '$' + product.price }}</span>
+                      <div class="actions-group">
+                        <p-button
+                          (onClick)="onAddCart(product)"
+                          icon="pi pi-shopping-cart"
+                          class="btn-buy"
+                          [label]="'products.buyNow' | translate"
+                          [disabled]="product.availabilityStatus === 'OUTOFSTOCK'"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            } @empty {
+              <div class="empty-list-message">
+                {{ 'products.empty' | translate }}
+              </div>
+            }
+          </div>
+        </ng-template>
+      </p-dataView>
+    }
+  </div>
+}

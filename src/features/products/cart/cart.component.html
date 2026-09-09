@@ -1,0 +1,74 @@
+<div class="cart-container">
+  <header class="cart-header">
+    <h1>{{ "cart.title" | translate }}</h1>
+    <span class="badge">{{ itemsCount() }} {{ "cart.itemsCount" | translate }}</span>
+  </header>
+  @if (cart().length > 0) {
+    <div class="cart-layout">
+      <section class="items-list">
+        @for (item of cart(); track item.id) {
+          <article class="cart-item">
+            <img [src]="item.thumbnail" [alt]="item.title" class="item-image" />
+            <div class="item-details">
+              <h3 class="item-title">{{ item.title }}</h3>
+              <span class="item-price">{{ item.price | currency:'USD' }}</span>
+            </div>
+            <div class="quantity-controls">
+              <button 
+                type="button"
+                class="btn-quantity"
+                (click)="updateQuantity(item.id, item.quantity - 1)"
+                aria-label="Уменьшить количество">
+                −
+              </button>
+              <span class="quantity-value">{{ item.quantity }}</span>
+              <button 
+                type="button"
+                class="btn-quantity"
+                (click)="updateQuantity(item.id, item.quantity + 1)"
+                aria-label="Увеличить количество">
+                +
+              </button>
+            </div>
+            <div class="item-total">
+              {{ (item.price * item.quantity) | currency:'USD' }}
+            </div>
+            <button 
+              type="button"
+              class="btn-remove"
+              (click)="deleteItem(item.id)"
+              title="Удалить товар">
+              ✕
+            </button>
+          </article>
+        }
+      </section>
+      <aside class="order-summary">
+        <h2>{{ "cart.orderSummary" | translate }}</h2>
+        <div class="summary-row">
+          <span>{{ "cart.subtotal" | translate }}</span>
+          <span>{{ subtotal() | currency:'USD' }}</span>
+        </div>
+        <div class="summary-row">
+          <span>{{ "cart.tax" | translate }} ({{ taxRate * 100 }}%)</span>
+          <span>{{ tax() | currency:'USD' }}</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span>{{ "cart.total" | translate }}</span>
+          <span class="total-amount">{{ total() | currency:'USD' }}</span>
+        </div>
+        <button type="button" class="btn-checkout">
+          {{ "cart.checkout" | translate }}
+        </button>
+      </aside>
+    </div>
+  } @else {
+    <div class="empty-cart">
+      <div class="empty-icon">🛒</div>
+      <h2>{{ "cart.emptyTitle" | translate }}</h2>
+      <p>{{ "cart.emptyDescription" | translate }}</p>
+      <a id="products-page" routerLink="/products" class="btn-primary">{{ "cart.catalog" | translate }}</a>
+    </div>
+  }
+</div>
