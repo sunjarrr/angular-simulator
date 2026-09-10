@@ -8,14 +8,14 @@ import { IProduct } from './interfaces/IProduct';
 export class CartService {
 
   cart: WritableSignal<ICartItem[]> = signal<ICartItem[]>([]);
-  readonly TAX_RATE = 0.2;
+  readonly TAX_RATE: number = 0.2;
 
   subtotal: Signal<number> = computed(() => {
     return this.cart().reduce((accum, item: ICartItem) => accum + item.price * item.quantity, 0);
   });
 
   itemsCount: Signal<number> = computed(() => {
-    return this.cart().reduce((accum, item) => accum + item.quantity, 0);
+    return this.cart().reduce((accum: number, item: ICartItem) => accum + item.quantity, 0);
   });
 
   tax: Signal<number> = computed(() => this.subtotal() * this.TAX_RATE);
@@ -23,7 +23,7 @@ export class CartService {
 
   addItem(product: IProduct): void {
     this.cart.update((items: ICartItem[]) => {
-      const item: ICartItem | undefined = items.find(item => item.id === product.id);
+      const item: ICartItem | undefined = items.find((item: ICartItem) => item.id === product.id);
       if (item) {
         return items.map((item: ICartItem) => 
           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item);
@@ -48,7 +48,7 @@ export class CartService {
   }
 
   deleteItem(productId: number): void {
-    this.cart.update(items => items.filter((item: ICartItem) => item.id !== productId));
+    this.cart.update((items: ICartItem[]) => items.filter((item: ICartItem) => item.id !== productId));
   }
 
 }

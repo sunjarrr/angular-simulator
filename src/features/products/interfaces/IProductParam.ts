@@ -1,6 +1,6 @@
 import { SortDirection } from "../../../enums/SortDirections";
 
-export interface IProductParams {
+export interface IProductParam {
   skip: number;
   limit: number;
   search: string;

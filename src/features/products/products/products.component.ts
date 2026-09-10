@@ -21,6 +21,8 @@ import { InputText } from "primeng/inputtext";
 import { AvailabilityStatus } from '../../../enums/AvailabilityStatus';
 import { ProductSortField } from '../../../enums/ProductSortField';
 import { SortDirection } from '../../../enums/SortDirections';
+import { ISortOption } from '../interfaces/ISortOption';
+import { IProductParam } from '../interfaces/IProductParam';
 
 @Component({
   selector: 'app-products',
@@ -37,7 +39,7 @@ export class ProductsComponent {
   productSubject: BehaviorSubject<string> = new BehaviorSubject<string>('');
   products$: Observable<string> = this.productSubject.asObservable();
   totalProducts: number = 0;
-  pageList = [...Array(10).keys()].map((page: number) => page + 1);
+  pageList: number[] = [...Array(10).keys()].map((page: number) => page + 1);
   isLoading: Signal<boolean> = toSignal(this.loaderService.isLoading$, { initialValue: false });
   page: WritableSignal<number> = signal(1);
   pageSize: WritableSignal<number> = signal(10);
@@ -56,14 +58,14 @@ export class ProductsComponent {
     { initialValue: '' }
   );
 
-  fieldList: { label: string; value: ProductSortField}[] = [
+  fieldList: ISortOption[] = [
     { label: 'Название', value: ProductSortField.TITLE },
     { label: 'Цена', value: ProductSortField.PRICE },
     { label: 'Рейтинг', value: ProductSortField.RATING },
     { label: 'На складе', value: ProductSortField.STOCK }
   ]
 
-  directions: { label: string; value: SortDirection}[] = [
+  directions: ISortOption[] = [
     { label: 'по возрастанию', value: SortDirection.ASC },
     { label: 'по убыванию', value: SortDirection.DESC }
   ]
@@ -77,10 +79,10 @@ export class ProductsComponent {
       order: this.directionsField(),
       category: this.categories()
     }),
-    stream: ({ params }) => this.productService.getProducts(params)
+    stream: ({ params }: { params: IProductParam }) => this.productService.getProducts(params)
   });
 
-  getSeverity (product: IProduct): AvailabilityStatus | null {
+  getSeverity(product: IProduct): AvailabilityStatus | null {
     switch (product.availabilityStatus) {
       case 'INSTOCK':
         return AvailabilityStatus.SUCCESS;
@@ -102,7 +104,7 @@ export class ProductsComponent {
       this.pageSize.set(event.rows);
     }
     if (event.first !== undefined) {
-      const nextPage = Math.floor(event.first / this.pageSize()) + 1;
+      const nextPage: number = Math.floor(event.first / this.pageSize()) + 1;
       this.page.set(nextPage);
     }
   }

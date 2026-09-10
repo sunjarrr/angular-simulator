@@ -10,25 +10,26 @@ import { ICart } from './interfaces/ICart';
 export class CartApiService {
 
   httpClient: HttpClient = inject(HttpClient);
+  CARTS_API: string = 'https://dummyjson.com/carts'
 
   getCarts(): Observable<ICartResponse> {
-    return this.httpClient.get<ICartResponse>('https://dummyjson.com/carts');
+    return this.httpClient.get<ICartResponse>(`${ this.CARTS_API }`);
   }
 
   getCartById(id: number): Observable<ICart> {
-    return this.httpClient.get<ICart>(`https://dummyjson.com/carts/${ id }`);
+    return this.httpClient.get<ICart>(`${ this.CARTS_API }/${ id }`);
   }
 
   createCart(cart: Partial<ICart>): Observable<ICart> {
-    return this.httpClient.post<ICart>('https://dummyjson.com/carts/add', cart);
+    return this.httpClient.post<ICart>(`${ this.CARTS_API }/add`, cart);
   }
 
   updateCart(id: number, cart: Partial<ICart>): Observable<ICart> {
-    return this.httpClient.put<ICart>(`https://dummyjson.com/carts/${ id }`, cart);
+    return this.httpClient.put<ICart>(`${ this.CARTS_API }/${ id }`, cart);
   }
 
   deleteCart(id: number): Observable<ICart> {
-    return this.httpClient.delete<ICart>(`https://dummyjson.com/carts/${ id }`)
+    return this.httpClient.delete<ICart>(`${ this.CARTS_API }/${ id }`)
   }
 
 }

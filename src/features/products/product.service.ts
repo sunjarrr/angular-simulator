@@ -6,7 +6,7 @@ import { ProductApiService } from './product-api.service';
 import { IProduct } from './interfaces/IProduct';
 import { LoaderService } from '../../loader.service';
 import { HttpClient } from '@angular/common/http';
-import { IProductParams } from './interfaces/IProductParams';
+import { IProductParam } from './interfaces/IProductParam';
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +35,7 @@ export class ProductService {
     return this.productApiService.getAllCategories();
   }
 
-  getProducts(params: IProductParams): Observable<IProductResponse> {
+  getProducts(params: IProductParam): Observable<IProductResponse> {
     return this.productApiService.getProducts(params);
   }
 

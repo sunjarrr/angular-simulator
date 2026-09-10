@@ -51,6 +51,7 @@
           <p class="description">{{ product.description }}</p>
           <div class="actions">
             <p-button
+              id="add-product-btn"
               (onClick)="onAddCart(product)"
               [label]="'productDetail.addToCart' | translate"
               icon="pi pi-shopping-cart"

@@ -1,5 +1,6 @@
 <div class="search-product">
   <input
+    id="products-search"
     #searchInput
     type="text"
     pInputText
@@ -46,6 +47,7 @@
         <ng-template #header>
           <div class="catalog-filters-bar">
             <p-select
+              id="select-directions"
               optionLabel="label"
               optionValue="value"
               [options]="directions"
@@ -53,6 +55,7 @@
               (onChange)="onDirectionChange($event.value)"
             />
             <p-select
+              id="select-sort-field"
               optionLabel="label"
               [showClear]="true"
               optionValue="value"
@@ -62,6 +65,7 @@
               (onChange)="onSortChange($event.value)"
             />
             <p-select
+              id="select-category"
               [options]="categoryList()"
               [showClear]="true"
               [ngModel]="categories()"
@@ -107,6 +111,7 @@
                       <span class="product-price">{{ '$' + product.price }}</span>
                       <div class="actions-group">
                         <p-button
+                          id="buy-product-btn"
                           (onClick)="onAddCart(product)"
                           icon="pi pi-shopping-cart"
                           class="btn-buy"

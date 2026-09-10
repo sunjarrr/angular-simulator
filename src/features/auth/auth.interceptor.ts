@@ -17,10 +17,6 @@ export const authInterceptor: HttpInterceptorFn = (
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
 
-  if (req.url.includes('dummyjson.com/products')) {
-    return next(req);
-  }
-
   function cloneWithToken(): HttpRequest<unknown> {
     const originalRequestCopy: HttpRequest<unknown> = req.clone({
       setHeaders: {
