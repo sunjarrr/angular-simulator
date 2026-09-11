@@ -11,7 +11,7 @@ import { IProductParam } from './interfaces/IProductParam';
 export class ProductApiService {
 
   private httpClient: HttpClient = inject(HttpClient);
-  PRODUCTS_API = 'https://dummyjson.com/products/';
+  private PRODUCTS_API: string = 'https://dummyjson.com/products/';
 
   getProduct(id: number): Observable<IProduct> {
     return this.httpClient.get<IProduct>(`${ this.PRODUCTS_API }${ id }`);
