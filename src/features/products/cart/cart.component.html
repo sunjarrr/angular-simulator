@@ -2,6 +2,7 @@
   <header class="cart-header">
     <h1>{{ 'cart.title' | translate }}</h1>
     <span class="badge">{{ itemsCount() }} {{ 'cart.itemsCount' | translate }}</span>
+    <p-button (click)="clearCart()">Очистить корзину</p-button>
   </header>
   @if (cart().length > 0) {
     <div class="cart-layout">

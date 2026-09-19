@@ -1,4 +1,4 @@
-import { Component, inject, ResourceRef, Signal, WritableSignal } from '@angular/core';
+import { Component, effect, inject, ResourceRef, Signal, untracked, WritableSignal } from '@angular/core';
 import { DataViewModule } from 'primeng/dataview';
 import { ButtonModule } from "primeng/button";
 import { TagModule } from 'primeng/tag';
@@ -38,7 +38,7 @@ export class ProductsComponent {
   page: WritableSignal<number> = this.productService.page;
   pageSize: WritableSignal<number> = this.productService.pageSize;
   skip: Signal<number> = this.productService.skip;
-  searchProduct: WritableSignal<string> = this.productService.searchProduct;
+  search: WritableSignal<string> = this.productService.search;
   sortField: WritableSignal<ProductSortField> = this.productService.sortField;
   directionsField: WritableSignal<SortDirection> = this.productService.directionsField;
   categories: WritableSignal<string | null> = this.productService.categories;
@@ -56,6 +56,18 @@ export class ProductsComponent {
     { label: 'по возрастанию', value: SortDirection.ASC },
     { label: 'по убыванию', value: SortDirection.DESC }
   ]
+
+  constructor() {
+    effect(() => {
+      this.search();
+      this.sortField();
+      this.directionsField();
+      this.categories();
+      untracked(() => {
+        this.page.set(1);
+      })
+    })
+  }
 
   getSeverity(product: IProduct): AvailabilityStatus | null {
     switch (product.availabilityStatus) {
@@ -78,8 +90,8 @@ export class ProductsComponent {
     this.productService.pageChange(event);
   }
 
-  onInputChange(value: string): void {
-    this.productService.inputChange(value);
+  onSearchChange(value: string): void {
+    this.productService.searchProduct(value);
   }
 
   onSortChange(field: ProductSortField): void {

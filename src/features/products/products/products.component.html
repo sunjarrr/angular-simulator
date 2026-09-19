@@ -4,8 +4,8 @@
     #searchInput
     type="text"
     pInputText
-    [value]="searchProduct()"
-    (input)="onInputChange(searchInput.value)"
+    [value]="search()"
+    (input)="onSearchChange(searchInput.value)"
     [placeholder]="'products.search' | translate"
   />
 </div>
