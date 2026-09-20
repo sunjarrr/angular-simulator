@@ -83,7 +83,7 @@ export class CartService {
     this.updateCart();
   }
 
-  loadUserCart(userId: number) {
+  loadUserCart(userId: number): void {
     this.cartApiService.getCartsByUser(userId)
       .pipe(
         tap((response: ICartResponse) => {
