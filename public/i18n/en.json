@@ -22,7 +22,9 @@
     "destinationRating": "Destination rating",
     "otherMaterials": "Other materials",
     "ourPinterest": "Our Pinterest",
-    "subscribeNews": "Subscribe to news"
+    "subscribeNews": "Subscribe to news",
+    "productsPage": "Products page",
+    "cartPage": "Cart"
   },
   "main": {
     "searchForm": {
@@ -106,7 +108,7 @@
     "companyProcessingPolicy": "IE Konstantinopolsky K.K., 2023",
     "processingPolicy": "Personal data processing policy"
   },
-"usersPage": {
+  "usersPage": {
     "title": "User List",
     "usersCount": "{ count, plural, =0 { No users } one { # user } other { # users }}",
     "searchPlaceholder": "Search user:",
@@ -153,5 +155,40 @@
     "savePost": "Save post",
     "postId": "ID:",
     "edit": "Post Edit"
+  },
+  "products": {
+    "search": "Search products...",
+    "empty": "Product list is empty",
+    "buyNow": "Buy Now",
+    "filterDirections": "Filter by Directions",
+    "chooseSort": "Choose sort field",
+    "chooseCategory": "Choose category"
+  },
+  "productDetail": {
+    "brand": "Brand:",
+    "notSpecified": "Not specified",
+    "stock": "In stock:",
+    "pieces": "pcs.",
+    "addToCart": "Add to Cart",
+    "warranty": "Warranty",
+    "shipping": "Shipping",
+    "return": "Return Policy",
+    "dimensions": "Dimensions & Weight",
+    "barcode": "Barcode:"
+  },
+  "cart": {
+    "title": "Shopping Cart",
+    "itemsCount": "pcs.",
+    "orderSummary": "Order Summary",
+    "subtotal": "Subtotal",
+    "tax": "Tax",
+    "total": "Total",
+    "checkout": "Proceed to Checkout",
+    "emptyTitle": "Your cart is empty",
+    "emptyDescription": "Looks like you haven't added anything to your order yet.",
+    "deleteTitle": "Remove item",
+    "reduceQty": "Decrease quantity",
+    "increaseQty": "Increase quantity",
+    "catalog": "Go to the catalog"
   }
 }

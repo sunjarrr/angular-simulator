@@ -22,7 +22,9 @@
     "destinationRating": "Бағыттар рейтингі",
     "otherMaterials": "Басқа материалдар",
     "ourPinterest": "Біздің Pinterest",
-    "subscribeNews": "Жаңалықтарға жазылу"
+    "subscribeNews": "Жаңалықтарға жазылу",
+    "productsPage": "Өнім беті",
+    "cartPage": "Себет"
   },
   "main": {
     "searchForm": {
@@ -153,5 +155,40 @@
     "savePost": "Сақтау",
     "postId": "Пост идентификаторы:",
     "edit": "Постты өңдеу"
+  },
+  "products": {
+    "search": "Өнімдерді іздеу...",
+    "empty": "Өнімдер тізімі бос",
+    "buyNow": "Сатып алу",
+    "filterDirections": "Бағыттар бойынша сүзгі",
+    "chooseSort": "Сұрыптау өрісін таңдаңыз",
+    "chooseCategory": "Санатты таңдаңыз"
+  },
+  "productDetail": {
+    "brand": "Бренд:",
+    "notSpecified": "Көрсетілмеген",
+    "stock": "Қолда бар:",
+    "pieces": "дана",
+    "addToCart": "Себетке қосу",
+    "warranty": "Кепілдік",
+    "shipping": "Жеткізу",
+    "return": "Қайтару саясаты",
+    "dimensions": "Өлшемдері мен салмағы",
+    "barcode": "Штрихкод:"
+  },
+  "cart": {
+    "title": "Сатып алу себеті",
+    "itemsCount": "дана",
+    "orderSummary": "Тапсырыс қорытындысы",
+    "subtotal": "Сомасы",
+    "tax": "Салық",
+    "total": "Төленетін сома",
+    "checkout": "Рәсімдеуге өту",
+    "emptyTitle": "Себетіңіз бос",
+    "emptyDescription": "Әзірге ештеңе қосқан жоқсыз.",
+    "deleteTitle": "Тауарды өшіру",
+    "reduceQty": "Санын азайту",
+    "increaseQty": "Санын көбейту",
+    "catalog": "Каталогқа өту"
   }
 }

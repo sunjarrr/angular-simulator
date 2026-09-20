@@ -23,7 +23,7 @@ export class AuthService {
   );
 
   currentUser$: Observable<IAuthUser | null> = this.currentUserSubject.asObservable();
-  API_URL = 'https://dummyjson.com';
+  private API_URL: string = 'https://dummyjson.com';
   config: IApplicationConfig = inject(applicationConfig);
 
   saveTokens(response: IAuthResponse): void {

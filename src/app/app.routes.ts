@@ -2,8 +2,31 @@ import { Routes } from '@angular/router';
 import { postResolver } from '../features/posts/post.resolver';
 import { authGuard } from '../features/auth/auth.guard';
 import { adminGuard } from '../features/auth/admin-guard.guard';
+import { productResolver } from '../features/products/product.resolver';
 
 export const routes: Routes = [
+  {
+    path: 'products/cart',
+    loadComponent: () =>
+      import('../features/products/cart/cart.component').then(
+        (module) => module.CartComponent,
+      ),
+    },
+  {
+    path: 'products/:id',
+    loadComponent: () =>
+      import('../features/products/product-detail/product-detail.component').then(
+        (module) => module.ProductDetailComponent
+      ),
+      resolve: {
+        product: productResolver,
+      },
+    },
+  {
+    path: 'products',
+    loadComponent: () =>
+      import('../features/products/products/products.component').then((module) => module.ProductsComponent),
+  },
   {
     path: 'login',
     loadComponent: () =>
