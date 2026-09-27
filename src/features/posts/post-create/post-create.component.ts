@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { IPost } from '../IPost';
 import { tap } from 'rxjs';
 import { Router } from '@angular/router';
-import { MessageService } from '../../../message.service';
 import { PostService } from '../post.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { MessageService } from '../../../app/core/services/message.service';
 
 @Component({
   selector: 'app-post-create',

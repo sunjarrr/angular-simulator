@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { PostApiService } from './post-api.service';
 import { catchError, EMPTY, finalize, Observable } from 'rxjs';
-import { MessageService } from '../../message.service';
-import { LoaderService } from '../../loader.service';
+import { LoaderService } from '../../app/core/services/loader.service';
 import { IPost } from './IPost';
 import { IPostResponse } from './IPostResponse';
+import { MessageService } from '../../app/core/services/message.service';
 
 @Injectable({
   providedIn: 'root',

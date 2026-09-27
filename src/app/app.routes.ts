@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { postResolver } from '../features/posts/post.resolver';
-import { authGuard } from '../features/auth/auth.guard';
-import { adminGuard } from '../features/auth/admin-guard.guard';
+import { authGuard } from './core/guards/auth.guard';
+import { adminGuard } from './core/guards/admin-guard.guard';
 import { productResolver } from '../features/products/product.resolver';
 
 export const routes: Routes = [
@@ -41,7 +41,7 @@ export const routes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('../home-page/home-page.component').then((module) => module.HomePageComponent),
+          import('../features/home/home-page/home-page.component').then((module) => module.HomePageComponent),
         pathMatch: 'full',
       },
       {
@@ -72,7 +72,7 @@ export const routes: Routes = [
       {
         path: 'users-page',
         loadComponent: () =>
-          import('../users-page/users-page.component').then((module) => module.UsersPageComponent),
+          import('../features/users/users-page/users-page.component').then((module) => module.UsersPageComponent),
         canActivate: [adminGuard],
       },
     ],
@@ -80,7 +80,7 @@ export const routes: Routes = [
   {
     path: '**',
     loadComponent: () =>
-      import('../not-found-page/not-found-page.component').then(
+      import('./core/components/not-found-page/not-found-page.component').then(
         (module) => module.NotFoundPageComponent,
       ),
   },

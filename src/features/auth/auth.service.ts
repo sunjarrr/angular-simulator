@@ -1,14 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ILogin } from './ILogin';
-import { LocalStorageService } from '../../local-storage.service';
+import { ILogin } from './interfaces/ILogin';
+import { LocalStorageService } from '../../app/core/services/local-storage.service';
 import { BehaviorSubject, catchError, EMPTY, Observable, tap } from 'rxjs';
-import { IAuthResponse } from './IAuthResponse';
-import { MessageService } from '../../message.service';
-import { IAuthUser } from './IAuthUser';
-import { IToken } from './IToken';
-import { applicationConfig } from '../../config.token';
-import { IApplicationConfig } from '../../interfaces/IApplicationConfig';
+import { IAuthResponse } from './interfaces/IAuthResponse';
+import { IAuthUser } from './interfaces/IAuthUser';
+import { IToken } from './interfaces/IToken';
+import { IApplicationConfig } from '../../app/core/interfaces/IApplicationConfig';
+import { applicationConfig } from '../../app/core/tokens/config.token';
+import { MessageService } from '../../app/core/services/message.service';
 
 @Injectable({
   providedIn: 'root',

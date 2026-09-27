@@ -6,8 +6,8 @@ import { ICartResponse } from './interfaces/ICartResponse';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { ICart } from './interfaces/ICart';
 import { ICartRequest } from './interfaces/ICartRequest';
-import { LoaderService } from '../../loader.service';
-import { MessageService } from '../../message.service';
+import { LoaderService } from '../../app/core/services/loader.service';
+import { MessageService } from '../../app/core/services/message.service';
 
 @Injectable({
   providedIn: 'root',

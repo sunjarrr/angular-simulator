@@ -11,19 +11,19 @@ import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 import { routes } from './app.routes';
-import { Theme } from '../enums/Theme';
+import { Theme } from './core/enums/Theme';
 import { Preset } from '@primeuix/themes/types';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { LoggingInterceptor } from '../logging.interceptor';
-import { ErrorInterceptor } from '../error.interceptor';
-import { authInterceptor } from '../features/auth/auth.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { AuthService } from '../features/auth/auth.service';
 import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
-import { applicationConfig } from '../config.token';
 import { provideTranslateService, TranslateCompiler } from "@ngx-translate/core";
 import { provideTranslateHttpLoader } from "@ngx-translate/http-loader";
-import { LanguageService } from '../language.service';
 import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-compiler';
+import { LanguageService } from './core/services/language.service';
+import { applicationConfig } from './core/tokens/config.token';
+import { LoggingInterceptor } from './core/interceptors/logging.interceptor';
 
 function getTheme(): Preset {
   const value: string | null = localStorage.getItem('my-app-theme');
