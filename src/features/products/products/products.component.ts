@@ -11,15 +11,15 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { PaginatorState } from "primeng/paginator";
 import { toSignal } from '@angular/core/rxjs-interop';
-import { LoaderService } from '../../../loader.service';
+import { LoaderService } from '../../../app/core/services/loader.service';
 import { SelectModule } from 'primeng/select';
 import { CartService } from '../cart.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { IProductResponse } from '../interfaces/IProductResponse';
 import { InputText } from "primeng/inputtext";
-import { AvailabilityStatus } from '../../../enums/AvailabilityStatus';
-import { ProductSortField } from '../../../enums/ProductSortField';
-import { SortDirection } from '../../../enums/SortDirections';
+import { AvailabilityStatus } from '../enums/AvailabilityStatus';
+import { ProductSortField } from '../interfaces/ProductSortField';
+import { SortDirection } from '../enums/SortDirections';
 import { ISortOption } from '../interfaces/ISortOption';
 
 @Component({

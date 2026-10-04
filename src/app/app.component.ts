@@ -3,9 +3,9 @@ import './training';
 import './collection';
 import { FormsModule } from '@angular/forms';
 import { RouterOutlet } from '@angular/router';
-import { MessageComponent } from '../message/message.component';
-import { LoaderComponent } from '../loader/loader.component';
-import { Color } from '../enums/Color';
+import { MessageComponent } from './core/components/message/message.component';
+import { Color } from './shared/enums/Color';
+import { LoaderComponent } from './core/components/loader/loader.component';
 
 @Component({
   selector: 'app-root',

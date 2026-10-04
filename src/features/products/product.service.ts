@@ -1,15 +1,15 @@
 import { computed, inject, Injectable, Injector, ResourceRef, Signal, signal, WritableSignal } from '@angular/core';
 import { IProductResponse } from './interfaces/IProductResponse';
 import { BehaviorSubject, catchError, debounceTime, distinctUntilChanged, EMPTY, finalize, Observable } from 'rxjs';
-import { MessageService } from '../../message.service';
 import { ProductApiService } from './product-api.service';
 import { IProduct } from './interfaces/IProduct';
-import { LoaderService } from '../../loader.service';
+import { LoaderService } from '../../app/core/services/loader.service';
 import { IProductParam } from './interfaces/IProductParam';
 import { rxResource, toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { ProductSortField } from '../../enums/ProductSortField';
-import { SortDirection } from '../../enums/SortDirections';
+import { ProductSortField } from './interfaces/ProductSortField';
+import { SortDirection } from './enums/SortDirections';
 import { PaginatorState } from 'primeng/paginator';
+import { MessageService } from '../../app/core/services/message.service';
 
 @Injectable({
   providedIn: 'root',

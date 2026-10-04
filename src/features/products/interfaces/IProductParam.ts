@@ -1,4 +1,4 @@
-import { SortDirection } from "../../../enums/SortDirections";
+import { SortDirection } from "../enums/SortDirections";
 
 export interface IProductParam {
   skip: number;
