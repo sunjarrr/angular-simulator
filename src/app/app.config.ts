@@ -1,6 +1,7 @@
 import {
   ApplicationConfig,
   inject,
+  isDevMode,
   provideAppInitializer,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
@@ -24,6 +25,11 @@ import { TranslateMessageFormatCompiler } from 'ngx-translate-messageformat-comp
 import { LanguageService } from './core/services/language.service';
 import { applicationConfig } from './core/tokens/config.token';
 import { LoggingInterceptor } from './core/interceptors/logging.interceptor';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { recipeReducer } from '../features/recipes/state/recipes.reducer';
+import { recipeEffect$ } from '../features/recipes/state/recipes.effects';
 
 function getTheme(): Preset {
   const value: string | null = localStorage.getItem('my-app-theme');
@@ -41,6 +47,14 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes, withComponentInputBinding()),
     provideZoneChangeDetection(),
+    provideStore({
+      recipes: recipeReducer,
+    }),
+    provideEffects({ recipeEffect$ }),
+    provideStoreDevtools({
+      maxAge: 25,
+      logOnly: !isDevMode(),
+    }),
     providePrimeNG({
       theme: {
         preset: getTheme(),
@@ -86,3 +100,4 @@ export const appConfig: ApplicationConfig = {
     }),
   ],
 };
+
