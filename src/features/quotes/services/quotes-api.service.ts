@@ -1,15 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { IQuoteResponse } from '../interfaces/IQuoteResponse';
 
 @Injectable({
   providedIn: 'root',
 })
 export class QuotesApiService {
 
-  httpClient: HttpClient = inject(HttpClient)
+  private httpClient: HttpClient = inject(HttpClient)
 
-  getQuotes() {
-    return this.httpClient.get('https://dummyjson.com/quotes')
+  getQuotes(): Observable<IQuoteResponse> {
+    return this.httpClient.get<IQuoteResponse>('https://dummyjson.com/quotes')
   }
 
 }

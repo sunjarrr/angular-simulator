@@ -2,7 +2,11 @@ import { computed, inject } from '@angular/core';
 import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
 import { IQoutesState } from '../interfaces/IQuotesState';
 import { IQuote } from '../interfaces/IQuote';
-import { QuotesService } from '../services/quotes.service';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { pipe, switchMap, tap } from 'rxjs';
+import { QuotesApiService } from '../services/quotes-api.service';
+import { tapResponse } from '@ngrx/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 const initialState: IQoutesState = {
   quotes: [],
@@ -39,25 +43,38 @@ export const QuotesStore = signalStore(
         filterStatus: status
       })
     },
-    loadQuotes() {
+    loadQuotes: rxMethod(pipe()) {
       patchState(store, {
         loading: true,
         error: null
       })
-      const quotesService: QuotesService = inject(QuotesService);
-      quotesService.getQuotes();
-     if (getQuotes) { 
+      const quotesApiService: QuotesApiService = inject(QuotesApiService);
+      rxMethod(pipe(
+        tap(() => {
+          patchState(store, {
+            loading: true,
+            error: null
+          })
+        }),
+        switchMap(() => {
+          return quotesApiService.getQuotes();
+        }),
+        tapResponse({
+          next: (quotes) => patchState(store, { quotes, error: null }),
+          error: (err: HttpErrorResponse) => patchState(store, { error: err.message }),
+          finalize: () => patchState(store, { loading: false })
+        })
+      ))
+      quotesApiService.getQuotes();
         const newQuotesList = store.quotes();
         patchState(store, {
           quotes: newQuotesList,
           loading: false
         })
-      } else {
         patchState(store, {
           error: 'Не удалось загрузить данные',
           loading: false
         })
-      }
     },
     toggleFavorite(quote: IQuote) {
       let updatedFavorites: IQuote[];
