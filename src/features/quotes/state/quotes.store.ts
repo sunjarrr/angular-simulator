@@ -7,13 +7,15 @@ import { pipe, switchMap, tap } from 'rxjs';
 import { QuotesApiService } from '../services/quotes-api.service';
 import { tapResponse } from '@ngrx/operators';
 import { HttpErrorResponse } from '@angular/common/http';
+import { IQuoteResponse } from '../interfaces/IQuoteResponse';
 
 const initialState: IQoutesState = {
   quotes: [],
   favorites: [],
   loading: false,
   error: null,
-  filterStatus: 'all'
+  filterStatus: 'all',
+  selectedQuote: 
 }
 
 export const QuotesStore = signalStore(
@@ -37,19 +39,13 @@ export const QuotesStore = signalStore(
     })
   })),
 
-  withMethods((store) => ({
+  withMethods((store, quotesApiService = inject(QuotesApiService)) => ({
     setFilter(status: 'all' |'favorites') {
       patchState(store, {
         filterStatus: status
       })
     },
-    loadQuotes: rxMethod(pipe()) {
-      patchState(store, {
-        loading: true,
-        error: null
-      })
-      const quotesApiService: QuotesApiService = inject(QuotesApiService);
-      rxMethod(pipe(
+    loadQuotes: rxMethod<void>(pipe(
         tap(() => {
           patchState(store, {
             loading: true,
@@ -60,22 +56,10 @@ export const QuotesStore = signalStore(
           return quotesApiService.getQuotes();
         }),
         tapResponse({
-          next: (quotes) => patchState(store, { quotes, error: null }),
-          error: (err: HttpErrorResponse) => patchState(store, { error: err.message }),
-          finalize: () => patchState(store, { loading: false })
+          next: (response: IQuoteResponse) => patchState(store, { quotes: response.quotes, error: null, loading: false }),
+          error: (err: HttpErrorResponse) => patchState(store, { error: err.message || 'Failed to load quotes', loading: false }),
         })
-      ))
-      quotesApiService.getQuotes();
-        const newQuotesList = store.quotes();
-        patchState(store, {
-          quotes: newQuotesList,
-          loading: false
-        })
-        patchState(store, {
-          error: 'Не удалось загрузить данные',
-          loading: false
-        })
-    },
+    )),
     toggleFavorite(quote: IQuote) {
       let updatedFavorites: IQuote[];
       const availibilityQuote = store.favorites().some((favoriteQuote: IQuote) => favoriteQuote.id === quote.id);
