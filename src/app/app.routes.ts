@@ -5,6 +5,13 @@ import { adminGuard } from './core/guards/admin-guard.guard';
 import { productResolver } from '../features/products/product.resolver';
 
 export const routes: Routes = [
+    {
+    path: 'quotes',
+    loadComponent: () => 
+      import('../features/quotes/components/quotes/quotes.component').then(
+        (module) => module.QuotesComponent
+      )
+  },
   {
     path: 'recipes',
     loadComponent: () => 

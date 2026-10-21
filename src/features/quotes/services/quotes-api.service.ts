@@ -11,7 +11,7 @@ export class QuotesApiService {
   private httpClient: HttpClient = inject(HttpClient)
 
   getQuotes(): Observable<IQuoteResponse> {
-    return this.httpClient.get<IQuoteResponse>('https://dummyjson.com/quotes')
+    return this.httpClient.get<IQuoteResponse>('https://dummyjson.com/quotes-not-found');
   }
 
 }

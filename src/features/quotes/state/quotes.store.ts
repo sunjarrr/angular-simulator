@@ -3,19 +3,18 @@ import { signalStore, withState, withComputed, withMethods, patchState } from '@
 import { IQoutesState } from '../interfaces/IQuotesState';
 import { IQuote } from '../interfaces/IQuote';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { pipe, switchMap, tap } from 'rxjs';
+import { delay, pipe, switchMap, tap } from 'rxjs';
 import { QuotesApiService } from '../services/quotes-api.service';
 import { tapResponse } from '@ngrx/operators';
-import { HttpErrorResponse } from '@angular/common/http';
 import { IQuoteResponse } from '../interfaces/IQuoteResponse';
 
 const initialState: IQoutesState = {
   quotes: [],
   favorites: [],
-  loading: false,
+  loading: true,
   error: null,
   filterStatus: 'all',
-  selectedQuote: 
+  selectedQuote: null
 }
 
 export const QuotesStore = signalStore(
@@ -40,25 +39,26 @@ export const QuotesStore = signalStore(
   })),
 
   withMethods((store, quotesApiService = inject(QuotesApiService)) => ({
-    setFilter(status: 'all' |'favorites') {
+    setFilter(status: 'all' | 'favorites') {
       patchState(store, {
         filterStatus: status
       })
     },
     loadQuotes: rxMethod<void>(pipe(
-        tap(() => {
-          patchState(store, {
-            loading: true,
-            error: null
-          })
-        }),
-        switchMap(() => {
-          return quotesApiService.getQuotes();
-        }),
-        tapResponse({
-          next: (response: IQuoteResponse) => patchState(store, { quotes: response.quotes, error: null, loading: false }),
-          error: (err: HttpErrorResponse) => patchState(store, { error: err.message || 'Failed to load quotes', loading: false }),
+      tap(() => {
+        patchState(store, {
+          loading: true,
+          error: null
         })
+      }),
+      switchMap(() => {
+        return quotesApiService.getQuotes().pipe(
+          tapResponse({
+            next: (response: IQuoteResponse) => patchState(store, { quotes: response.quotes, error: null, loading: false }),
+            error: () => patchState(store, { error: 'Failed to load quotes', loading: false }),
+          }),
+        );
+      }),
     )),
     toggleFavorite(quote: IQuote) {
       let updatedFavorites: IQuote[];
