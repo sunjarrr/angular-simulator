@@ -24,7 +24,9 @@
     "ourPinterest": "Our Pinterest",
     "subscribeNews": "Subscribe to news",
     "productsPage": "Products page",
-    "cartPage": "Cart"
+    "cartPage": "Cart",
+    "recipesPage": "Recipe page",
+    "quotesPage": "Quote page"
   },
   "main": {
     "searchForm": {

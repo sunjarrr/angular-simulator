@@ -6,6 +6,20 @@ import { productResolver } from '../features/products/product.resolver';
 
 export const routes: Routes = [
   {
+    path: 'quotes',
+    loadComponent: () => 
+      import('../features/quotes/components/quotes.component').then(
+        (module) => module.QuotesComponent
+      )
+  },
+  {
+    path: 'recipes',
+    loadComponent: () => 
+      import('../features/recipes/components/recipes.component').then(
+        (module) => module.RecipesComponent
+      )
+  },
+  {
     path: 'products/cart',
     loadComponent: () =>
       import('../features/products/cart/cart.component').then(

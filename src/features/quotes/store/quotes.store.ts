@@ -1,0 +1,84 @@
+import { computed, inject } from '@angular/core';
+import { signalStore, withState, withComputed, withMethods, patchState } from '@ngrx/signals';
+import { IQoutesState } from '../models/IQuotesState';
+import { IQuote } from '../models/IQuote';
+import { rxMethod } from '@ngrx/signals/rxjs-interop';
+import { pipe, switchMap, tap } from 'rxjs';
+import { QuotesApiService } from '../providers/quotes-api.service';
+import { tapResponse } from '@ngrx/operators';
+import { IQuoteResponse } from '../models/IQuoteResponse';
+
+const initialState: IQoutesState = {
+  quotes: [],
+  favorites: [],
+  loading: true,
+  error: null,
+  filterStatus: 'all',
+  selectedQuote: null
+}
+
+export const QuotesStore = signalStore(
+  { providedIn: 'root' },
+  withState(initialState),
+  withComputed((store) => ({
+    favoritesCount: computed(() => store.favorites().length),
+    authorsCount: computed(() => {
+      const quote = store.quotes().map((quotes: IQuote) => quotes.author);
+      const uniqueAuthors = new Set(quote)
+      return uniqueAuthors.size;
+    }),
+    filteredQuotes: computed(() => {
+      if (store.filterStatus() === 'favorites') {
+        return store.favorites();
+      } else {
+        return store.quotes();
+      }
+    })
+  })),
+  withMethods((store, quotesApiService: QuotesApiService = inject(QuotesApiService)) => ({
+    setFilter(status: 'all' | 'favorites') {
+      patchState(store, {
+        filterStatus: status
+      })
+    },
+    loadQuotes: rxMethod<void>(pipe(
+      tap(() => {
+        patchState(store, {
+          loading: true,
+          error: null
+        })
+      }),
+      switchMap(() => {
+        return quotesApiService.getQuotes().pipe(
+          tapResponse({
+            next: (response: IQuoteResponse) => patchState(store, { quotes: response.quotes, error: null, loading: false }),
+            error: () => patchState(store, { error: 'Failed to load quotes', loading: false }),
+          }),
+        );
+      }),
+    )),
+    toggleFavorite(quote: IQuote): void {
+      let updatedFavorites: IQuote[];
+      const availibilityQuote = store.favorites().some((favoriteQuote: IQuote) => favoriteQuote.id === quote.id);
+      if (availibilityQuote) {
+        updatedFavorites = store.favorites().filter((favoriteQuote: IQuote) => favoriteQuote.id !== quote.id);
+      } else {
+        updatedFavorites = [...store.favorites(), quote]
+      }
+      patchState(store, {
+        favorites: updatedFavorites
+      })
+    },
+    selectRandomQuote(): void {
+      const quotes: IQuote[] = store.quotes();
+      if (quotes.length === 0) {
+        return;
+      }
+      const randIndex: number = Math.floor(Math.random() * quotes.length);
+      const randQuote: IQuote = quotes[randIndex];
+      patchState(store, {
+        selectedQuote: randQuote
+      });
+    },
+  }))
+);
