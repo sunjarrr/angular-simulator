@@ -1,0 +1,44 @@
+<div class="recipes-container">
+  <header class="header">
+    <div class="header-titles">
+      <h1 class="title">Каталог рецептов</h1>
+      <p class="subtitle">Управление состоянием через NgRx Store</p>
+    </div>
+    <button type="button" class="btn-reload" (click)="onReload()" [disabled]="loading()">
+      <span class="spinner-icon" [class.spinning]="loading()"></span>
+      Reload recipes
+    </button>
+  </header>
+  @if (error(); as errMessage) {
+    <div class="alert-error"><strong>Ошибка:</strong> {{ errMessage }}</div>
+  }
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="loader"></div>
+      <p>Загрузка рецептов...</p>
+    </div>
+  } @else {
+    <div class="recipes-grid">
+      @for (recipe of recipes(); track recipe.id) {
+        <article class="recipe-card">
+          <div class="card-body">
+            <h2 class="recipe-name">{{ recipe.name }}</h2>
+            <span class="cuisine-tag">{{ recipe.cuisine }}</span>
+          </div>
+          <div class="card-footer">
+            <span class="meta-item">
+              {{ recipe.prepTimeMinutes + recipe.cookTimeMinutes }} мин
+            </span>
+            <span class="meta-item rating">
+              {{ recipe.rating }}
+            </span>
+          </div>
+        </article>
+      } @empty {
+        @if (!loading()) {
+          <p class="empty-state">Список рецептов пуст.</p>
+        }
+      }
+    </div>
+  }
+</div>

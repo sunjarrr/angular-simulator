@@ -24,7 +24,9 @@
     "ourPinterest": "Біздің Pinterest",
     "subscribeNews": "Жаңалықтарға жазылу",
     "productsPage": "Өнім беті",
-    "cartPage": "Себет"
+    "cartPage": "Себет",
+    "recipesPage": "Рецепттер беті",
+    "quotesPage": "Цитаталар беті"
   },
   "main": {
     "searchForm": {

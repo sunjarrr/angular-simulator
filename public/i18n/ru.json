@@ -24,7 +24,9 @@
     "ourPinterest": "Наш pinterest",
     "subscribeNews": "Подписаться на новости",
     "productsPage": "Страница продуктов",
-    "cartPage": "Корзина"
+    "cartPage": "Корзина",
+    "recipesPage": "Страница рецептов",
+    "quotesPage": "Страница цитат"
   },
   "main": {
     "searchForm": {

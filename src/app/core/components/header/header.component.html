@@ -51,6 +51,9 @@
           <button id="products-page" routerLink="/products">
             {{ "buttons.productsPage" | translate }}
           </button>
+          <button id="products-page" routerLink="/recipes">
+            {{ "buttons.recipesPage" | translate }}
+          </button>
         </div>
         <button class="semi-bold fs-16 consultation-btn">{{ "buttons.consultation" | translate }}</button>
       </div>
@@ -63,6 +66,11 @@
         </button>
       }
       <div class="select-language">
+        <div class="quotes-page-btn">
+          <button id="products-page" routerLink="/quotes">
+            {{ "buttons.quotesPage" | translate }}
+          </button>
+        </div>
         <p-select (onChange)="onLanguageChange($event.value)" appendTo="body" [options]="languages" placeholder="Select language"/>
       </div>
     </div>
